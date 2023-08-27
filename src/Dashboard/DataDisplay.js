@@ -1,7 +1,10 @@
 import { Stack, Box, Typography } from "@mui/material";
-
+import { useState } from "react";
 
 export default function DataDisplay(props) {
+    const [adults, setAdults] = useState(false);
+    const handleAdults = function (){ setAdults((adults) => !adults); console.log(adults) }
+
     const Firstsettings ={ padding:1,
         alignContent:'center', justifyContent:'center',
         backgroundColor: props.color,
@@ -17,7 +20,7 @@ export default function DataDisplay(props) {
         },
     }
 
-    return <Stack direction={'column'} padding={1} >
+    return <Stack direction={'column'} padding={1} onClick={() => handleAdults()} >
 
         <Box display={'flex'} sx={Firstsettings} >
             <Typography variant="h5"> {props.text} </Typography>
