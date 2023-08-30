@@ -1,6 +1,10 @@
-import { Box, Button, ButtonGroup, Grid } from "@mui/material"
+//MUI
+import { Button, ButtonGroup, Grid } from "@mui/material"
 import { Graph } from "./Graph"
-import { useState } from "react"
+
+//Redux
+import { useSelector, useDispatch } from 'react-redux'
+import {  totalAdultsToggle, totalAdultQueryToggle } from "../redux/graphState/activeGraphs"
 
 const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -27,28 +31,30 @@ const data = {
         ],
       },
     ],
-  };//quitar
+  };//quitar, temporally static graph data object
 
 
 
 export default function ActiveGraphs(){
-    const [totalAdults, setTotalAdults] = useState(true)
-    const [totalAdultQuery, setTotalAdultQuery] = useState(true)
+  /*   const [totalAdults, setTotalAdults] = useState(true)
+    const [totalAdultQuery, setTotalAdultQuery] = useState(true) */
+
+    const activeGraphs = useSelector((state) => state.activeGraphs)
+    const dispatch = useDispatch()
 
     return(<Grid container>
 
-        {(totalAdults) ? <Grid item xs={6} onClick={() => {setTotalAdults(!totalAdults)}}><Graph data={data}  /></Grid> : null}
+        {(activeGraphs.totalAdults) ? <Grid item xs={6} onClick={() => {}}><Graph data={data}  /></Grid> : null}
 
-        {(totalAdultQuery) ? <Grid item xs={6}><Graph data={data}  /> </Grid> : null}
+        {(activeGraphs.totalAdultQuery) ? <Grid item xs={6}><Graph data={data}  /> </Grid> : null}
     {/* DEV */}
-        <Grid items xs={12}>
+        <Grid item xs={12}>
             <ButtonGroup>
-                <Button onClick={() => {setTotalAdults(!totalAdults)}}>toggle adults</Button>
-                <Button onClick={() => {setTotalAdultQuery(!totalAdultQuery)}}>toggle queryAdults</Button>
+                <Button onClick={() =>{dispatch(totalAdultsToggle())}}>total adultos</Button>
+                <Button onClick={() =>{dispatch(totalAdultQueryToggle())}}>total consultats adulto</Button>
 
             </ButtonGroup>
         </Grid>
-      
         
 
         

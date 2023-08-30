@@ -6,7 +6,6 @@ import { Grid, Typography } from '@mui/material';
 ChartJS.register(ArcElement, Tooltip, Legend);
 //generate the format of the object necesari to build the Pie component
 function createGraph(params){
-    console.log(params.datasets[0].label)
   return {
     labels: params.labels,
     datasets: [{
@@ -35,7 +34,6 @@ function createGraph(params){
 }
 
 export function Graph(props) {
-    console.log(props.data)
   return <Grid container>
     <Grid item xs = {12}><Typography variant='h2' component={"h2"} textAlign={'center'}> Adultos </Typography></Grid>
     <Grid></Grid>
