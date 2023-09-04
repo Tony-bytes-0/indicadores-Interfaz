@@ -1,10 +1,9 @@
 //MUI
-import { Button, ButtonGroup, Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 import { Graph } from "./Graph"
 
 //Redux
-import { useSelector, useDispatch } from 'react-redux'
-import {  totalAdultsToggle, totalAdultQueryToggle } from "../redux/graphState/activeGraphs"
+import { useSelector } from 'react-redux'
 
 const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -36,29 +35,14 @@ const data = {
 
 
 export default function ActiveGraphs(){
-  /*   const [totalAdults, setTotalAdults] = useState(true)
-    const [totalAdultQuery, setTotalAdultQuery] = useState(true) */
 
     const activeGraphs = useSelector((state) => state.activeGraphs)
-    const dispatch = useDispatch()
 
     return(<Grid container>
 
         {(activeGraphs.totalAdults) ? <Grid item xs={6} onClick={() => {}}><Graph data={data}  /></Grid> : null}
 
         {(activeGraphs.totalAdultQuery) ? <Grid item xs={6}><Graph data={data}  /> </Grid> : null}
-    {/* DEV */}
-        <Grid item xs={12}>
-            <ButtonGroup>
-                <Button onClick={() =>{dispatch(totalAdultsToggle())}}>total adultos</Button>
-                <Button onClick={() =>{dispatch(totalAdultQueryToggle())}}>total consultats adulto</Button>
-
-            </ButtonGroup>
-        </Grid>
-        
-
-        
-        
 
     </Grid>)
 }

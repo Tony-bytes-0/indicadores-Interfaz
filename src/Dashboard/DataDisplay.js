@@ -1,4 +1,4 @@
-import { Stack, Box, Typography } from "@mui/material";
+/* import { Stack, Box, Typography } from "@mui/material";
 import { useState } from "react";
 
 export default function DataDisplay(props) {
@@ -32,4 +32,65 @@ export default function DataDisplay(props) {
 
         </Stack>
     //{props.data} {props.text}
+} */
+
+import * as React from 'react';
+//icons
+import AccessibilityNewSharpIcon from '@mui/icons-material/AccessibilityNewSharp';
+import PieChartSharpIcon from '@mui/icons-material/PieChartSharp';
+//MUI
+import { Divider, List, ListItem, ListItemText, ListItemAvatar, Avatar, Button } from '@mui/material';
+//REdux
+import { totalAdultQueryToggle, totalAdultsToggle } from '../redux/graphState/activeGraphs';
+import { useDispatch } from 'react-redux';
+
+export default function DataDisplay(props) {
+    const dispatch = useDispatch()
+
+  return (
+    <List
+      sx={{
+        width: '100%',
+        maxWidth: 360,
+        bgcolor: 'background.paper',
+      }}
+    >
+     {console.log(props)}
+      <Divider variant="inset" component="li" />
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <AccessibilityNewSharpIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={props.text} secondary="Jan 7, 2014" />
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <PieChartSharpIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={props.data}  />
+      </ListItem>
+
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <PieChartSharpIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Vista del Grafico"  />
+
+        {(props.text === 'Total Adultos') ? <Button variant="contained" 
+        onClick={() =>{dispatch(totalAdultsToggle())}} >Vista del Grafico</Button> : null}
+
+        {(props.text === 'Total de Consultas Adulto') ? <Button variant="contained" 
+        onClick={() =>{dispatch(totalAdultQueryToggle())}}>Vista del Grafico</Button> : null}
+
+      </ListItem>
+
+    </List>
+  );
 }
