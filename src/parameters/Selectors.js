@@ -21,7 +21,6 @@ export default function Selectors() {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Años</MenuItem>
           <MenuItem value={20}>Meses</MenuItem>
           <MenuItem value={30}>Semanas</MenuItem>
           <MenuItem value={30}>Dias</MenuItem>

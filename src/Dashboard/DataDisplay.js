@@ -89,6 +89,11 @@ export default function DataDisplay(props) {
         {(props.text === 'Total de Consultas Adulto') ? <Button variant="contained" 
         onClick={() =>{dispatch(totalAdultQueryToggle())}}>Vista del Grafico</Button> : null}
 
+{/*         {(props.text === 'Masculino Adulto') ? <Button variant="contained" 
+        onClick={() =>{}}>Vista del Grafico</Button> : null}
+
+        {(props.text === 'Femenino Adulto') ? <Button variant="contained" 
+        onClick={() =>{}}>Vista del Grafico</Button> : null} */}
       </ListItem>
 
     </List>
