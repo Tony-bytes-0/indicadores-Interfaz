@@ -1,78 +1,43 @@
-/* import { Stack, Box, Typography } from "@mui/material";
-import { useState } from "react";
-
-export default function DataDisplay(props) {
-    const [adults, setAdults] = useState(false);
-    const handleAdults = function (){ setAdults((adults) => !adults); console.log(adults) }
-
-    const Firstsettings ={ padding:1,
-        alignContent:'center', justifyContent:'center',
-        backgroundColor: props.color,
-        '&:hover': {
-        opacity: [0.9, 0.8, 0.7],
-        },
-    }
-    const SecundSetting ={ padding:2,
-        alignContent:'left', justifyContent:'left',
-        backgroundColor: props.color,
-        '&:hover': {
-        opacity: [0.9, 0.8, 0.7],
-        },
-    }
-
-    return <Stack direction={'column'} padding={1} onClick={() => handleAdults()} >
-
-        <Box display={'flex'} sx={Firstsettings} >
-            <Typography variant="h5"> {props.text} </Typography>
-        </Box>
-        
-        <Box display={'flex'}  sx={SecundSetting}>
-            <Typography variant="h5"> {props.data} </Typography>
-        </Box>
-
-        </Stack>
-    //{props.data} {props.text}
-} */
-
 import * as React from 'react';
 //icons
 import AccessibilityNewSharpIcon from '@mui/icons-material/AccessibilityNewSharp';
 import PieChartSharpIcon from '@mui/icons-material/PieChartSharp';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 //MUI
-import { Divider, List, ListItem, ListItemText, ListItemAvatar, Avatar, Button } from '@mui/material';
+import { Divider, List, ListItem, ListItemText, ListItemAvatar, Avatar, Button, Paper, Box } from '@mui/material';
 //REdux
-import { totalAdultQueryToggle, totalAdultsToggle } from '../redux/graphState/activeGraphs';
+import { totalAdultsToggle, totalDiagnosticoToggle, totalEspecialidadesToggle, totalTensionToggle } from '../redux/graphState/activeGraphs';
 import { useDispatch } from 'react-redux';
 
 export default function DataDisplay(props) {
     const dispatch = useDispatch()
 
-  return (
+
+  return (<Box sx ={{borderStyle:'solid', borderRadius:'1rem'}}>
     <List
       sx={{
-        width: '100%',
-        maxWidth: 360,
-        bgcolor: 'background.paper',
+        width: '100%', maxWidth: 360,
+        padding:'0.2rem', margin:'0.5rem',
+        border: 1
       }}
     >
-     {console.log(props)}
       <Divider variant="inset" component="li" />
-      <ListItem>
+      <ListItem >
         <ListItemAvatar>
           <Avatar>
             <AccessibilityNewSharpIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={props.text} secondary="Jan 7, 2014" />
+        <ListItemText primary={props.text} secondary={props.total} />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem>
         <ListItemAvatar>
           <Avatar>
-            <PieChartSharpIcon />
+            <PriorityHighIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={props.data}  />
+        <Paper sx={{ bgcolor: '#5FFFBF', padding: '0.5rem'}} > Estado de alerta segun datos (?)</Paper>
       </ListItem>
 
       <ListItem>
@@ -83,19 +48,19 @@ export default function DataDisplay(props) {
         </ListItemAvatar>
         <ListItemText primary="Vista del Grafico"  />
 
-        {(props.text === 'Total Adultos') ? <Button variant="contained" 
-        onClick={() =>{dispatch(totalAdultsToggle())}} >Vista del Grafico</Button> : null}
+        {(props.text === 'Triage') ? <Button variant="contained" 
+          onClick={() =>{dispatch(totalAdultsToggle())}} >Grafico</Button> : null}
 
-        {(props.text === 'Total de Consultas Adulto') ? <Button variant="contained" 
-        onClick={() =>{dispatch(totalAdultQueryToggle())}}>Vista del Grafico</Button> : null}
+        {(props.text === 'Diagnóstico') ? <Button variant="contained" 
+          onClick={() => { dispatch(totalDiagnosticoToggle())}}>Grafico</Button> : null}
 
-{/*         {(props.text === 'Masculino Adulto') ? <Button variant="contained" 
-        onClick={() =>{}}>Vista del Grafico</Button> : null}
+        {(props.text === 'Tensión') ? <Button variant="contained"
+          onClick={() => { dispatch(totalTensionToggle()) }}>Grafico</Button> : null}
 
-        {(props.text === 'Femenino Adulto') ? <Button variant="contained" 
-        onClick={() =>{}}>Vista del Grafico</Button> : null} */}
+        {(props.text === 'Atención especial') ? <Button variant="contained"
+          onClick={() => { dispatch(totalEspecialidadesToggle()) }}>Grafico</Button> : null}
       </ListItem>
 
-    </List>
+    </List></Box>
   );
 }
