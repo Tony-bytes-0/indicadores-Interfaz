@@ -1,5 +1,10 @@
+import Navbar from '@/components/navbar/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Sidebar from '@/components/Sidebar'
+import { Grid } from '@mui/material'
+import ReduxProvider from '@/redux/ReduxProvider'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +16,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+            <nav>  <Navbar /> </nav>
+
+        <Grid container className='my-10 mx-6'>
+            <Grid xs={2}><div className="bg-slate-400"> <ReduxProvider >  <Sidebar /> </ReduxProvider >  </div></Grid>
+            <Grid xs={9}><div className="bg-slate-200 my-20 mx-5"> <ReduxProvider > {children} </ReduxProvider> </div></Grid>
+        </Grid>  
+
+            
+            
+        </body>
     </html>
   )
 }
