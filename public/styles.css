@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.separator{border-color:rgb(59, 53, 64); border-style: solid; border-width: 10px; border-left: 0; border-right: 0; border-top: 0;}
+.tittle{font-size: large;}
+.centrate{text-align: center; justify-content: center; align-items: center; }
+.basicBorders{padding:10px;margin: 10px;}
+
+
+.rojo{
+    color: red;
+}
+
+.sectionBorders{
+
+}
+.section{
+    border-radius: 10px;
+    border-style: outset;
+    padding: 2%;
+}
+
