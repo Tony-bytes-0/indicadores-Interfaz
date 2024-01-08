@@ -1,7 +1,8 @@
-import Navbar from '@/components/navbar/Navbar'
+//import Navbar from '@/components/navbar/Navbar'
+import Navbar from '../components/navbar/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Sidebar from '@/components/Sidebar'
+import Sidebar from '../components/Sidebar'
 import { Grid } from '@mui/material'
 import ReduxProvider from '@/redux/ReduxProvider'
 
