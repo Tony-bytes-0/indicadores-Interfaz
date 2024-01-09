@@ -20,11 +20,11 @@ function DisplayUser(){
 }
 
 export default function Navbar() {
-    return(<AppBar position='fixed' className='p-2 bg-slate-500'>{/*aqui esta el slate!!!*/}
+    return(<AppBar position='fixed' className='p-2 bg-slate-500 my-3'>{/*aqui esta el slate!!!*/}
 
 <Stack direction="row" spacing={2} className='justify-between'>
 
-    <Image src={logo} width={200} height={200} alt='logo '/>
+    <Image src={logo} width={150} height={90} alt='logo '/>
     {/* <Image src={cantarrana} width={200} height={200} alt='logo '/> */}
     
     <DisplayUser />
