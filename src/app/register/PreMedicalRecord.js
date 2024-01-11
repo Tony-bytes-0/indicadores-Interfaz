@@ -40,7 +40,7 @@ export default function PreMedicalRecord(){
         {/*<TextField sx={sm} label='Presion Arterial (mm Hg)' onChange={handlePressure} value={pressure}>Presion Arterial</TextField>*/}
     </Box></Grid>
     <Grid item xs = {3} >
-        <Box sx={{'display': 'flex','flex-direction':'row' , 'flex-wrap': 'wrap'}} className='my-3'> 
+        <Box sx={{'display': 'flex','flexDirection':'row' , 'flexWrap': 'wrap'}} className='my-3'> 
             <TextField sx={full} label='Tension Sistolica' value={sistolic} onChange={handleSistolic} >Presion Arterial</TextField>
             <Typography sx={{fontSize:'35px'}} > / </Typography >
             <TextField sx={full} label='Tension diastolica'  value={diastolic} onChange={handleDiastolic}>Presion Arterial</TextField>

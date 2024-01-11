@@ -6,8 +6,6 @@ import { Grid, TextField, InputLabel, Select, MenuItem, FormControl, Button, Tex
 
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
-//import { addUserData } from '@/redux/Register/userData/userData'
-import { togglefilterUser, toggleUserData } from '@/redux/Register/registerController/registerController'
 
 import { setId } from '@/redux/Register/userData/person/id'
 import { setNombre } from '@/redux/Register/userData/person/nombre'
@@ -29,11 +27,6 @@ import { bloodList } from '@/app/register/staticValuesList'//objeto con personas
 import Separador from '@/components/Separador'
 // import UserType from './UserType'
 //Iconos
-import SearchIcon from '@mui/icons-material/Search';
-import DeleteIcon from '@mui/icons-material/Delete';
-//import EditIcon from '@mui/icons-material/Edit';
-import { setMedicData } from '@/redux/Register/userData/medic'
-import { setAuxData } from '@/redux/Register/userData/auxiliar'
 
 import { setEstadoList } from '@/redux/Register/registerController/estadoList'
 import { setMunicipioList } from '@/redux/Register/registerController/municipioList'
@@ -214,14 +207,6 @@ export default function UserData(props){//MAIN
                 updatePerson(createDataObject(), props.target.id)
             }}>Actualizar</Button>
         </div></>}
-        
-        else{//boton que guarda en state
-        return<><Button className='mr-5 bg-blue-600' onClick={() => {
-            dispatch(toggleUserData(false))
-            dispatch(togglefilterUser(true))
-        }}>Buscar Usuarios <SearchIcon /></Button>
-        </>
-        }
     }
     function getPersonByDni (){
         axios.post('http://localhost:300/buscarPersonasPorCedula', {"identificacion": identificacion})
@@ -247,7 +232,7 @@ export default function UserData(props){//MAIN
 
                     <FormControl sx = {sm} >
                         <InputLabel>Genero</InputLabel>
-                        <Select label="Genero" variant="filled" value = {sexo} onChange={handleGender}>
+                        <Select label="Genero" variant="filled" value = {sexo} onChange={handleGender} defaultValue = "">
                             <MenuItem value={'masculino'}>Masculino</MenuItem>
                             <MenuItem value={'femenino'}>Femenino</MenuItem>
                         </Select>
@@ -261,7 +246,7 @@ export default function UserData(props){//MAIN
                     <TextField label="Fecha de Nacimiento" type="date" sx={sm} value={fecha_de_nacimiento} InputLabelProps={{shrink: true}} variant="filled" onChange={handleBirthdate} />
                     <FormControl sx = {sm}>
                         <InputLabel>Tipo de Sangre</InputLabel>
-                        <Select label="Tipo de Sangre" variant="filled" id="BloodType" value={tipo_sangre} onChange={handleBloodType}>
+                        <Select label="Tipo de Sangre" variant="filled" id="BloodType" value={tipo_sangre} onChange={handleBloodType} defaultValue = "">
                             {bloodList.map((e) => <MenuItem key={e+'blood'} value={e}>{e}</MenuItem>)}
                         </Select>
                     </FormControl>   
@@ -272,7 +257,7 @@ export default function UserData(props){//MAIN
                                                             
                 <Grid item xs = {4}>{/* Direccion */}<Box sx={full}>
                     <FormControl sx={full}> <InputLabel>Estado</InputLabel>
-                        <Select variant="filled" label="estado" value={estado} onChange={handleEstado}>
+                        <Select variant="filled" label="estado" value={estado} onChange={handleEstado} defaultValue = "">
                             {estadosList.map((e) => <MenuItem value={e.nombre_estado} key={e.id +' Municipio'}>{e.nombre_estado}</MenuItem> )}
                         </Select>
                     </FormControl>  
@@ -280,7 +265,7 @@ export default function UserData(props){//MAIN
 
                 <Grid item xs = {4}>{/* Direccion */}<Box sx={full}>
                     <FormControl sx={full}> <InputLabel>Municipio</InputLabel>
-                        <Select variant="filled" label="municipio" value={municipio} onChange={handleMunicipio}>
+                        <Select variant="filled" label="municipio" value={municipio} onChange={handleMunicipio} defaultValue = "">
                             {avalibleMunicipios().map((e) => <MenuItem value={e.nombre_municipio} key={e.id +' Municipio'}>{e.nombre_municipio}</MenuItem> )}
                         </Select>
                     </FormControl>  
@@ -288,7 +273,7 @@ export default function UserData(props){//MAIN
 
                 <Grid item xs={4}><Box sx={full}>
                     <FormControl sx={full}> <InputLabel>Parroquia</InputLabel>
-                        <Select variant="filled" label="parroquia" value={parroquia} onChange={handleParroquia}>
+                        <Select variant="filled" label="parroquia" value={parroquia} onChange={handleParroquia} defaultValue = "">
                             {avalibleParroquias().map((e) => <MenuItem value={e.nombre_parroquia} key={e.id + 'parroquia'}>{e.nombre_parroquia}</MenuItem> )}
                         </Select>
                     </FormControl>  
@@ -297,7 +282,7 @@ export default function UserData(props){//MAIN
 
                 <Grid item xs = {6}><Box sx={full}>
                     <FormControl sx = {full} > <InputLabel>Comunidad</InputLabel>
-                        <Select variant="filled" id="BloodType" label="Genero" value={comunidad} onChange={handleComunidad}>
+                        <Select variant="filled" id="BloodType" label="Genero" value={comunidad} onChange={handleComunidad} defaultValue = "">
                             {avalibleComunidades().map((e) => <MenuItem value={e.nombre_comunidad} key={e.id+' comunidad'}>{e.nombre_comunidad}</MenuItem> )}
                         </Select>
                     </FormControl> 
@@ -306,7 +291,7 @@ export default function UserData(props){//MAIN
                 <Grid item xs = {6}><Box sx={full}>
                     <FormControl sx={full}> <InputLabel>Sector</InputLabel>
                         <Select variant="filled" label="Genero" 
-                        value={sector} onChange={handleSector} >
+                        value={sector} onChange={handleSector} defaultValue = "">
                             {avalibleSectores().map((e) => <MenuItem value={e.nombre_sector} key={e.id + ' sector'}>{e.nombre_sector}</MenuItem> )}
                         </Select>
                     </FormControl>  
@@ -315,13 +300,12 @@ export default function UserData(props){//MAIN
             </Grid>
             
             <Grid item xs={12} className='text-center' >
-                <TextareaAutosize className='text-center items-center m-auto' aria-label="minimum height" minRows={2} placeholder="Direccion de la Habitacion" style={{ width: "90%",display:"flex" }}
+                <TextareaAutosize className='text-center items-center m-auto border-solid border-4 rounded'  aria-label="minimum height" minRows={2} placeholder="Direccion de la Habitacion" style={{ width: "90%",display:"flex" }}
                 value={direccion} onChange={handleDirection}/>
             </Grid>
 
             <Box className='centrate'><ButtonGroup disableElevation className='centrate' variant="contained" aria-label="Disabled buttons" 
                 sx={{'padding':'10px', 'margin':'10px','alignItems':'center'}}>
-                <RenderedButton /> <Button  className='bg-red-500' onClick={() => {clearInputs()}} color="error" >Limpiar Datos <DeleteIcon /></Button>
                 {/* <Button onClick={() => {console.log(identificacion.length)}} >Ver sector</Button> */}
             </ButtonGroup></Box>
         </>

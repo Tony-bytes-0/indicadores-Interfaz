@@ -17,17 +17,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-        <body className={inter.className}>
+        <body >
             <nav>  <Navbar /> </nav>
 
         <Grid container className='my-10 mx-6'>
-            <Grid xs={2}><div className="bg-slate-400"> <ReduxProvider >  <Sidebar /> </ReduxProvider >  </div></Grid>
-            <Grid xs={9}><div className="bg-slate-200 my-20 mx-5"> <ReduxProvider > {children} </ReduxProvider> </div></Grid>
+            <Grid item xs={2}><div> <ReduxProvider >  <Sidebar /> </ReduxProvider >  </div></Grid>
+            <Grid item xs={10}><div> <ReduxProvider > {children} </ReduxProvider> </div></Grid>
         </Grid>  
 
-            
-            
         </body>
     </html>
   )
 }
+

@@ -57,7 +57,7 @@ export default function Page() {
         console.log(tensionState)
     },[])
 
-    return <Grid container display={'flex'}>
+    return <Grid container display={'flex'} className='my-10'>
 
         <Grid item xs= {12} > <Typography textAlign={'center'} fontSize={30}>Totales del mes en curso</Typography> </Grid>
 

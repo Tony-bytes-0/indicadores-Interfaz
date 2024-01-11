@@ -27,7 +27,7 @@ import { normalizeActiveSymptoms } from "@/redux/Register/Symptoms/ActiveSymptom
 import { normalizeActiveEmatology } from "@/redux/Register/ematology/activeEmatology";
 import { normalizeActiveCoprouro } from '@/redux/Register/coprouro/activeCoprouro';
 import { normalizeActiveRadiography } from '@/redux/Register/radiography/activeRadiography'
-import { setRecipe } from "@/redux/Register/preMedicalRecord/recipe";
+//import { setDiastolic } from "@/redux/Register/preMedicalRecord/diagnostico";
 import { setIndications } from "@/redux/Register/preMedicalRecord/indications";
 
 
@@ -41,7 +41,7 @@ export default function PostBtn(){
 
 
     
-    function createMedicalRecord() {
+    function medicalRecord() {
         const obj = { altura: store.getState().size, peso: store.getState().weight, 
             temperatura: store.getState().temp,  observaciones: store.getState().observations, 
             fecha: store.getState().medicalRecordDate,  razon_visita:"consulta", 
@@ -55,7 +55,7 @@ export default function PostBtn(){
         if(isNaN(obj.temperatura)){obj.problems.push(' Temperatura')}
         return obj
     }
-    function createDataObject (){//extends
+    function userData (){//extends
         return {
             "nombre": store.getState().nombre,
             "apellido": store.getState().apellido,
@@ -69,18 +69,9 @@ export default function PostBtn(){
             "sector": store.getState().sectorList.find(x => x.nombre_sector === store.getState().sector).id, //esto me trae el id del sector
         }
     }
-    function postPreMedicalRecord(obj){
-        axios.post('http://localhost:300/phistoria', obj)
-        .then((response) =>{
-            console.log('la phistoria se creo correctamente', response.data)
-            postMR(getMRData(response.data.id))
-        })
-        .catch((response) =>{
-            console.log('ha ocurrido un error en la pre historia medica', response)
-        })
-    }
+
     function postMR(obj){
-        axios.post('http://localhost:300/historiam', obj)
+        axios.post('http://localhost:4000/visitas', obj)
         .then((response) => {
             alert('creacion exitosa');
             normalize();
@@ -88,35 +79,6 @@ export default function PostBtn(){
         .catch((response) =>{
             console.log('ha ocurrido un error al crear la historia medica', response)
         })
-    }
-    function getMRData(phistoriaId){
-        const coprouro = store.getState().activeCoprouro.map((e) => e.nombre)
-        const ematologys = store.getState().activeEmatology.map((e) => e.nombre)
-        const radiographys = store.getState().activeRadiography.map((e) => e.body)
-
-        console.log(radiographys)
-        return {"recipe":store.getState().recipe, "indicaciones": store.getState().indications,
-        "phistoria":phistoriaId, 
-        "coprouro": coprouro.toString(),
-        "analisis":ematologys.toString(),
-        "img":radiographys.toString()
-    }
-    }
-    function postPersondThenMedicalRecord(object){//extends
-        const check = Object.values(object).map((e) => {
-        if(e === undefined || e === ''){return false} else{return true} })//validacion de campos vacios
-        if(check.includes(true)){//si alguno de los campos contienen datos:
-            console.log(object)
-            axios.post('http://localhost:300/person', object)
-            .then((response) =>{
-                const newUser = response.data; 
-                postPreMedicalRecord({...createMedicalRecord(), person: newUser.id});
-                console.log('al crear usuario e historia, estos son los datos enviados: ', {...createMedicalRecord(), person: newUser.id})
-            })
-            .catch((response) => {
-                alert('ocurrio un error con el registro de los datos del paciente')
-            })
-            }
     }
     function normalize(){
         dispatch(setSize('')); dispatch(setTemp('')); dispatch(setDiastolic('')); dispatch(setSistolic(''));
@@ -131,23 +93,14 @@ export default function PostBtn(){
     }
 
 
-    return <div className="centrate"> 
+    return <div className="text-center"> 
        
-        {/* <Button onClick={() => {console.log(createMedicalRecord())}}>dime que hay en el objeto de medical record</Button> */}
-        <Button variant="contained" className="bg-blue-600" style={style}  onClick={() => {
-            var attempt = createMedicalRecord()
-            if(store.getState().id !== 'newUser'){//usuario ya existente seleccionado
-                if(attempt.problems.length < 1){
-                    postPreMedicalRecord({...createMedicalRecord(), person: store.getState().id })
-                    console.log('este es el objeto enviado: ', {...createMedicalRecord(), person: store.getState().id })
-                }
-                else{
-                    alert('error, en los siguientes campos no hay numeros: ' + attempt.problems)
-                }
-            }//usuario nuevo
+        <Button variant="contained" className="bg-blue-600 " style={style}  onClick={() => {
+            var attempt = medicalRecord()
 
-            else{ postPersondThenMedicalRecord( createDataObject() )  }
-
+            if(attempt.length >= 1){
+                alert('error, en los siguientes campos no hay numeros: ' + attempt.problems)
+            }
 
         }}> Registar Historia Medica </Button>   
 

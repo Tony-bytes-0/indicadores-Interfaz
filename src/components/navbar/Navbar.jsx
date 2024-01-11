@@ -20,7 +20,7 @@ function DisplayUser(){
 }
 
 export default function Navbar() {
-    return(<AppBar position='fixed' className='p-2 bg-slate-500 my-3'>{/*aqui esta el slate!!!*/}
+    return(<AppBar position='fixed' className='p-1 bg-slate-300'>{/*aqui esta el slate!!!*/}
 
 <Stack direction="row" spacing={2} className='justify-between'>
 

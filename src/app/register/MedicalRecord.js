@@ -18,7 +18,7 @@ import PreMedicalRecord from "./PreMedicalRecord";
 import SymptomSelect from "./SymptomSelect";
 import { useSelector, useDispatch } from "react-redux";
 import { setMedicalRecordDate } from "@/redux/Register/preMedicalRecord/MedicalRecordDate";
-import Indications from './Indications'; import Recipe from './Recipe'
+import Indications from './Indications';
 
 
 
@@ -37,7 +37,6 @@ export default function MedicalRecord(){//Main
         <Separador label={'Datos de la Historia Medica'} />{/* SEPARADOR */}
         <PreMedicalRecord />
         <Obsevations />
-        <SymptomSelect />
         
         <Grid item xs = {12}> 
             <FormControl fullWidth sx={{"padding":"3%"}}>
@@ -47,7 +46,7 @@ export default function MedicalRecord(){//Main
             </FormControl>
         </Grid>
 
-      <Separador /> <Indications /> <Recipe />
+      <Separador /> <Indications />
 
     </Grid>
 

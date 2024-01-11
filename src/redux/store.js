@@ -11,6 +11,7 @@ import parroquiaList from './Register/registerController/parroquiaList';
 
 //Historia medica
 import activeSymptoms from './Register/Symptoms/ActiveSymptoms';
+import doctor from './Register/preMedicalRecord/doctor'
 
 import provisionalData from './provisionalData/provisionalData'
 import atencionEspecial from './provisionalData/atencionEspecial'
@@ -28,7 +29,8 @@ export default configureStore({
     reducer: { menuController, registerController,
 
         //historia medica
-        activeSymptoms:activeSymptoms,
+        activeSymptoms:activeSymptoms, 
+        doctor: doctor,
         
         activeGraphs: activeGraphs, 
         provisionalData: provisionalData, atencionEspecial:atencionEspecial, diagnostico:diagnostico, tension:tension,

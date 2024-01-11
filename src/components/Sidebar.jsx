@@ -5,15 +5,12 @@ import { Paper, MenuList, MenuItem, ListItemIcon, Typography } from '@mui/materi
 import { useState } from 'react';
 import { Box } from '@mui/system';
     //iconos
-// import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded'; 
-import CloseIcon from '@mui/icons-material/Close'; import FilterIcon from '@mui/icons-material/Filter';
 import HealingIcon from '@mui/icons-material/Healing'; import ScienceIcon from '@mui/icons-material/Science';
 import FolderSharedIcon from '@mui/icons-material/FolderShared'; import GroupsIcon from '@mui/icons-material/Groups';
 import BiotechIcon from '@mui/icons-material/Biotech'; import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import { useDispatch } from 'react-redux';
-import { closeMenu } from '@/redux/Menu/menuController';
 import Link from 'next/link';
 
 
@@ -28,9 +25,8 @@ export default function SideBar() {//MAIN
 
 
     //const basicStyles = {"padding":"15px","marginTop":"20px","display":"flex"}
-    return <Paper sx={{ width: '17%', maxWidth: '100%', height: '10000px',  position: 'fixed' }} className='bg-slate-500' >{/*aqui esta el slate!!!*/}
+    return <Paper sx={{ width: '17%', maxWidth: '100%', height: '10000px',  position: 'fixed' }} className='bg-slate-300' >{/*aqui esta el slate!!!*/}
     <MenuList>
-        <MenuItem onClick={() => {dispatch(closeMenu())}}><Box className='centrate'><CloseIcon /></Box></MenuItem>
         <Box><Button></Button> </Box>
         <MenuItem onClick={() => {setRegister(!register); setCrud(false); setQuery(false);  setIndicators(false)}}>
             <Typography noWrap fontSize={'18px'}sx={{"padding":"10px"}} ><b>Registro</b> </Typography>
@@ -72,27 +68,6 @@ export default function SideBar() {//MAIN
                 <Link href='/diseasesCrud' > Enfermedades</Link>
             </MenuItem>
 
-            <MenuItem >
-                <ListItemIcon> <CoronavirusIcon /> </ListItemIcon>
-                <Link href='/AllergiesCrud' > Alergias</Link>
-            </MenuItem>
-
-            <MenuItem >
-                <ListItemIcon> <BiotechIcon /> </ListItemIcon>
-                <Link href='/coprouroCrud' > Copro/uro </Link>
-            </MenuItem>
-
-            <MenuItem >
-                <ListItemIcon> <ScienceIcon /> </ListItemIcon>
-                <Link href='/ematologyCrud' > Hematologias</Link>
-
-            </MenuItem>
-
-            <MenuItem >
-                <ListItemIcon> <FilterIcon />  </ListItemIcon>
-                <Link href='/radiographysCrud' > Radiografias</Link>
-
-            </MenuItem>
             </MenuList>):<p></p>}
 
         <MenuItem onClick={() => {setIndicators(!query); setRegister(false); setCrud(false); setQuery(false)}}>

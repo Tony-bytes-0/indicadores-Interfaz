@@ -19,7 +19,7 @@ export default function Indications() {
 
             <Grid item xs={12}>
                 <Box className='m-auto flex-auto text-center'>
-                    <TextareaAutosize className='m-auto items-center' aria-label="minimum height" minRows={3} placeholder="" style={{ width: "60%" }}
+                    <TextareaAutosize className='m-auto items-center border-solid border-4' aria-label="minimum height" minRows={3} placeholder="" style={{ width: "60%" }}
                     value={x} onChange={handleX}/>
                 </Box>
 
