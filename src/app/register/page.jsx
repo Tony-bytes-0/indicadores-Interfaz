@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 //import FilterUsers from "./FilterUsers"
 import UserData from "./UserData"
 import MedicalRecord from "./MedicalRecord"
+import Medic from './Medic'
 //import { togglefilterUser, toggleUserData } from "@/redux/Register/registerController/registerController"
 import PostBtn from "./PostBtn"
 
@@ -16,7 +17,8 @@ function Register (){
 
     return <div className="my-10">
     <UserData />{/* Ingresar los Datos del usuario*/}
-    <MedicalRecord /> 
+    <MedicalRecord />
+    <Medic /> 
     <PostBtn />
 </div>}
 

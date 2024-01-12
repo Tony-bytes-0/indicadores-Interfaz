@@ -14,6 +14,11 @@ import fechaNacimiento from './Register/userData/person/fechaNacimiento'
 import tipoSangre from './Register/userData/person/tipoSangre'
 import direccion from './Register/userData/person/direccion'
 
+//medico
+import sacs from './Register/userData/medico/sacs'
+import nombreMedico from './Register/userData/medico/nombreMedico'
+import especialidad from './Register/userData/medico/especialidad'
+
 //Direcciones
 import estadoList from './Register/registerController/estadoList';
 import municipioList from './Register/registerController/municipioList';
@@ -43,11 +48,14 @@ import menuController from './Menu/menuController';
 
 
 export default configureStore({
-    reducer: { menuController, registerController,
+    reducer: { 
+        menuController, registerController,
         //UserData
         nombre: nombre, apellido:apellido, identificacion:identificacion, genero:genero,
         telefono: telefono, telefonoEmergencia: telefonoEmergencia, fechaNacimiento: fechaNacimiento,
         tipoSangre: tipoSangre, direccion: direccion, fechaVisita: fechaVisita,
+        sacs:sacs, nombreMedico: nombreMedico, especialidad: especialidad, //medico
+
 
         //historia medica
         doctor: doctor, altura: altura, peso: peso, temperatura: temperatura,

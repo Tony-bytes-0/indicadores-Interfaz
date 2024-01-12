@@ -17,7 +17,7 @@ import Obsevations from "./Observations";
 import PreMedicalRecord from "./PreMedicalRecord";
 import { useSelector, useDispatch } from "react-redux";
 import { setMedicalRecordDate } from "@/redux/Register/preMedicalRecord/MedicalRecordDate";
-import Indications from './Indications';
+//import Indications from './Indications';
 
 
 
@@ -44,8 +44,6 @@ export default function MedicalRecord(){//Main
                 value={medicalRecordDate} onChange={handleMedicalRecordDate}></TextField>    
             </FormControl>
         </Grid>
-
-      <Separador /> <Indications />
 
     </Grid>
 

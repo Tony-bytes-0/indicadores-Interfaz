@@ -48,25 +48,41 @@ export default function PostBtn(){
             },
 
             historiaMedica: { 
-                "altura": store.getState().altura, 
+                "altura": store.getState().altura,
                 "peso": store.getState().peso, 
                 "temperatura": store.getState().temperatura, 
                 "tensionSistolica": store.getState().sistolica,
                 "tensionDiastolica": store.getState().diastolica,
                 "observaciones": store.getState().observaciones,
-                "fechaVisita": store.getState().fechaVisita.replaceAll('-', '/'),
+                "fechaVisita": store.getState().fechaVisita,
             },
 
-            problems:[]  
+            medico: {
+                "sacs": store.getState().sacs,
+                "nombreMedico": store.getState().nombreMedico,
+                "especialidad": store.getState().especialidad
+            }
+
+            //problems:[]  
 
         }
-        if(isNaN(dataObject.historiaMedica.altura)){dataObject.problems.push(' Altura')} //validaciones
+/*         if(isNaN(dataObject.historiaMedica.altura)){dataObject.problems.push(' Altura')} //validaciones
         if(isNaN(dataObject.historiaMedica.peso)){dataObject.problems.push(' Peso')}
         if(isNaN(dataObject.historiaMedica.tensionSistolica )){dataObject.problems.push(' Tension Sistolica')}
         if(isNaN(dataObject.historiaMedica.tensionDiastolica)){dataObject.problems.push(' Tension Diastolica')}
         if(isNaN(dataObject.historiaMedica.temperatura)){dataObject.problems.push(' Temperatura')}
+        if(dataObject.problems.length >= 1){
+            alert('error, en los siguientes campos hay caracteres que no son numeros: ' + attempt.problems)
+        } */
+        //else{
+            console.log('el objeto a ser enviado: ', dataObject)
+            axios.post('http://localhost:4000/visitas/personaHistoria', {dataObject})
+            .then(function (response) {
+                alert(response.data);
+            })
+        //} 
 
-        return dataObject
+
 
     }
 
@@ -82,14 +98,7 @@ export default function PostBtn(){
     return <div className="text-center"> 
        
         <Button variant="contained" className="bg-blue-600 " style={style}  onClick={() => {
-            const attempt = sendData()
-            if(attempt.problems.length >= 1){
-                alert('error, en los siguientes campos hay caracteres que no son numeros: ' + attempt.problems)
-            }
-            else{
-                console.log( sendData() )    
-            } 
-            
+            sendData()
 
         }}> Registar Historia Medica </Button>   
 
