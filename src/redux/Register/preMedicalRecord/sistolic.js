@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialRadiography = []
+const initialRadiography = ''
 
 export const sistolic = createSlice({
   name: 'sistolic',

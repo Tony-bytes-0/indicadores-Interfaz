@@ -15,7 +15,6 @@ import { Grid, TextField, InputLabel, FormControl } from "@mui/material"
 
 import Obsevations from "./Observations";
 import PreMedicalRecord from "./PreMedicalRecord";
-import SymptomSelect from "./SymptomSelect";
 import { useSelector, useDispatch } from "react-redux";
 import { setMedicalRecordDate } from "@/redux/Register/preMedicalRecord/MedicalRecordDate";
 import Indications from './Indications';

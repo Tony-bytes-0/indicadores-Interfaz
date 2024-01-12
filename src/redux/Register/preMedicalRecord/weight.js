@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialRadiography = []
+const initialRadiography = ''
 
 export const weight = createSlice({
   name: 'weight',

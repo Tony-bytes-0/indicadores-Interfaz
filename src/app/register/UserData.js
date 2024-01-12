@@ -7,17 +7,15 @@ import { Grid, TextField, InputLabel, Select, MenuItem, FormControl, Button, Tex
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setId } from '@/redux/Register/userData/person/id'
 import { setNombre } from '@/redux/Register/userData/person/nombre'
 import { setApellido } from '@/redux/Register/userData/person/apellido'
 import { setIdentificacion } from '@/redux/Register/userData/person/identificacion'
-import { setSexo } from '@/redux/Register/userData/person/sexo'
-import { setTipo_sangre } from '@/redux/Register/userData/person/tipo_sangre'
-import { setFecha_de_nacimiento } from '@/redux/Register/userData/person/fecha_de_nacimiento'
+import { setGenero } from '@/redux/Register/userData/person/genero'
+import { setTipoSangre } from '@/redux/Register/userData/person/tipoSangre'
+import { setFechaNacimiento } from '@/redux/Register/userData/person/fechaNacimiento'
 import { setTelefono } from '@/redux/Register/userData/person/telefono'
-import { setTelefono_emergencia } from '@/redux/Register/userData/person/telefono_emergencia'
+import { setTelefonoEmergencia } from '@/redux/Register/userData/person/telefonoEmergencia'
 import { setDireccion } from '@/redux/Register/userData/person/direccion'
-import { setSector } from '@/redux/Register/userData/person/sector'
 
 //Axios
 import axios from "axios"
@@ -45,11 +43,11 @@ export default function UserData(props){//MAIN
     const nombre = useSelector(state => state.nombre); 
     const apellido = useSelector(state => state.apellido);  
     const identificacion = useSelector(state => state.identificacion);
-    const sexo = useSelector(state => state.sexo);
-    const fecha_de_nacimiento = useSelector(state => state.fecha_de_nacimiento);
+    const genero = useSelector(state => state.genero);
+    const fechaNacimiento = useSelector(state => state.fechaNacimiento);
     const telefono = useSelector(state => state.telefono);
-    const tipo_sangre = useSelector(state => state.tipo_sangre);
-    const telefono_emergencia = useSelector(state => state.telefono_emergencia);
+    const tipoSangre = useSelector(state => state.tipoSangre);
+    const telefonoEmergencia = useSelector(state => state.telefonoEmergencia);
     const direccion = useSelector(state => state.direccion);
     const sector = useSelector(state => state.sector);
 
@@ -57,14 +55,14 @@ export default function UserData(props){//MAIN
 
     const handleName = (event) => { dispatch(setNombre(event.target.value)) }//NAME
     const handleLastName = (event) => {dispatch(setApellido(event.target.value))}//LASTNAME   
-    const handleGender = (event) => {dispatch(setSexo(event.target.value)) }//GENDER  
-    const handleBirthdate = (event) => { dispatch(setFecha_de_nacimiento(event.target.value))}//BIRTHDATE
-    const handleBloodType = (event) => { dispatch(setTipo_sangre(event.target.value)) }//BLOODTYPE
+    const handleGender = (event) => {dispatch(setGenero(event.target.value)) }//GENDER  
+    const handleBirthdate = (event) => { dispatch(setFechaNacimiento(event.target.value))}//BIRTHDATE
+    const handleBloodType = (event) => { dispatch(setTipoSangre(event.target.value)) }//BLOODTYPE
     const handleDirection = (event) => { dispatch(setDireccion(event.target.value)) }//DIRECTION
     const handleSector = (event) => { dispatch(setSector(event.target.value)) }//SECTOR
     const handleDni = (event) => { if(event.target.value.match(validateNumber) != null && event.target.value.length < 10) { dispatch(setIdentificacion(event.target.value)) } }//DNI
     const handleCellphone = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefono(event.target.value)) } }//CELLPHONE
-    const handleEmergency = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefono_emergencia(event.target.value)) } }//EMERGENCY
+    const handleEmergency = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefonoEmergencia(event.target.value)) } }//EMERGENCY
 
     useEffect( () => {
             function fetchEstado (){
@@ -85,10 +83,10 @@ export default function UserData(props){//MAIN
     }
     function fetchSector (){
         axios.get('http://localhost:300/sector')
-        .then(response => { dispatch(setSectorList(response.data)) }).catch(response => {console.log(response)})
+        //.then(response => { dispatch(setSectorList(response.data)) }).catch(response => {console.log(response)})
     }
         fetchMunicipio(); fetchParroquia(); fetchSector(); fetchEstado();fetchComunidad(); 
-        dispatch(setSector(''));
+        //dispatch(setSector(''));
     }, [dispatch])
 
     const [estado, setEstado] = useState(''); 
@@ -135,83 +133,27 @@ export default function UserData(props){//MAIN
         }
     }
 
+    function setValues (x){
+        dispatch(setNombre(x.nombre)); 
+        dispatch(setApellido(x.apellido)); 
+        dispatch(setGenero(x.genero));
+        dispatch(setIdentificacion(x.identificacion));
+        dispatch(setTelefono(x.telefono)); 
+        dispatch(setTelefonoEmergencia(x.telefonoEmergencia)); 
+        dispatch(setFechaNacimiento(x.fechaNacimiento)); 
+        dispatch(setTipoSangre(x.tipoSangre)); 
+        dispatch(setDireccion(x.direccion));
+    }
     const [welcome, setWelcome] = useState(true)//para hacer acciones solamente al cargar la pagina :)
     if(welcome && props.toggleUpdate){//esseto trigerea al abrir la modal de edicion
         setWelcome(false)
         setUpdateValues(props.target)
     }
-    function clearInputs(){
-        dispatch(setNombre('')); dispatch(setApellido('')); dispatch(setIdentificacion('')); dispatch(setSexo('')); 
-        dispatch(setFecha_de_nacimiento('2000-01-01'));
-        dispatch(setTelefono('')); dispatch(setTelefono_emergencia('')); dispatch(setDireccion('')); dispatch(setTipo_sangre(''));
-        dispatch(setId('newUser'));
-        dispatch(setSector('')); setEstado(''); setMunicipio(''); setParroquia(''); setComunidad('');
-    }
-    function createDataObject (){//extends
-        return {
-            "nombre": nombre,
-            "apellido": apellido,
-            "identificacion": identificacion,
-            "fecha_de_nacimiento": fecha_de_nacimiento,
-            "direccion": direccion,
-            "tipo_sangre": tipo_sangre,
-            "sexo": sexo,
-            "telefono": telefono,
-            "telefono_emergencia": telefono_emergencia,
-            "sector": sectorList.find(x => x.nombre_sector === sector).id, //esto me trae el id del sector
-        }
-    }
-    function postPerson(object){//extends
-        
-        const check = Object.values(object).map((e) => {//validacion de campos vacios
-            if(e === undefined || e === ''){return false}
-            else{return true} })
 
-        if(check.includes(true)){//si alguno de los campos contienen datos:
-
-            axios.post('http://localhost:300/person', object)
-        .then((response) =>{
-            alert('usuario creado con exito');
-            clearInputs()
-        })
-        .catch((response) => {
-            alert('ocurrio un error, recargue la paguina :(')
-        })
-        }
-        
-    }
-    function setUpdateValues(obj){//extends
-        //dispatch(setSector(obj.sector)); no se hacer esto :,v
-        dispatch(setId(obj.id));
-        dispatch(setNombre(obj.nombre)); dispatch(setApellido(obj.apellido)); dispatch(setIdentificacion(obj.identificacion));
-        dispatch(setSexo(obj.sexo)); dispatch(setFecha_de_nacimiento(obj.fecha_de_nacimiento)); dispatch(setTelefono(obj.telefono));
-        dispatch(setTelefono_emergencia(obj.telefono_emergencia));dispatch(setTipo_sangre(obj.tipo_sangre));dispatch(setDireccion(obj.direccion));
-    }
-    function updatePerson(object, id){//extends
-
-        axios.put('http://localhost:300/person/' + id, object)
-        .then((response) =>{
-            clearInputs()   
-            document.getElementById('normalize').click()
-            alert('Usuario Actualizado con exito');
-        })
-        .catch((response) => {
-            alert('ocurrio un error, recargue la paguina :(')
-        })
-    } 
-    function RenderedButton() {//Renderizado Dinamico - estos son los botones del final de UserData
-
-        if(props.toggleUpdate){
-            return <><div className='centrate '>
-            <Button variant="contained" style={{ "margin": "2%" }} onClick={() => {
-                updatePerson(createDataObject(), props.target.id)
-            }}>Actualizar</Button>
-        </div></>}
-    }
     function getPersonByDni (){
-        axios.post('http://localhost:300/buscarPersonasPorCedula', {"identificacion": identificacion})
+        axios.get('http://localhost:4000/persona/' + identificacion)
         .then(response => {
-            setUpdateValues(response.data[0])
+            setValues(response.data)
         })
         .catch(e => {
             console.log('no existe esa cedula en la base de datos')
@@ -225,14 +167,14 @@ export default function UserData(props){//MAIN
     return<>
             <Grid container sx={{"padding":"2%"}} spacing={1} className='fadeIn'>
                 <Separador label = 'Datos Personales del Paciente' />
-                <Grid item xs={12} >{/*esto es un row basicamente*/}
+                <Grid item xs={12} >
                     <TextField sx={sm} label="Cedula" variant="filled" type= {'number'} value={identificacion} onChange = {handleDni} onBlur={() => { getPersonByDni() }}  />
                     <TextField sx={sm} label="Nombre" variant="filled" onChange = {handleName} value = {nombre} />
                     <TextField sx={sm} label="Apellido" variant="filled" value = {apellido} onChange = {handleLastName}  />
 
                     <FormControl sx = {sm} >
                         <InputLabel>Genero</InputLabel>
-                        <Select label="Genero" variant="filled" value = {sexo} onChange={handleGender} defaultValue = "">
+                        <Select label="Genero" variant="filled" value = {genero} onChange={handleGender} defaultValue={''} >
                             <MenuItem value={'masculino'}>Masculino</MenuItem>
                             <MenuItem value={'femenino'}>Femenino</MenuItem>
                         </Select>
@@ -242,11 +184,11 @@ export default function UserData(props){//MAIN
 
                 <Grid item xs = {12}>
                     <TextField label="Telefono" sx={sm} variant="filled" type={'number'} value = {telefono}  onChange={handleCellphone}  />
-                    <TextField label="Telefono de Emergencia" sx={sm} variant="filled" type={'number'} value = {telefono_emergencia} onChange={handleEmergency} />
-                    <TextField label="Fecha de Nacimiento" type="date" sx={sm} value={fecha_de_nacimiento} InputLabelProps={{shrink: true}} variant="filled" onChange={handleBirthdate} />
+                    <TextField label="Telefono de Emergencia" sx={sm} variant="filled" type={'number'} value = {telefonoEmergencia} onChange={handleEmergency} />
+                    <TextField label="Fecha de Nacimiento" type="date" sx={sm} value={fechaNacimiento} InputLabelProps={{shrink: true}} variant="filled" onChange={handleBirthdate} />
                     <FormControl sx = {sm}>
                         <InputLabel>Tipo de Sangre</InputLabel>
-                        <Select label="Tipo de Sangre" variant="filled" id="BloodType" value={tipo_sangre} onChange={handleBloodType} defaultValue = "">
+                        <Select label="Tipo de Sangre" variant="filled" id="BloodType" value={tipoSangre} onChange={handleBloodType} defaultValue = "">
                             {bloodList.map((e) => <MenuItem key={e+'blood'} value={e}>{e}</MenuItem>)}
                         </Select>
                     </FormControl>   

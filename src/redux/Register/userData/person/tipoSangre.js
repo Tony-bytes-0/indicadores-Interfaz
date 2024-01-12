@@ -2,17 +2,17 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialRadiography = ''
 
-export const tipo_sangre = createSlice({
+export const tipoSangre = createSlice({
   name: 'tipo_sangre',
   initialState:initialRadiography,
   reducers: {
     
-    setTipo_sangre: (state, action) => {
+    setTipoSangre: (state, action) => {
       return action.payload
     }
       
     }
 })
 
-export const { setTipo_sangre } = tipo_sangre.actions
-export default tipo_sangre.reducer
+export const { setTipoSangre } = tipoSangre.actions
+export default tipoSangre.reducer

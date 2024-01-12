@@ -25,17 +25,29 @@ const persons = {
 }
 export function createDataObject (name, lastName, dni, birthdate, sector, bloodType, gender ){//extends
     return {
-        nombre:name,
-        apellido:lastName,
-        "identificacion":dni,
-        "fecha_de_nacimiento":birthdate,
-        "direccion":sector,
-        "tipo_sangre": bloodType,
-        "sexo":gender,
-        // "cellphone":cellphone,
-        // "emergencyNumber":emergency,
-        // "municipio":municipio,
-        // "parroquia":parroquia,
+
+        "identificacion": "siempre se me olvida 27 algo 801 111",
+        "nombre": "__camila__ ",
+        "apellido": "__marquez__",
+        "genero": "femenino",
+        "telefono": "__una basura de marca__",
+        "telefonoEmergencia": "__el de su casa que nadie contesta nunca__",
+        "fechaNacimiento": "2023-12-05",
+        "tipoSangre": "__roja__",
+        "direccion": "__los altos barrios de cantarrana__",
+
+        "altura": "1.72",
+        "peso": "70",
+        "temperatura": "31",
+        "tensionSistolica": "80",
+        "tensionDiastolica": "100",
+        "observaciones": "nuevamente sintomas leves",
+        "fechaVisita": "2024/01/02",
+        
+        "persona":1,
+        "medico":2,
+        "enfermedades":2
+    
     }
 }
 
