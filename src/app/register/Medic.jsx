@@ -1,10 +1,11 @@
 import { Grid, TextField } from '@mui/material'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSacs } from '@/redux/Register/userData/medico/sacs'
-import { setNombreMedico } from '@/redux/Register/userData/medico/nombreMedico'
-import { setEspecialidad } from '@/redux/Register/userData/medico/especialidad'
+import { setSacs } from '@/redux/register/userData/medico/sacs'
+import { setNombreMedico } from '@/redux/register/userData/medico/nombreMedico'
+import { setEspecialidad } from '@/redux/register/userData/medico/especialidad'
 import Separador from '@/components/Separador'
+import axios from 'axios'
 
 
 export default function Medic() {
@@ -19,6 +20,19 @@ export default function Medic() {
 
     const sm = { width: '25%', maxWidth: '25%', padding:'5px' }
 
+    function fetchSacs(sacs){
+      console.log('se va a enviar: ', sacs)
+
+      axios.get('http://localhost:4000/medico/' + sacs)
+      .then((response) => {
+        dispatch(setNombreMedico(response.data.nombreMedico))
+        dispatch(setEspecialidad(response.data.especialidad))
+      })
+      .catch(e => {
+        console.log('no existe ese codigo SACS en la base de datos')
+      })
+      .finally(() => {console.log('se termino la busqueda!')})
+    }
 
   return (
     <Grid container className='fadeIn p-6'>
@@ -26,7 +40,7 @@ export default function Medic() {
 
         <Grid item xs={12}>
             <div>
-                <TextField sx={sm} label="SACS" variant="filled" onChange = {handleSacs} value = {sacs} />
+                <TextField sx={sm} label="SACS" variant="filled" onChange = {handleSacs} value = {sacs} onBlur={() => fetchSacs(sacs)} />
 
                 <TextField sx={sm} label="nombre medico" variant="filled" onChange = {handleNombreMedico} value = {nombreMedico}  />
 

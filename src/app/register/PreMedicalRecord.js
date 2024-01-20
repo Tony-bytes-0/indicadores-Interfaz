@@ -1,12 +1,13 @@
-import { Grid, TextField , Box, Button, Typography } from "@mui/material";
+import { Grid, TextField , Box, Button, Typography, FormControl, InputLabel } from "@mui/material";
 import {  useSelector, useDispatch } from "react-redux";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { setMedicalRecordDate } from "@/redux/register/preMedicalRecord/MedicalRecordDate";
 //Reducers
-import { setSize } from "@/redux/Register/preMedicalRecord/size";
-import { setWeight } from "@/redux/Register/preMedicalRecord/weight";
-import { setTemp } from "@/redux/Register/preMedicalRecord/temp";
-import { setDiastolic } from "@/redux/Register/preMedicalRecord/diastolic";
-import { setSistolic } from "@/redux/Register/preMedicalRecord/sistolic";
+import { setSize } from "@/redux/register/preMedicalRecord/size";
+import { setWeight } from "@/redux/register/preMedicalRecord/weight";
+import { setTemp } from "@/redux/register/preMedicalRecord/temp";
+import { setDiastolic } from "@/redux/register/preMedicalRecord/diastolic";
+import { setSistolic } from "@/redux/register/preMedicalRecord/sistolic";
+import { useState } from "react";
 const sm = { width: '33%', maxWidth: '33%', padding:'10px' }
 const full = { width: '40%', padding:'7px'}
 
@@ -31,6 +32,12 @@ export default function PreMedicalRecord(){
         dispatch(setSistolic(event.target.value))} }
     const handleDiastolic = (event) => { if(event.target.value.match(validateNumber) != null){ dispatch(setDiastolic(event.target.value))} }
 
+    useState( () => {
+      dispatch(setMedicalRecordDate(new Date().toJSON().slice(0, 10).replace(/-/g, '-')));
+    }, [])
+  
+    const medicalRecordDate = useSelector(state => state.medicalRecordDate)
+    const handleMedicalRecordDate = (event) => { dispatch(setMedicalRecordDate(event.target.value)) }
 
     return<>
     <Grid item xs = {9}><Box className='centrate' sx={{"marginTop":"10px"}}>
@@ -46,6 +53,13 @@ export default function PreMedicalRecord(){
             <TextField sx={full} label='Tension diastolica'  value={diastolic} onChange={handleDiastolic}>Presion Arterial</TextField>
         </Box>
     </Grid>
+    <Grid item xs = {12}> 
+            <FormControl fullWidth sx={{"padding":"3%"}}>
+                <InputLabel>Fecha de Consulta</InputLabel>
+                <TextField id="date"  type="date" InputLabelProps={{shrink: true}} variant="filled"
+                value={medicalRecordDate} onChange={handleMedicalRecordDate}></TextField>    
+            </FormControl>
+        </Grid>
 
     </>
 }

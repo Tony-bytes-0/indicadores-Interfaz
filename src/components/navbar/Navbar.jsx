@@ -24,7 +24,7 @@ export default function Navbar() {
 
 <Stack direction="row" spacing={2} className='justify-between'>
 
-    <Image src={logo} width={150} height={90} alt='logo '/>
+    <Image priority={true} src={logo} width={150} height={'auto'} alt='logo ' />
     {/* <Image src={cantarrana} width={200} height={200} alt='logo '/> */}
     
     <DisplayUser />

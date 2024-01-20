@@ -7,15 +7,15 @@ import { Grid, TextField, InputLabel, Select, MenuItem, FormControl, Button, Tex
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setNombre } from '@/redux/Register/userData/person/nombre'
-import { setApellido } from '@/redux/Register/userData/person/apellido'
-import { setIdentificacion } from '@/redux/Register/userData/person/identificacion'
-import { setGenero } from '@/redux/Register/userData/person/genero'
-import { setTipoSangre } from '@/redux/Register/userData/person/tipoSangre'
-import { setFechaNacimiento } from '@/redux/Register/userData/person/fechaNacimiento'
-import { setTelefono } from '@/redux/Register/userData/person/telefono'
-import { setTelefonoEmergencia } from '@/redux/Register/userData/person/telefonoEmergencia'
-import { setDireccion } from '@/redux/Register/userData/person/direccion'
+import { setNombre } from '@/redux/register/userData/person/nombre'
+import { setApellido } from '@/redux/register/userData/person/apellido'
+import { setIdentificacion } from '@/redux/register/userData/person/identificacion'
+import { setGenero } from '@/redux/register/userData/person/genero'
+import { setTipoSangre } from '@/redux/register/userData/person/tipoSangre'
+import { setFechaNacimiento } from '@/redux/register/userData/person/fechaNacimiento'
+import { setTelefono } from '@/redux/register/userData/person/telefono'
+import { setTelefonoEmergencia } from '@/redux/register/userData/person/telefonoEmergencia'
+import { setDireccion } from '@/redux/register/userData/person/direccion'
 
 //Axios
 import axios from "axios"
@@ -26,11 +26,11 @@ import Separador from '@/components/Separador'
 // import UserType from './UserType'
 //Iconos
 
-import { setEstadoList } from '@/redux/Register/registerController/estadoList'
-import { setMunicipioList } from '@/redux/Register/registerController/municipioList'
-import { setParroquiaList } from '@/redux/Register/registerController/parroquiaList'
-import { setComunidadList } from '@/redux/Register/registerController/comunidadList'
-import { setSectorList } from '@/redux/Register/registerController/sectorList'
+/* import { setEstadoList } from '@/redux/register/registerController/estadoList'
+import { setMunicipioList } from '@/redux/register/registerController/municipioList'
+import { setParroquiaList } from '@/redux/register/registerController/parroquiaList'
+import { setComunidadList } from '@/redux/register/registerController/comunidadList'
+import { setSectorList } from '@/redux/register/registerController/sectorList' */
 
 
 
@@ -49,7 +49,7 @@ export default function UserData(props){//MAIN
     const tipoSangre = useSelector(state => state.tipoSangre);
     const telefonoEmergencia = useSelector(state => state.telefonoEmergencia);
     const direccion = useSelector(state => state.direccion);
-    const sector = useSelector(state => state.sector);
+    //const sector = useSelector(state => state.sector);
 
 
 
@@ -64,7 +64,7 @@ export default function UserData(props){//MAIN
     const handleCellphone = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefono(event.target.value)) } }//CELLPHONE
     const handleEmergency = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefonoEmergencia(event.target.value)) } }//EMERGENCY
 
-    useEffect( () => {
+/*     useEffect( () => {
             function fetchEstado (){
         axios.get('http://localhost:300/estado')
         .then(response => { dispatch(setEstadoList(response.data)); }).catch(response => { console.log(response) })
@@ -92,12 +92,12 @@ export default function UserData(props){//MAIN
     const [estado, setEstado] = useState(''); 
     const [municipio, setMunicipio] = useState(''); 
     const [parroquia, setParroquia] = useState(''); 
-    const [comunidad, setComunidad] = useState(''); 
+    const [comunidad, setComunidad] = useState('');  */
 
-    const handleEstado = (event) => { setEstado(event.target.value) }//ESTADO
+/*     const handleEstado = (event) => { setEstado(event.target.value) }//ESTADO
     const handleMunicipio = (event) => { setMunicipio(event.target.value) }//MUNICIPIO
     const handleParroquia = (event) => { setParroquia(event.target.value) }//PARROQUIA
-    const handleComunidad = (event) => { setComunidad(event.target.value) }//COMUNIDAD
+    const handleComunidad = (event) => { setComunidad(event.target.value) }//COMUNIDAD */
 
     const estadosList = useSelector(state => state.estadoList)
     const municipioList = useSelector(state => state.municipioList)
@@ -105,7 +105,7 @@ export default function UserData(props){//MAIN
     const comunidadList = useSelector(state => state.comunidadList)
     const sectorList = useSelector(state => state.sectorList)
 
-    function avalibleMunicipios (){
+/*     function avalibleMunicipios (){
         if(estado === '') return [{'id':'1', 'nombre_municipio':''}]// al estar vacio, devolver un objeto de muestra
         
         else {const selectedEstadoId =  estadosList.find(x => x.nombre_estado === estado).id;//sacar el id del seleccionado 
@@ -131,7 +131,7 @@ export default function UserData(props){//MAIN
             const nonEmptyList = sectorList.filter(x => x.comunidad !== null );
             return nonEmptyList.filter(x => x.comunidad.id === selectedId)
         }
-    }
+    } */
 
     function setValues (x){
         dispatch(setNombre(x.nombre)); 
@@ -197,7 +197,7 @@ export default function UserData(props){//MAIN
                                                             <Separador label='Localidad del Paciente' />
 
                                                             
-                <Grid item xs = {4}>{/* Direccion */}<Box sx={full}>
+{/*                 <Grid item xs = {4}><Box sx={full}>
                     <FormControl sx={full}> <InputLabel>Estado</InputLabel>
                         <Select variant="filled" label="estado" value={estado} onChange={handleEstado} defaultValue = "">
                             {estadosList.map((e) => <MenuItem value={e.nombre_estado} key={e.id +' Municipio'}>{e.nombre_estado}</MenuItem> )}
@@ -205,7 +205,7 @@ export default function UserData(props){//MAIN
                     </FormControl>  
                 </Box></Grid>
 
-                <Grid item xs = {4}>{/* Direccion */}<Box sx={full}>
+                <Grid item xs = {4}><Box sx={full}>
                     <FormControl sx={full}> <InputLabel>Municipio</InputLabel>
                         <Select variant="filled" label="municipio" value={municipio} onChange={handleMunicipio} defaultValue = "">
                             {avalibleMunicipios().map((e) => <MenuItem value={e.nombre_municipio} key={e.id +' Municipio'}>{e.nombre_municipio}</MenuItem> )}
@@ -237,7 +237,7 @@ export default function UserData(props){//MAIN
                             {avalibleSectores().map((e) => <MenuItem value={e.nombre_sector} key={e.id + ' sector'}>{e.nombre_sector}</MenuItem> )}
                         </Select>
                     </FormControl>  
-                </Box></Grid>
+                </Box></Grid> */}
 
             </Grid>
             

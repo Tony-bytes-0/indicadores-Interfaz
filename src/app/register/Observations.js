@@ -1,6 +1,6 @@
 import {  Grid, TextareaAutosize } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
-import { setObservations } from "@/redux/Register/preMedicalRecord/obsevations"
+import { setObservations } from "@/redux/register/preMedicalRecord/obsevations"
 
 export default function Obsevations() {
     const dispatch = useDispatch()
