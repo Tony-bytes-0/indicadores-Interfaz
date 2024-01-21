@@ -50,8 +50,11 @@ export default function DataDisplay(props) {
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary="Vista del Grafico"  />
+      </ListItem>
 
-        {(props.text === 'Triaje') ? <Button variant="contained" className="bg-blue-600"
+      <Divider variant="inset" component="li" />
+        <ListItem>
+        {(props.text === 'Triaje') ? <Button variant="contained" className="bg-blue-600 mx-auto"
           onClick={() =>{dispatch(totalAdultsToggle())}} >Grafico</Button> : null}
 
         {(props.text === 'Diagnóstico') ? <Button variant="contained" className="bg-blue-600"
@@ -62,8 +65,9 @@ export default function DataDisplay(props) {
 
         {(props.text === 'Atención especial') ? <Button variant="contained" className="bg-blue-600"
           onClick={() => { dispatch(totalEspecialidadesToggle()) }}>Grafico</Button> : null}
-      </ListItem>
 
+      </ListItem>
+        
     </List></Box>
   );
 }
