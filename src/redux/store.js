@@ -45,6 +45,8 @@ import tension from './provisionalData/tension'
 import lastMonth from './indicators/lastMonth';
 import triageState from './indicators/triageState'; import diagnosticoState from './indicators/diagnosticoState';
 import tensionState from './indicators/tensionState'; import atencionEspecialState from './indicators/atencionEspecialState';
+//new
+import topDiseases from './graph/topDiseases';
 
 
 
@@ -68,7 +70,10 @@ export default configureStore({
         lastMonth: lastMonth, estadoList, municipioList, sectorList, parroquiaList,
 
         //indicators
-        triageState: triageState, diagnosticoState: diagnosticoState, tensionState: tensionState, atencionEspecialState: atencionEspecialState
+        triageState: triageState, diagnosticoState: diagnosticoState, tensionState: tensionState, atencionEspecialState: atencionEspecialState,
+        //new
+        topDiseases: topDiseases
+        
     
     }
         

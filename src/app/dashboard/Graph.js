@@ -6,7 +6,7 @@ import { Grid, Typography } from '@mui/material';
 ChartJS.register(ArcElement, Tooltip, Legend);
 //generate the format of the object necesari to build the Pie component
 
-export function Graph(props) {
+export default function Graph(props) {
   return <Grid container display={'flex'} flexDirection={'column'}>
     <Grid item xs={12}> 
       <Typography variant='h4' textAlign={'center'}> {props.graph.datasets[0].label} </Typography>
