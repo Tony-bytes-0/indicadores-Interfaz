@@ -47,6 +47,8 @@ import triageState from './indicators/triageState'; import diagnosticoState from
 import tensionState from './indicators/tensionState'; import atencionEspecialState from './indicators/atencionEspecialState';
 //new
 import topDiseases from './graph/topDiseases';
+import indicatorSelectedMonth from './graph/indicatiorSelectedMonth'
+import totalCount from './graph/totalCount'
 
 
 
@@ -72,7 +74,7 @@ export default configureStore({
         //indicators
         triageState: triageState, diagnosticoState: diagnosticoState, tensionState: tensionState, atencionEspecialState: atencionEspecialState,
         //new
-        topDiseases: topDiseases
+        topDiseases: topDiseases, indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount
         
     
     }
