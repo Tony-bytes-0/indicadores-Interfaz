@@ -29,7 +29,7 @@ export default function CountLine() {
           },
           title: {
             display: true,
-            text: 'morbilidad por mes',
+            text: 'Indice de atencion ciudadana en el ambulatorio urbano 1 Bernardino Martínez',
           },
         },
       };

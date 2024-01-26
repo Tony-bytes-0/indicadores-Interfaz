@@ -22,10 +22,11 @@ export default function Page() {
   }
   return (<Grid container className='my-2'>
         <TopDiseases />
-        <Grid container >
+
+{/*         <Grid container >
           <Semaforo title={Object.keys(ordenadas)[0]} value={compareLastMonth(Object.keys(ordenadas)[0], DatosDePrueba.diarrea)} />
           <Semaforo title={Object.keys(ordenadas)[1]} value={compareLastMonth( Object.values(ordenadas)[1], DatosDePrueba.dolorDeCabeza)} />
-        </Grid>
+        </Grid> */}
 
 
   </Grid>
