@@ -12,11 +12,11 @@ import Graph from './Graph' */ // TORTA
 
 
 
-export default function TopDiseases() {
+export default function HistoryGraph() {
   const dispatch = useDispatch()
-    const ordenadas = useSelector (state => state.topDiseases)
+    // const ordenadas = useSelector (state => state.topDiseases) //TORTA
     const month = useSelector (state => state.indicatorSelectedMonth)
-    const triageColor = {
+    /* const triageColor = { //TORTA
         borderColor: [
           'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
         ],
@@ -26,7 +26,7 @@ export default function TopDiseases() {
           'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)',
           'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)',
       ]
-    }
+    } */
 /*     const topDiseasesGraphData = {
         labels: Object.keys(ordenadas),
         datasets: [{
@@ -35,15 +35,15 @@ export default function TopDiseases() {
           borderColor: triageColor.borderColor,
         }
         ]
-      } */
-      function fetchTopDiseases(){
+      } */ //TORTA
+      function fetchHistoryGraph(){
         axios.get('http://localhost:4000/visitas/ordenar')
         .then(function(response){
             dispatch(setTopDiseases(response.data))
         })
       }
     useEffect(() => {
-      fetchTopDiseases();
+      fetchHistoryGraph();
     }, [])
   return (<Grid container className='my-10'>
     <Grid item xs= {12} > <Typography textAlign={'center'} fontSize={30}>Índice de atención en el ambulatorio urbano 1 Bernardino Martínez</Typography> </Grid>
@@ -52,11 +52,12 @@ export default function TopDiseases() {
 
     <Grid item xs = {12}> <Paper className='bg-slate-300'> <Typography className='text-2xl text-center'> {month} </Typography>  </Paper> </Grid>
 
+    <Grid className='my-10 px-5' item xs = {10}> <CountLine /> </Grid>
+
     {/* <Grid className='my-10 px-7' item xs = {3}><div> <Graph graph={topDiseasesGraphData} /> </div> </Grid> */}
 
     {/* <Grid className='my-10' item xs = {2}> <SelectMonth /> </Grid> */}
     
-    <Grid className='my-10 px-5' item xs = {10}> <CountLine /> </Grid>
 
       
   </Grid>

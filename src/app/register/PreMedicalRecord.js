@@ -32,9 +32,6 @@ export default function PreMedicalRecord(){
         dispatch(setSistolic(event.target.value))} }
     const handleDiastolic = (event) => { if(event.target.value.match(validateNumber) != null){ dispatch(setDiastolic(event.target.value))} }
 
-    useState( () => {
-      dispatch(setMedicalRecordDate(new Date().toJSON().slice(0, 10).replace(/-/g, '-')));
-    }, [])
   
     const medicalRecordDate = useSelector(state => state.medicalRecordDate)
     const handleMedicalRecordDate = (event) => { dispatch(setMedicalRecordDate(event.target.value)) }
@@ -44,7 +41,6 @@ export default function PreMedicalRecord(){
         <TextField sx={sm} label='Altura (Centimetros)' onChange={handleSize} value={size} >Altura</TextField>
         <TextField sx={sm} label='Peso (Kilogramos)' onChange={handleWeight} value={weight}>Peso</TextField> 
         <TextField sx={sm} label='Temperatura (Grados Celcius)' onChange={handleTemp} value={temp}>Temperatura</TextField>
-        {/*<TextField sx={sm} label='Presion Arterial (mm Hg)' onChange={handlePressure} value={pressure}>Presion Arterial</TextField>*/}
     </Box></Grid>
     <Grid item xs = {3} >
         <Box sx={{'display': 'flex','flexDirection':'row' , 'flexWrap': 'wrap'}} className='my-3'> 

@@ -1,13 +1,12 @@
 "use client"
 import { Grid, Typography } from '@mui/material'
 import React from 'react'
-import TopDiseases from './TopDiseases'
+import HistoryGraph from './HistoryGraph'
 import Semaforo from './Semaforo'
 import { useSelector } from 'react-redux'
 
 export default function Page() {
-  const ordenadas = useSelector (state => state.topDiseases)
-  const DatosDePrueba = {
+/*   const DatosDePrueba = {
     diarrea:2,
     dolorDeCabeza:7
   }
@@ -19,9 +18,9 @@ export default function Page() {
     else{
         return {msj: 'Alerta', dashboardMessage:'numero mayor de casos que el mes anterior'}
     }
-  }
+  } */
   return (<Grid container className='my-2'>
-        <TopDiseases />
+        <HistoryGraph />
 
 {/*         <Grid container >
           <Semaforo title={Object.keys(ordenadas)[0]} value={compareLastMonth(Object.keys(ordenadas)[0], DatosDePrueba.diarrea)} />
