@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +23,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 
 export default function CountLine() {
@@ -68,21 +70,39 @@ export default function CountLine() {
       },
       title: {
         display: true,
-        text: "Indice de atencion ciudadana en el ambulatorio urbano 1 Bernardino Martínez",
+        text: "Indice variacion en la atencion ciudadana en el ambulatorio urbano 1 Bernardino Martínez",
       },
     },
   };
+  function calculateData(months) {
+    const newArray = [];
+    for (let i = 0; i < 12; i++) {
+      if (i == 0) {
+        newArray.push(months[0])
+      }
+      else if (i == 1){
+        newArray.push((months[i] / months[0] - 1) * 100);
+      } 
+      else {
+        newArray.push((months[i] / months[i - 1] - 1) * 100);
+      }
+    }
+    return newArray;
+  }
 
   const data = {
     labels: monthLabels,
     datasets: [
       {
-        label: "Total de historias medicas registradas",
-        data: Object.values(totalCount),
+        label: "Porcentaje de variacion",
+        data: calculateData(Object.values(totalCount)),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+      fill: true
+
       },
     ],
+
   };
 
   return <Line options={options} data={data} />;
