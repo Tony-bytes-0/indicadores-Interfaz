@@ -2,16 +2,20 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import Variacion from "./variacion/HistoryGraph";
-import InfoCard from "./variacion/InfoCard";
-import { useSelector } from "react-redux";
+import MonthInfo from "./variacion/MonthInfo";
+
 
 export default function Page() {
-  const months = useSelector(state => state.totalCount);
+
 
   return (
     <Grid container className="my-2">
       
       <Variacion />
+      
+      {/* <MonthInfo /> */}
+      
+          {/* <InfoCard title="My Title" number={123} /> */}
 
     </Grid>
   );
