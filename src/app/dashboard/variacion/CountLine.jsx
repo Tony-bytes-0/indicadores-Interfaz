@@ -48,7 +48,6 @@ export default function CountLine() {
     const x = [];
     for (let i = 0; i < temp.length; i++) {
       if (temp[i].totalregistros !== undefined) {
-        //console.log("vamos por ", temp[i].totalregistros);
         x.push(temp[i].totalregistros);
       }
     }
@@ -74,28 +73,13 @@ export default function CountLine() {
       },
     },
   };
-  function calculateData(months) {
-    const newArray = [];
-    for (let i = 0; i < 12; i++) {
-      if (i == 0) {
-        newArray.push(months[0])
-      }
-      else if (i == 1){
-        newArray.push((months[i] / months[0] - 1) * 100);
-      } 
-      else {
-        newArray.push((months[i] / months[i - 1] - 1) * 100);
-      }
-    }
-    return newArray;
-  }
 
   const data = {
     labels: monthLabels,
     datasets: [
       {
         label: "Porcentaje de variacion",
-        data: calculateData(Object.values(totalCount)),
+        data: Object.values(totalCount),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       fill: true

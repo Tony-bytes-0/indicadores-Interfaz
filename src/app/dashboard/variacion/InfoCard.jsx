@@ -1,19 +1,28 @@
-import React from 'react';
+import { Box, Grid, Typography } from "@mui/material";
+import React from "react";
 
-export default function InfoCard ( props ){
+export default function InfoCard(props) {
   const cardStyle = {
-    padding: '20px',
-    margin: '20px',
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#007bff', // You can choose any color here
-    borderRadius: '5px'
+    padding: "15px",
+    margin: "5px",
+    textAlign: "center",
+    color: "#fff",
+    //backgroundColor: '#007bff', // You can choose any color here
+    borderRadius: "5px",
+    backgroundColor: "#2ecc71",
+    border: "3px solid #000",
   };
-console.log(props, props.title, props.number)
+  //console.log(props, props.title, props.number, 'desde InfoCard')
   return (
-    <div style={cardStyle}>
-      <h2>{props.title}</h2>
-      <p>{props.number}</p>
-    </div>
+    <Grid item xs={5} style={cardStyle} className=" ">
+      <Box className="flex flex-col overflow-visible break-words flex-wrap break-all" >
+        <Typography fontSize={22} className="flex flex-wrap">
+          {props.title}
+        </Typography>
+        <Typography fontSize={22} className="flex text-center text-start">
+          {props.number}
+        </Typography>
+      </Box>
+    </Grid>
   );
-};
+}

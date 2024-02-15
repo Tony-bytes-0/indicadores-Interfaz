@@ -1,8 +1,7 @@
 "use client";
 import { Grid } from "@mui/material";
 import React from "react";
-import Variacion from "./variacion/HistoryGraph";
-import MonthInfo from "./variacion/MonthInfo";
+import Variacion from "./variacion/Variacion";
 
 
 export default function Page() {
