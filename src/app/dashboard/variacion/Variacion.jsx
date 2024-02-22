@@ -100,7 +100,7 @@ export default function Variacion() {
         />
       </Grid>
 
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <IterateMonths
           monthLabels={monthLabels}
           formula={variacionFormula}

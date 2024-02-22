@@ -18,7 +18,6 @@ function DiseaseSelect() {
     useEffect( () => {
         axios.get('http://localhost:4000/enfermedades')
         .then(function(response){
-            console.log(response.data,'AQUI ESTAN LOS DATOS QUE VAN PARA EL MAP')
             setList(response.data)
         })
     }, [dispatch])

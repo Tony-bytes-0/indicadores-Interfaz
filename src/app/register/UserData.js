@@ -2,8 +2,7 @@
 import { useState, useEffect } from 'react'
 
 //MUI Components
-import { Grid, TextField, InputLabel, Select, MenuItem, FormControl, Button, TextareaAutosize, ButtonGroup, Box  } from "@mui/material"
-
+import { Grid, TextField, InputLabel, Select, MenuItem, FormControl, Button, TextareaAutosize, ButtonGroup, Box, ThemeProvider, createTheme  } from "@mui/material"
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -21,7 +20,8 @@ import { setDireccion } from '@/redux/register/userData/person/direccion'
 import axios from "axios"
 
 //Modulos
-import { bloodList } from '@/app/register/staticValuesList'//objeto con personas estatico
+import { bloodList } from '@/app/register/validations'//objeto con personas estatico
+import { isDateNotInFuture } from '@/app/register/validations'
 import Separador from '@/components/Separador'
 // import UserType from './UserType'
 //Iconos
@@ -31,8 +31,6 @@ import { setMunicipioList } from '@/redux/register/registerController/municipioL
 import { setParroquiaList } from '@/redux/register/registerController/parroquiaList'
 import { setComunidadList } from '@/redux/register/registerController/comunidadList'
 import { setSectorList } from '@/redux/register/registerController/sectorList' */
-
-
 
 
 
@@ -56,11 +54,17 @@ export default function UserData(props){//MAIN
     const handleName = (event) => { dispatch(setNombre(event.target.value)) }//NAME
     const handleLastName = (event) => {dispatch(setApellido(event.target.value))}//LASTNAME   
     const handleGender = (event) => {dispatch(setGenero(event.target.value)) }//GENDER  
-    const handleBirthdate = (event) => { dispatch(setFechaNacimiento(event.target.value))}//BIRTHDATE
+    const handleBirthdate = (event) => { 
+        const isValid = isDateNotInFuture(event.target.value)
+        if(isValid){
+            dispatch(setFechaNacimiento(event.target.value))
+        }
+        else{alert('no se pueden seleccionar fechas en el futuro!')}
+    }//BIRTHDATE
     const handleBloodType = (event) => { dispatch(setTipoSangre(event.target.value)) }//BLOODTYPE
     const handleDirection = (event) => { dispatch(setDireccion(event.target.value)) }//DIRECTION
     const handleSector = (event) => { dispatch(setSector(event.target.value)) }//SECTOR
-    const handleDni = (event) => { if(event.target.value.match(validateNumber) != null && event.target.value.length < 10) { dispatch(setIdentificacion(event.target.value)) } }//DNI
+    const handleDni = (event) => { if(event.target.value.match(validateNumber) != event.target.value.length < 12) { dispatch(setIdentificacion(event.target.value)) } }//DNI
     const handleCellphone = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefono(event.target.value)) } }//CELLPHONE
     const handleEmergency = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefonoEmergencia(event.target.value)) } }//EMERGENCY
 
@@ -144,11 +148,6 @@ export default function UserData(props){//MAIN
         dispatch(setTipoSangre(x.tipoSangre)); 
         dispatch(setDireccion(x.direccion));
     }
-    const [welcome, setWelcome] = useState(true)//para hacer acciones solamente al cargar la pagina :)
-    if(welcome && props.toggleUpdate){//esseto trigerea al abrir la modal de edicion
-        setWelcome(false)
-        setUpdateValues(props.target)
-    }
 
     function getPersonByDni (){
         axios.get('http://localhost:4000/persona/' + identificacion)
@@ -168,7 +167,7 @@ export default function UserData(props){//MAIN
             <Grid container sx={{"padding":"2%"}} spacing={1} className='fadeIn'>
                 <Separador label = 'Datos Personales del Paciente' />
                 <Grid item xs={12} >
-                    <TextField sx={sm} label="Cedula" variant="filled" type= {'number'} value={identificacion} onChange = {handleDni} onBlur={() => { getPersonByDni() }}  />
+                    <TextField sx={sm} label={"Cedula "} type='number' variant="filled" value={identificacion} onChange = {handleDni} onBlur={() => { getPersonByDni() }} required/>
                     <TextField sx={sm} label="Nombre" variant="filled" onChange = {handleName} value = {nombre} />
                     <TextField sx={sm} label="Apellido" variant="filled" value = {apellido} onChange = {handleLastName}  />
 

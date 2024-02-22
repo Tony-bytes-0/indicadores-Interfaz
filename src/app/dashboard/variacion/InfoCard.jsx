@@ -17,8 +17,8 @@ export default function InfoCard(props) {
   });
 
   const cardStyle = {
-    padding: "15px",
-    margin: "5px",
+    padding: "10px",
+    margin: "3px",
     textAlign: "center",
     color: "#00000",
     //backgroundColor: '#007bff', // You can choose any color here
@@ -29,7 +29,7 @@ export default function InfoCard(props) {
   };
   //console.log(props, props.title, props.number, 'desde InfoCard')
   return (
-    <Grid item xs={5} style={cardStyle}>
+    <Grid item xs={3} style={cardStyle}>
       <Box className="flex flex-col overflow-visible break-words flex-wrap break-all">
         <Typography fontSize={22} className="flex flex-wrap">
           <b>{props.title}</b>

@@ -1,4 +1,4 @@
-import { Grid, TextField , Box, Button, Typography, FormControl, InputLabel } from "@mui/material";
+import { Grid, TextField , Box, Typography, FormControl, InputLabel } from "@mui/material";
 import {  useSelector, useDispatch } from "react-redux";
 import { setMedicalRecordDate } from "@/redux/register/preMedicalRecord/MedicalRecordDate";
 //Reducers
@@ -7,9 +7,9 @@ import { setWeight } from "@/redux/register/preMedicalRecord/weight";
 import { setTemp } from "@/redux/register/preMedicalRecord/temp";
 import { setDiastolic } from "@/redux/register/preMedicalRecord/diastolic";
 import { setSistolic } from "@/redux/register/preMedicalRecord/sistolic";
-import { useState } from "react";
 const sm = { width: '33%', maxWidth: '33%', padding:'10px' }
 const full = { width: '40%', padding:'7px'}
+
 
 
 export default function PreMedicalRecord(){
@@ -34,7 +34,10 @@ export default function PreMedicalRecord(){
 
   
     const medicalRecordDate = useSelector(state => state.medicalRecordDate)
-    const handleMedicalRecordDate = (event) => { dispatch(setMedicalRecordDate(event.target.value)) }
+    const handleMedicalRecordDate = (event) => {
+        const isValid =  
+        dispatch(setMedicalRecordDate(event.target.value)) 
+    }
 
     return<>
     <Grid item xs = {9}><Box className='centrate' sx={{"marginTop":"10px"}}>
