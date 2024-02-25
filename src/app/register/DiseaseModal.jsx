@@ -12,7 +12,7 @@ export default function DiseaseModal() {
   const [nombreEnfermedad, setNombreEnfermedad] = useState("");
   const handleName = (event) => {
     setNombreEnfermedad(event.target.value);
-  }; //NAME
+  };
   const postNombreEnfermedad = () => {
     axios
       .post("http://localhost:4000/enfermedades", {
@@ -23,6 +23,7 @@ export default function DiseaseModal() {
         console.log({ nombreEnfermedad: nombreEnfermedad });
         setNombreEnfermedad("");
         setIsModalOpen(false);
+        location.reload(); //puede que se valla
       })
       .catch((e) => {
         alert("error desconocido");
@@ -41,7 +42,7 @@ export default function DiseaseModal() {
       {isModalOpen ? (
         <></>
       ) : (
-        <Box className="bg-slate-200 fixed inset-56 flex items-center justify-center z-50 rounded">
+        <Box className="bg-slate-200 fixed inset-56 flex items-center justify-center z-50 rounded ">
           <Button
             variant="contained"
             className="bg-red-500 top-0 right-0 absolute"
@@ -53,12 +54,12 @@ export default function DiseaseModal() {
             <FormControl>
               <TextField
                 label="nombre de la enfermedad"
-                onchange={handleName}
+                onChange={handleName}
                 value={nombreEnfermedad}
               ></TextField>
               <Button
                 variant="contained"
-                className="bg-blue-500"
+                className="bg-blue-500 flex"
                 onClick={postNombreEnfermedad}
               >
                 <AddIcon />
