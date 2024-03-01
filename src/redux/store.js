@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 //controllers
 import activeGraphs from './graphState/activeGraphs'
-import registerController from '@/redux/register/registerController/registerController';
 
 //userData
 import nombre from './register/userData/person/nombre';
@@ -74,7 +73,7 @@ export default configureStore({
         //indicators
         triageState: triageState, diagnosticoState: diagnosticoState, tensionState: tensionState, atencionEspecialState: atencionEspecialState,
         //new
-        topDiseases: topDiseases, indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount
+        topDiseases: topDiseases, indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount,
         
     
     }
