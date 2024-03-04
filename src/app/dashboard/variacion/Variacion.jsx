@@ -33,15 +33,16 @@ export default function Variacion() {
     const color = [];
     const icon = [];
     for (let i = 0; i < 12; i++) {
-      if (i == 0) {
-        color.push("gray");
-        icon.push("same");
-      } else if (months[i] > months[i - 1]) {
+      if (months[i] > 80) {
         color.push("#63FF60");
         icon.push("up");
-      } else {
+      }
+      else if (i == 0 || months[i] < 35) {
         color.push("#FF4242");
         icon.push("down");
+      } else {
+        color.push("gray");
+        icon.push("same");
       }
     }
     return { color, icon };
@@ -110,4 +111,25 @@ export default function Variacion() {
       </Grid>
     </Grid>
   );
+}
+
+{
+  /*
+  function IndicatorColors(months) {
+    const color = [];
+    const icon = [];
+    for (let i = 0; i < 12; i++) {
+      if (i == 0) {
+        color.push("gray");
+        icon.push("same");
+      } else if (months[i] > months[i - 1]) {
+        color.push("#63FF60");
+        icon.push("up");
+      } else {
+        color.push("#FF4242");
+        icon.push("down");
+      }
+    }
+    return { color, icon };
+*/
 }
