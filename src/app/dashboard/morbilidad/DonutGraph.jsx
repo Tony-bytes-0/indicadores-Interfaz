@@ -26,7 +26,7 @@ export default function DonutGraph(props) {
   }
 
   return (
-    <Grid item xs={4}>
+    <Grid item xs={2} className="my-10">
       <Doughnut data={data} />
     </Grid>
   );

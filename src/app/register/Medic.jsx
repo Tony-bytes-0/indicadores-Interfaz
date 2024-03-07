@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField, ThemeProvider, createTheme } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSacs } from "@/redux/register/userData/medico/sacs";
@@ -6,6 +6,16 @@ import { setNombreMedico } from "@/redux/register/userData/medico/nombreMedico";
 import { setEspecialidad } from "@/redux/register/userData/medico/especialidad";
 import Separador from "@/components/Separador";
 import axios from "axios";
+
+const redAsteriskLocal = createTheme({
+  components: {
+    MuiFormLabel: {
+      styleOverrides: {
+        asterisk: { color: "red" },
+      },
+    },
+  },
+});
 
 export default function Medic() {
   const dispatch = useDispatch();
@@ -49,8 +59,8 @@ export default function Medic() {
         especialidad,
       })
       .then((response) => {
-        const msj = `${nombreMedico} hasido registrado con exito, con el codigo SACS: ${sacs}`
-        alert(msj)
+        const msj = `${nombreMedico} hasido registrado con exito, con el codigo SACS: ${sacs}`;
+        alert(msj);
       })
       .catch((e) => {
         alert(e);
@@ -62,16 +72,17 @@ export default function Medic() {
 
       <Grid item xs={12}>
         <div>
-          <TextField
-            sx={sm}
-            label="SACS "
-            variant="filled"
-            onChange={handleSacs}
-            value={sacs}
-            onBlur={() => fetchSacs(sacs)}
-            required
-          />
-
+          <ThemeProvider theme={redAsteriskLocal}>
+            <TextField
+              sx={sm}
+              label="SACS "
+              variant="filled"
+              onChange={handleSacs}
+              value={sacs}
+              onBlur={() => fetchSacs(sacs)}
+              required
+            />
+          </ThemeProvider>
           <TextField
             sx={sm}
             label="nombre medico"

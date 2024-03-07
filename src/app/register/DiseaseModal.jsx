@@ -34,7 +34,7 @@ export default function DiseaseModal() {
     <>
       <Button
         variant="contained"
-        className="bg-blue-500 items-center justify-center lowercase"
+        className="bg-blue-500 items-center justify-center lowercase my-10"
         onClick={toggleModal}
       >
         agregar enfermedad

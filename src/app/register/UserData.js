@@ -1,8 +1,5 @@
-//React
-import { useState, useEffect } from 'react'
-
 //MUI Components
-import { Grid, TextField, InputLabel, Select, MenuItem, FormControl, Button, TextareaAutosize, ButtonGroup, Box, ThemeProvider, createTheme  } from "@mui/material"
+import { Grid, TextField, InputLabel, Select, MenuItem, FormControl, Button, TextareaAutosize, ButtonGroup, Box, ThemeProvider, createTheme, Typography  } from "@mui/material"
 //Redux
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -25,13 +22,15 @@ import { isDateNotInFuture } from '@/app/register/validations'
 import Separador from '@/components/Separador'
 // import UserType from './UserType'
 //Iconos
-
-/* import { setEstadoList } from '@/redux/register/registerController/estadoList'
-import { setMunicipioList } from '@/redux/register/registerController/municipioList'
-import { setParroquiaList } from '@/redux/register/registerController/parroquiaList'
-import { setComunidadList } from '@/redux/register/registerController/comunidadList'
-import { setSectorList } from '@/redux/register/registerController/sectorList' */
-
+const redAsteriskLocal = createTheme({
+    components: {
+      MuiFormLabel: {
+        styleOverrides: {
+          asterisk: {color:"red"},
+        },
+      },
+    },
+  })
 
 
 export default function UserData(props){//MAIN
@@ -167,7 +166,9 @@ export default function UserData(props){//MAIN
             <Grid container sx={{"padding":"2%"}} spacing={1} className='fadeIn'>
                 <Separador label = 'Datos Personales del Paciente' />
                 <Grid item xs={12} >
-                    <TextField sx={sm} label={"Cedula "} type='number' variant="filled" value={identificacion} onChange = {handleDni} onBlur={() => { getPersonByDni() }} required/>
+                    <ThemeProvider theme={redAsteriskLocal}>
+                        <TextField sx={sm} label={"Cedula "} type='number' variant="filled" value={identificacion} onChange = {handleDni} onBlur={() => { getPersonByDni() }} required/>
+                    </ThemeProvider>
                     <TextField sx={sm} label="Nombre" variant="filled" onChange = {handleName} value = {nombre} />
                     <TextField sx={sm} label="Apellido" variant="filled" value = {apellido} onChange = {handleLastName}  />
 
