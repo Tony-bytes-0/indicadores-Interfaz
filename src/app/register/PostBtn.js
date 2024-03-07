@@ -64,16 +64,6 @@ export default function PostBtn() {
     };
   }
   function sendData(personaHistoriaDto) {
-    /*if(isNaN(dataObject.historiaMedica.altura)){dataObject.problems.push(' Altura')} //validaciones
-        if(isNaN(dataObject.historiaMedica.peso)){dataObject.problems.push(' Peso')}
-        if(isNaN(dataObject.historiaMedica.tensionSistolica )){dataObject.problems.push(' Tension Sistolica')}
-        if(isNaN(dataObject.historiaMedica.tensionDiastolica)){dataObject.problems.push(' Tension Diastolica')}
-        if(isNaN(dataObject.historiaMedica.temperatura)){dataObject.problems.push(' Temperatura')}
-        if(dataObject.problems.length >= 1){
-            alert('error, en los siguientes campos hay caracteres que no son numeros: ' + attempt.problems)
-        } */
-    //else{
-    //console.log('el objeto a ser enviado: ', dataObject)
     console.log(personaHistoriaDto);
     axios
       .post("http://localhost:4000/visitas/personaHistoria", personaHistoriaDto)

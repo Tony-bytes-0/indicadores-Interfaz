@@ -97,7 +97,6 @@ export default function BasicTable(props) {
             </TableCell>
           </TableRow>
         </TableHead>
-
         <TableBody>
           {props.userList.map((row) => (
             <TableRow
@@ -116,10 +115,10 @@ export default function BasicTable(props) {
           ))}
         </TableBody>
         {isModalOpen ? (
-          <Box className="bg-slate-200 fixed inset-40 flex items-center justify-center z-50 rounded p-7">
+          <Box className="bg-slate-200 fixed inset-0 flex items-center justify-center z-50 rounded p-5 m-20 overflow-auto">
             <Button
               variant="contained"
-              className="bg-red-500 top-0 right-0 absolute"
+              className="bg-red-500 top-0 right-0 absolute z-50 opacity-70"
               onClick={closeModal}
             >
               X

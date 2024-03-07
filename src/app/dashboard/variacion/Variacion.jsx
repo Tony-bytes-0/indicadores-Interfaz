@@ -9,7 +9,7 @@ import CountLine from "./CountLine";
 import IterateMonths from "./IterateMonths";
 import { setTotalCount } from "@/redux/graph/totalCount";
 
-export default function Variacion() {
+export default function Variacion(props) {
   const dispatch = useDispatch();
   const totalCount = useSelector((state) => state.totalCount);
   const variacionFormula = calculateData(totalCount);
@@ -36,8 +36,7 @@ export default function Variacion() {
       if (months[i] > 80) {
         color.push("#63FF60");
         icon.push("up");
-      }
-      else if (i == 0 || months[i] < 35) {
+      } else if (i == 0 || months[i] < 35) {
         color.push("#FF4242");
         icon.push("down");
       } else {
@@ -76,6 +75,7 @@ export default function Variacion() {
     "Febrero",
     "Marzo",
     "Abril",
+    "Mayo",
     "Junio",
     "Julio",
     "Agosto",
@@ -88,7 +88,7 @@ export default function Variacion() {
     <Grid container className="my-10">
       <Grid item xs={12}>
         <Typography textAlign={"center"} fontSize={30}>
-          Índice de atención en el ambulatorio urbano 1 Bernardino Martínez
+          Índice de atención al ciudadano en el ambulatorio urbano 1 Bernardino Martínez año {props.year}
         </Typography>
       </Grid>
 
@@ -111,25 +111,4 @@ export default function Variacion() {
       </Grid>
     </Grid>
   );
-}
-
-{
-  /*
-  function IndicatorColors(months) {
-    const color = [];
-    const icon = [];
-    for (let i = 0; i < 12; i++) {
-      if (i == 0) {
-        color.push("gray");
-        icon.push("same");
-      } else if (months[i] > months[i - 1]) {
-        color.push("#63FF60");
-        icon.push("up");
-      } else {
-        color.push("#FF4242");
-        icon.push("down");
-      }
-    }
-    return { color, icon };
-*/
 }

@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -14,7 +13,8 @@ export default function InfoCard(props) {
             {props.title}
           </Typography>
           <Typography variant="h6" component="div" className="left">
-            Casos <br />atendidos<br />
+            {props.message}<br/>
+            {props.message2}{props.message2 ? <br/> : <></>}
             {props.number}
           </Typography>
           <Typography variant="body2">

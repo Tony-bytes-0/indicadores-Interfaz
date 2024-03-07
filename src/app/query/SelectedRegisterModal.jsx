@@ -16,8 +16,8 @@ const greenBg = {
 };
 function SelectedRegisterModal(props) {
   return (
-    <Box className="flex flex-wrap p-1">
-      <ListItem sx={yellowBg}> {/* nombre Patologia */}
+    <Box className="flex flex-wrap p-1 m-5 flex-shrink w-full">
+      <ListItem sx={bluebg}> {/* nombre Patologia */}
         {props.icon ? <User /> : <Virus />}
         <ListItemText
           primary={props.primary[0]}

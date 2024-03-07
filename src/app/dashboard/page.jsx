@@ -1,19 +1,29 @@
 "use client";
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Variacion from "./variacion/Variacion";
 import Morbilidad from "./morbilidad/Morbilidad";
+import Triage from "./triage/Triage";
 
 export default function Page() {
+  const [actualDate, setActualDate] = useState(new Date());
+  function calculatePercentages(array) {
+    const base = array.reduce((acc, value) => acc + value, 0);
+    return array.map((number) => ((number / base) * 100).toFixed(2));
+  }
   return (
     <Grid container className="my-2">
-      <Morbilidad />
+      <Variacion year={actualDate.getFullYear()} />
 
-      <Variacion />
+      <Triage
+        calculatePercentages={calculatePercentages}
+        year={actualDate.getFullYear()}
+      />
 
-      {/* <MonthInfo /> */}
-
-      {/* <InfoCard title="My Title" number={123} /> */}
+      <Morbilidad
+        calculatePercentages={calculatePercentages}
+        year={actualDate.getFullYear()}
+      />
     </Grid>
   );
 }

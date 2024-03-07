@@ -46,7 +46,6 @@ function DiseaseSelect() {
         >
           {list.map((e) => (
             <MenuItem value={e.id} key={e.id + " Enfermedad detectada"}>
-              {console.log(e.id)}
               {e.nombreEnfermedad}
             </MenuItem>
           ))}
