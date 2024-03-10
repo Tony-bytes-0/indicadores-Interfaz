@@ -29,7 +29,7 @@ function OrdenarPorEdad(props) {
     fetchData();
   }, []);
   return (
-    <Grid item xs={6} className="my-2 m-auto">
+    <Grid item xs={6} className="my-2 flex flex-col">
       <DonutGraph data={graphData} xs={6} />
       <Grid item className="flex my-10 mx-5">
         {graphData.labels.map((e, index) => (

@@ -6,7 +6,7 @@ import Separador from "@/components/Separador";
 
 function Triage(props) {
   return (
-    <Grid container className="justify-center">
+    <Grid container className="justify-center align-middle">
       <Typography textAlign={"center"} fontSize={30} className="mt-10 mx-10">
         {"Total de casos atendidos ordenados por triage en el ambulatorio urbano 1 Bernardino Martínez año " +
           props.year}

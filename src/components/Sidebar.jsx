@@ -28,6 +28,7 @@ export default function SideBar() {
         maxWidth: "100%",
         height: "10000px",
         position: "fixed",
+        left:"0%"
       }}
       className="bg-slate-300"
     >
@@ -45,7 +46,7 @@ export default function SideBar() {
           {/* <Link href='/dashboard' > Dashboard </Link> */}
           <ListItemButton>
             <Link href="dashboard">
-              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap text-black">
+              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap overflow-visible break-words flex-wrap break-all text-black">
                 Dashboard
               </Typography>
             </Link>
@@ -60,7 +61,7 @@ export default function SideBar() {
           {/* <Link href='/register'> <b>historia medica </b></Link> */}
           <ListItemButton>
             <Link href="/register">
-              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap text-black">
+              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap overflow-visible break-words flex-wrap break-all text-black">
                 Historia Medica
               </Typography>
             </Link>
@@ -75,7 +76,7 @@ export default function SideBar() {
           {/* <Link href='/register'> <b>historia medica </b></Link> */}
           <ListItemButton>
             <Link href="/query">
-              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap text-black">
+              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap overflow-visible break-words flex-wrap break-all text-black">
                 Consulta
               </Typography>
             </Link>

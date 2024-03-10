@@ -2,7 +2,6 @@ import { Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import DonutGraph from "@/app/dashboard/morbilidad/DonutGraph";
 import axios from "axios";
-import Separador from "@/components/Separador";
 import InfoCard from "@/app/dashboard/InfoCard";
 
 function Generos(props) {
@@ -30,7 +29,7 @@ function Generos(props) {
     fetchData();
   }, []);
   return (
-    <Grid item xs={6} className="my-2">
+    <Grid item xs={6} className="my-2 flex flex-col">
       <DonutGraph data={graphData} xs={6} />
       <Grid item className="flex my-10 mx-5">
         {graphData.labels.map((e, index) => (
