@@ -27,6 +27,7 @@ export default function PostBtn() {
   //const navigate = useNavigate()
   const dispatch = useDispatch();
   const style = { margin: "2%" };
+  const updatePerson = useSelector((state) => state.updatePerson);
 
   function dataObject() {
     return {
@@ -63,22 +64,42 @@ export default function PostBtn() {
       },
     };
   }
-  function sendData(personaHistoriaDto) {
-    console.log(personaHistoriaDto);
+  function sendData(personaHistoriaDto) {//esto crea la historia medica
     axios
       .post("http://localhost:4000/visitas/personaHistoria", personaHistoriaDto)
-      .then(function (response) {
+      .then(function () {
         alert("registro exitoso");
-        console.log(response.data);
-        location.reload();
-
+        //location.reload();
       })
       .catch((e) => {
-        console.log(e)
-        alert('ha ocurrido un error desconocido')
+        console.log(e);
+        alert("ha ocurrido un error desconocido");
       });
     //}
   }
+  function updateFunction(personaHistoriaDto) {
+    if (updatePerson.id !== "") {
+      //caso si se trajo alguna persona existente
+      axios
+        .patch(
+          "http://localhost:4000/persona/" + updatePerson.id,
+          personaHistoriaDto.user
+        )
+        .then(() => {
+          console.log("actualizacion del id: ", updatePerson.id, " completa");
+          sendData(personaHistoriaDto);
+        })
+        .catch((e) => {
+          console.log(e, "error actualizando persona", personaHistoriaDto.user);
+        });
+    } else {
+      sendData(personaHistoriaDto);
+    }
+  }
+
+  const updateThenPost = () => {
+    updateFunction(dataObject());
+  };
 
   function normalize() {
     dispatch(setSize(""));
@@ -107,9 +128,7 @@ export default function PostBtn() {
         variant="contained"
         className="bg-blue-600 "
         style={style}
-        onClick={() => {
-          sendData(dataObject());
-        }}
+        onClick={updateThenPost}
       >
         {" "}
         Registar Historia Medica{" "}

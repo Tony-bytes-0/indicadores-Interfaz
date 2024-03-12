@@ -12,6 +12,7 @@ import { setFechaNacimiento } from '@/redux/register/userData/person/fechaNacimi
 import { setTelefono } from '@/redux/register/userData/person/telefono'
 import { setTelefonoEmergencia } from '@/redux/register/userData/person/telefonoEmergencia'
 import { setDireccion } from '@/redux/register/userData/person/direccion'
+import { clearUpdatePerson, setUpdatePerson } from "@/redux/Register/userData/person/updatePerson"
 
 //Axios
 import axios from "axios"
@@ -31,8 +32,6 @@ const redAsteriskLocal = createTheme({
       },
     },
   })
-
-
 export default function UserData(props){//MAIN
     const dispatch = useDispatch() //DEV
     const validateNumber="[0-9]";
@@ -146,7 +145,8 @@ export default function UserData(props){//MAIN
         dispatch(setFechaNacimiento(x.fechaNacimiento)); 
         dispatch(setTipoSangre(x.tipoSangre)); 
         dispatch(setDireccion(x.direccion));
-    }
+        dispatch(setUpdatePerson(x))
+        }
 
     function getPersonByDni (){
         axios.get('http://localhost:4000/persona/' + identificacion)
@@ -155,6 +155,7 @@ export default function UserData(props){//MAIN
         })
         .catch(e => {
             console.log('no existe esa cedula en la base de datos')
+            dispatch(clearUpdatePerson())
         })
         .finally(() => {console.log('se termino la busqueda!')})
         

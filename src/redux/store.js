@@ -48,6 +48,7 @@ import tensionState from './indicators/tensionState'; import atencionEspecialSta
 import topDiseases from './graph/topDiseases';
 import indicatorSelectedMonth from './graph/indicatiorSelectedMonth'
 import totalCount from './graph/totalCount'
+import updatePerson from './Register/userData/person/updatePerson'
 
 
 
@@ -58,6 +59,9 @@ export default configureStore({
         telefono: telefono, telefonoEmergencia: telefonoEmergencia, fechaNacimiento: fechaNacimiento,
         tipoSangre: tipoSangre, direccion: direccion, fechaVisita: fechaVisita,
         sacs:sacs, nombreMedico: nombreMedico, especialidad: especialidad, //medico
+        //objeto para update
+        updatePerson: updatePerson,
+
 
         //historia medica
         doctor: doctor, altura: altura, peso: peso, temperatura: temperatura,
