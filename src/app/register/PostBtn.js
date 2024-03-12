@@ -78,7 +78,7 @@ export default function PostBtn() {
     //}
   }
   function updateFunction(personaHistoriaDto) {
-    if (updatePerson.id !== "") {
+    if (updatePerson.id != "") {
       //caso si se trajo alguna persona existente
       axios
         .patch(

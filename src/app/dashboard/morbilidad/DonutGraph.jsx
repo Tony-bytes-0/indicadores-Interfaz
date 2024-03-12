@@ -26,8 +26,8 @@ export default function DonutGraph(props) {
   }
 
   return (
-    <Grid item xs={props.xs} className="my-10 flex">
-      <Doughnut data={data} />
+    <Grid item xs={props.xs} className={"my-10 flex" + props.GridClass}>
+      <Doughnut data={data} className="flex" />
     </Grid>
   );
 }

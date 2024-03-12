@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
 
-export default function DiseaseModal() {
+export default function DiseaseModal(props) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -23,7 +23,7 @@ export default function DiseaseModal() {
         console.log({ nombreEnfermedad: nombreEnfermedad });
         setNombreEnfermedad("");
         setIsModalOpen(false);
-        location.reload(); //puede que se valla
+        props.fetchList()
       })
       .catch((e) => {
         alert("error desconocido");

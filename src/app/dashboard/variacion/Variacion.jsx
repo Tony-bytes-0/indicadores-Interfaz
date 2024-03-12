@@ -33,14 +33,14 @@ export default function Variacion(props) {
     const color = [];
     const icon = [];
     for (let i = 0; i < 12; i++) {
-      if (months[i] > 80) {
+      if (months[i] > 20) {
         color.push("#63FF60");
         icon.push("up");
-      } else if (i == 0 || months[i] < 35) {
-        color.push("#FF4242");
+      } else if (months[i] <= -10 ) {
+        color.push("#FF5656");
         icon.push("down");
       } else {
-        color.push("gray");
+        color.push("#FFC300");
         icon.push("same");
       }
     }

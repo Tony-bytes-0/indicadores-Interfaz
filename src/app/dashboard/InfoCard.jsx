@@ -2,6 +2,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import CircleIcon from '@mui/icons-material/Circle';
 import { Grid } from "@mui/material";
 
 export default function InfoCard(props) {
@@ -19,7 +20,9 @@ export default function InfoCard(props) {
           </Typography>
           <Typography variant="body2">
             <br />
+            {props.dot ? <CircleIcon sx={{ color: props.dotColor }}/> : <></> }
             {props.percentage} %
+
           </Typography>
         </CardContent>
       </Card>

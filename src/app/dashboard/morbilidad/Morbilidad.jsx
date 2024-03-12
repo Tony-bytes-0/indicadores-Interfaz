@@ -11,7 +11,7 @@ export default function Morbilidad(props) {
     labels: ["uno", "dos"],
     dataArray: [10, 20, 30, 40],
   });
-  
+
   const fethcGraph = () => {
     axios.get("http://localhost:4000/visitas/ordenar").then((response) => {
       setGraphData({
@@ -35,17 +35,18 @@ export default function Morbilidad(props) {
         Bernardino Martínez año {props.year}
       </Typography>
       <Separador />
-
-      <DonutGraph data={graphData} xs={2}/>
-
-      <Grid item={7} className="flex my-10 mx-5">
+      <div className="w-full flex items-center justify-center">
+        <DonutGraph data={graphData} xs={5} />
+      </div>
+      <Grid item={12} className="flex my-10 mx-5">
         {graphData.labels.map((e, index) => (
           <InfoCard
             title={e}
             number={graphData.dataArray[index]}
             key={index}
             percentage={percentages[index]}
-            message={"Casos"} message2 ={"atendidos"}
+            message={"Casos"}
+            message2={"atendidos"}
           />
         ))}
       </Grid>

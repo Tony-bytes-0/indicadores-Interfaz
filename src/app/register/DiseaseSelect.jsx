@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setEnfermedad } from "@/redux/register/preMedicalRecord/enfermedad";
-import DiseaseModal  from "./DiseaseModal"
+import DiseaseModal from "./DiseaseModal";
 
 import axios from "axios";
 import { useEffect } from "react";
@@ -24,12 +24,14 @@ function DiseaseSelect() {
     dispatch(setEnfermedad(event.target.value));
   };
 
-
-
-  useEffect(() => {
+  const fetchList = () => {
     axios.get("http://localhost:4000/enfermedades").then(function (response) {
       setList(response.data);
     });
+  };
+
+  useEffect(() => {
+    fetchList();
   }, [dispatch]);
 
   return (
@@ -50,9 +52,8 @@ function DiseaseSelect() {
             </MenuItem>
           ))}
         </Select>
-
       </FormControl>
-      <DiseaseModal />
+      <DiseaseModal fetchList = {fetchList} />
     </Grid>
   );
 }
