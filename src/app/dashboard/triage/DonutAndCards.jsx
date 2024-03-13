@@ -9,6 +9,7 @@ export default function DonutAndCards(props) {
     labels: ["datos", "estaticos"],
     dataArray: [10, 20],
   }); */
+  //console.log('dentro del donutAndCard ', props.dotColor)
   return (
     <Grid item xs={6} className={props.GridContainerclass}>
       <div className="w-full flex items-center justify-center">
@@ -21,6 +22,8 @@ export default function DonutAndCards(props) {
           number={props.graphData.dataArray[index]}
           percentage={props.percentages[index]}
           message={props.message}
+          dot={props.dot}
+          dotColor = {props.dotColor[index]}
         />
       ))}
     </Grid>

@@ -11,6 +11,7 @@ function Triage(props) {
       dataArray: [1, 2],
     },
     percentages: [50, 50],
+    dotColor:['#63FF60', 'FFC300', 'FF5656']
   });
   const [edadesData, setEdadesData] = useState({
     graphData: {
@@ -18,6 +19,7 @@ function Triage(props) {
       dataArray: [1, 2],
     },
     percentages: [50, 50],
+    dotColor:['#63FF60', 'FFC300', 'FF5656']
   });
   function fetchData() {
     axios
@@ -50,6 +52,7 @@ function Triage(props) {
   useEffect(() => {
     fetchData();
   }, []);
+  
   return (
     <Grid container className="">
       <Typography textAlign={"center"} fontSize={30} className="mt-10 mx-10">
@@ -63,12 +66,26 @@ function Triage(props) {
         graphData={generoData.graphData}
         percentages={generoData.percentages}
         message={"Totales"}
+        dot
+        dotColor = {
+          props.determinateDotColor({
+            values: generoData.percentages,
+            range: {bien: 60, mal: 20}
+          })
+        }
       />
       <DonutAndCards
         year={props.year}
         graphData={edadesData.graphData}
         percentages={edadesData.percentages}
         message={"Totales"}
+        dot
+        dotColor = {
+          props.determinateDotColor({
+            values: generoData.percentages,
+            range: {bien: 60, mal: 20}
+          })
+        }
       />
     </Grid>
   );
