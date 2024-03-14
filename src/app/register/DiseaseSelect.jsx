@@ -1,11 +1,12 @@
 import {
-  Button,
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
-  Modal,
   Select,
+  TextField,
+  ThemeProvider,
+  createTheme,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +24,15 @@ function DiseaseSelect() {
   const handleEnfermedad = (event) => {
     dispatch(setEnfermedad(event.target.value));
   };
+  const redAsteriskLocal = createTheme({
+    components: {
+      MuiFormLabel: {
+        styleOverrides: {
+          asterisk: { color: "red" },
+        },
+      },
+    },
+  });
 
   const fetchList = () => {
     axios.get("http://localhost:4000/enfermedades").then(function (response) {
@@ -36,15 +46,19 @@ function DiseaseSelect() {
 
   return (
     <Grid item xs={12} className="w-max m-2 p-2">
-      <FormControl fullWidth>
+      <TextField variant="filled" className="mx-2" label="Filtro" />
+      <FormControl className="w-3/5">
         {" "}
-        <InputLabel>Enfermedad detectada</InputLabel>
+        <ThemeProvider theme={redAsteriskLocal}>
+          <InputLabel>Sintomas detectados</InputLabel>
+        </ThemeProvider>
         <Select
           variant="filled"
-          label="Enfermedad detectada"
+          label="Sintomas detectados"
           value={selected}
           onChange={handleEnfermedad}
           defaultValue=""
+          required
         >
           {list.map((e) => (
             <MenuItem value={e.id} key={e.id + " Enfermedad detectada"}>
@@ -53,7 +67,7 @@ function DiseaseSelect() {
           ))}
         </Select>
       </FormControl>
-      <DiseaseModal fetchList = {fetchList} />
+      <DiseaseModal fetchList={fetchList} />
     </Grid>
   );
 }

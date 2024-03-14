@@ -67,6 +67,13 @@ export default function BasicTable(props) {
       Medico_responsable: result.medico.nombreMedico,
     });
   }
+  function formatDate(fechaString) {
+    const fecha = new Date(fechaString);
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript empiezan en 0
+    const ano = fecha.getFullYear();
+    return `${dia}-${mes}-${ano}`;
+   }
   const toggleModal = (event) => {
     filterAndDispatch(event.currentTarget.id);
     setModal(!isModalOpen);
@@ -110,7 +117,7 @@ export default function BasicTable(props) {
               </TableCell>
               <TableCell>{row.persona.identificacion}</TableCell>
               <TableCell>{row.enfermedades.nombreEnfermedad}</TableCell>
-              <TableCell>{row.fechaVisita}</TableCell>
+              <TableCell>{formatDate(row.fechaVisita)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

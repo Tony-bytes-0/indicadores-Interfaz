@@ -2,6 +2,7 @@
 import { Box, Button, FormControl, Grid, TextField } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import Swal from 'sweetalert2';
 import axios from "axios";
 
 export default function DiseaseModal(props) {
@@ -19,14 +20,22 @@ export default function DiseaseModal(props) {
         nombreEnfermedad: nombreEnfermedad,
       })
       .then((response) => {
-        alert("la enfermedad introducida ha sido creada con exito");
-        console.log({ nombreEnfermedad: nombreEnfermedad });
+        toggleModal()
+        Swal.fire({
+          title: '¡Completado!',
+          text: 'La enfermedad introducida ha sido creada con exito',
+          icon: 'success',
+          confirmButtonText: 'Entendido'
+      });
         setNombreEnfermedad("");
-        setIsModalOpen(false);
         props.fetchList()
       })
       .catch((e) => {
-        alert("error desconocido");
+        Swal.fire({
+          title: 'Uy!, Ha ocurrido un error desconocido',
+          icon: 'error',
+          confirmButtonText: 'Oops'
+      });
       });
   };
 
@@ -34,10 +43,10 @@ export default function DiseaseModal(props) {
     <>
       <Button
         variant="contained"
-        className="bg-blue-500 items-center justify-center lowercase my-10"
+        className="bg-blue-500 items-center justify-center lowercase mx-2 p-4"
         onClick={toggleModal}
       >
-        agregar enfermedad
+        Agregar sintoma
       </Button>
       {isModalOpen ? (
         <></>
@@ -47,6 +56,7 @@ export default function DiseaseModal(props) {
             variant="contained"
             className="bg-red-500 top-0 right-0 absolute"
             onClick={toggleModal}
+            id="boton-modal-enfermedad"
           >
             X
           </Button>

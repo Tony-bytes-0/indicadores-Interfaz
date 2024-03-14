@@ -101,7 +101,7 @@ export default function Medic() {
 
           <Button
             variant="contained"
-            className="bg-blue-600 m-1 p-3"
+            className="bg-blue-600 m-1 p-4 lowercase"
             onClick={postMedic}
           >
             Añadir Medico

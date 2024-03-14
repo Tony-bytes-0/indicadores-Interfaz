@@ -7,15 +7,10 @@
 .centrate{text-align: center; justify-content: center; align-items: center; }
 .basicBorders{padding:10px;margin: 10px;}
 
-
-
 .rojo{
     color: red;
 }
 
-.sectionBorders{
-
-}
 .section{
     border-radius: 10px;
     border-style: outset;

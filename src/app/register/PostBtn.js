@@ -18,10 +18,10 @@ import { setFechaNacimiento } from "@/redux/register/userData/person/fechaNacimi
 import { setTelefono } from "@/redux/register/userData/person/telefono";
 import { setTelefonoEmergencia } from "@/redux/register/userData/person/telefonoEmergencia";
 import { setDireccion } from "@/redux/register/userData/person/direccion";
-
-//import { setDiastolic } from "@/redux/register/preMedicalRecord/diagnostico";
+import { clearUpdatePerson } from "@/redux/Register/userData/person/updatePerson";
 import { setIndications } from "@/redux/register/preMedicalRecord/indications";
 import store from "@/redux/store";
+import Swal from "sweetalert2";
 
 export default function PostBtn() {
   //const navigate = useNavigate()
@@ -64,43 +64,6 @@ export default function PostBtn() {
       },
     };
   }
-  function sendData(personaHistoriaDto) {//esto crea la historia medica
-    axios
-      .post("http://localhost:4000/visitas/personaHistoria", personaHistoriaDto)
-      .then(function () {
-        alert("registro exitoso");
-        //location.reload();
-      })
-      .catch((e) => {
-        console.log(e);
-        alert("ha ocurrido un error desconocido");
-      });
-    //}
-  }
-  function updateFunction(personaHistoriaDto) {
-    if (updatePerson.id != "") {
-      //caso si se trajo alguna persona existente
-      axios
-        .patch(
-          "http://localhost:4000/persona/" + updatePerson.id,
-          personaHistoriaDto.user
-        )
-        .then(() => {
-          console.log("actualizacion del id: ", updatePerson.id, " completa");
-          sendData(personaHistoriaDto);
-        })
-        .catch((e) => {
-          console.log(e, "error actualizando persona", personaHistoriaDto.user);
-        });
-    } else {
-      sendData(personaHistoriaDto);
-    }
-  }
-
-  const updateThenPost = () => {
-    updateFunction(dataObject());
-  };
-
   function normalize() {
     dispatch(setSize(""));
     dispatch(setTemp(""));
@@ -118,21 +81,75 @@ export default function PostBtn() {
     dispatch(setTelefonoEmergencia(""));
     dispatch(setDireccion(""));
     dispatch(setTipoSangre(""));
-    dispatch(setRecipe(""));
     dispatch(setIndications(""));
+    dispatch(clearUpdatePerson());
   }
+  function sendData(personaHistoriaDto) {
+    //esto crea la historia medica
+    axios
+      .post("http://localhost:4000/visitas/personaHistoria", personaHistoriaDto)
+      .then(function () {
+        Swal.fire({
+          title: "¡Completado!",
+          text: "Registro exitoso",
+          icon: "success",
+          confirmButtonText: "Entendido",
+        });
+        normalize();
+      })
+      .catch((e) => {
+        Swal.fire({
+          title: "Uy! ha ocurrido un error al registrar",
+          icon: "error",
+          confirmButtonText: "Oops",
+        });
+      });
+    //}
+  }
+  function updateFunction(personaHistoriaDto) {
+    if (updatePerson.id != "") {
+      //caso si se trajo alguna persona existente
+      axios
+        .patch(
+          "http://localhost:4000/persona/" + updatePerson.id,
+          personaHistoriaDto.user
+        )
+        .then(() => {
+          console.log("actualizacion del id: ", updatePerson.id, " completa");
+          sendData(personaHistoriaDto);
+        })
+        .catch((e) => {
+          console.log(e)
+          Swal.fire({
+            title: '¡Uy! ha ocurrido un error desconocido',
+            text: 'Verificar los datos de la persona y que esten llenos los campos asignados con asteriscos de color rojo',
+            icon: 'error',
+            confirmButtonText: 'Entendido'
+        });
+        });
+    } else {
+      sendData(personaHistoriaDto);
+    }
+  }
+
+  const updateThenPost = () => {
+    updateFunction(dataObject());
+  };
 
   return (
     <div className="text-center">
       <Button
         variant="contained"
-        className="bg-blue-600 "
+        className="bg-blue-600 lowercase p-5"
         style={style}
         onClick={updateThenPost}
       >
         {" "}
         Registar Historia Medica{" "}
       </Button>
+      <Button onClick={() => {
+        console.log(store.getState().enfermedades)
+      }} >ver enfermedade seleccionada</Button>
     </div>
   );
 }

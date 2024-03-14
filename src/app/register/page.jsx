@@ -7,6 +7,7 @@ import UserData from "./UserData"
 import MedicalRecord from "./MedicalRecord"
 import Medic from './Medic'
 import PostBtn from "./PostBtn"
+import SymptomList from "./sintomas/SymptomList"
 
 function Register (){
     const registerState = useSelector(state => state.registerController)
@@ -14,6 +15,7 @@ function Register (){
     return <div className="my-10">
     <UserData />{/* Ingresar los Datos del usuario*/}
     <MedicalRecord />
+    <SymptomList />
     <Medic /> 
     <PostBtn />
 </div>}

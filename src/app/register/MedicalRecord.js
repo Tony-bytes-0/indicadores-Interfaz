@@ -19,7 +19,7 @@ export default function MedicalRecord(){//Main
         
         <Separador label={'Datos de la Historia Medica'} />{/* SEPARADOR */}
         <PreMedicalRecord />
-        <DiseaseSelect />
+        {/* <DiseaseSelect /> */}
         <Obsevations />
 
     </Grid>

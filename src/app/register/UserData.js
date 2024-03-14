@@ -21,8 +21,7 @@ import axios from "axios"
 import { bloodList } from '@/app/register/validations'//objeto con personas estatico
 import { isDateNotInFuture } from '@/app/register/validations'
 import Separador from '@/components/Separador'
-// import UserType from './UserType'
-//Iconos
+
 const redAsteriskLocal = createTheme({
     components: {
       MuiFormLabel: {
@@ -34,7 +33,7 @@ const redAsteriskLocal = createTheme({
   })
 export default function UserData(props){//MAIN
     const dispatch = useDispatch() //DEV
-    const validateNumber="[0-9]";
+    const validateNumber=/^\d{1,9}$/;
     //Estado de variables de datos
     const nombre = useSelector(state => state.nombre); 
     const apellido = useSelector(state => state.apellido);  
@@ -62,7 +61,13 @@ export default function UserData(props){//MAIN
     const handleBloodType = (event) => { dispatch(setTipoSangre(event.target.value)) }//BLOODTYPE
     const handleDirection = (event) => { dispatch(setDireccion(event.target.value)) }//DIRECTION
     const handleSector = (event) => { dispatch(setSector(event.target.value)) }//SECTOR
-    const handleDni = (event) => { if(event.target.value.match(validateNumber) != event.target.value.length < 12) { dispatch(setIdentificacion(event.target.value)) } }//DNI
+    const handleDni = (event) => {
+        const inputValue = event.target.value;
+        // Permitir borrar el último dígito o una cadena vacía
+        if (inputValue === '' || inputValue.match(validateNumber)) {
+           dispatch(setIdentificacion(inputValue));
+        }
+       };
     const handleCellphone = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefono(event.target.value)) } }//CELLPHONE
     const handleEmergency = (event) => {  if(event.target.value.match(validateNumber) != null){ dispatch(setTelefonoEmergencia(event.target.value)) } }//EMERGENCY
 
@@ -168,10 +173,11 @@ export default function UserData(props){//MAIN
                 <Separador label = 'Datos Personales del Paciente' />
                 <Grid item xs={12} >
                     <ThemeProvider theme={redAsteriskLocal}>
-                        <TextField sx={sm} label={"Cedula "} type='number' variant="filled" value={identificacion} onChange = {handleDni} onBlur={() => { getPersonByDni() }} required/>
+                        <TextField sx={sm} label={"Cedula "} variant="filled" value={identificacion} onChange = {handleDni} onBlur={() => { getPersonByDni() }} required/>
+                    
+                    <TextField sx={sm} label="Nombre" variant="filled" onChange = {handleName} value = {nombre} required />
+                    <TextField sx={sm} label="Apellido" variant="filled" value = {apellido} onChange = {handleLastName} required />
                     </ThemeProvider>
-                    <TextField sx={sm} label="Nombre" variant="filled" onChange = {handleName} value = {nombre} />
-                    <TextField sx={sm} label="Apellido" variant="filled" value = {apellido} onChange = {handleLastName}  />
 
                     <FormControl sx = {sm} >
                         <InputLabel>Genero</InputLabel>
@@ -186,7 +192,10 @@ export default function UserData(props){//MAIN
                 <Grid item xs = {12}>
                     <TextField label="Telefono" sx={sm} variant="filled" type={'number'} value = {telefono}  onChange={handleCellphone}  />
                     <TextField label="Telefono de Emergencia" sx={sm} variant="filled" type={'number'} value = {telefonoEmergencia} onChange={handleEmergency} />
-                    <TextField label="Fecha de Nacimiento" type="date" sx={sm} value={fechaNacimiento} InputLabelProps={{shrink: true}} variant="filled" onChange={handleBirthdate} />
+                    <ThemeProvider theme={redAsteriskLocal}>
+
+                    <TextField label="Fecha de Nacimiento" type="date" sx={sm} value={fechaNacimiento} InputLabelProps={{shrink: true}} variant="filled" onChange={handleBirthdate} required />
+                    </ThemeProvider>
                     <FormControl sx = {sm}>
                         <InputLabel>Tipo de Sangre</InputLabel>
                         <Select label="Tipo de Sangre" variant="filled" id="BloodType" value={tipoSangre} onChange={handleBloodType} defaultValue = "">
