@@ -147,9 +147,6 @@ export default function PostBtn() {
         {" "}
         Registar Historia Medica{" "}
       </Button>
-      <Button onClick={() => {
-        console.log(store.getState().enfermedades)
-      }} >ver enfermedade seleccionada</Button>
     </div>
   );
 }

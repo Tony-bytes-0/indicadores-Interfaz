@@ -18,19 +18,36 @@ const redAsteriskLocal = createTheme({
 });
 
 export default function Medic() {
+  const validateNumber = /^\d{1,9}$/;
+  const alphabetic = /^[a-zA-Z]+$/
   const dispatch = useDispatch();
   const sacs = useSelector((state) => state.sacs);
   const nombreMedico = useSelector((state) => state.nombreMedico);
   const especialidad = useSelector((state) => state.especialidad);
 
-  const handleSacs = (event) => {
-    dispatch(setSacs(event.target.value));
+  const handleEspecialidad = (event) => {
+    if (
+      event.target.value.match(alphabetic) != null ||
+      event.target.value === ""
+    ) {
+      dispatch(setEspecialidad(event.target.value));
+    }
   };
   const handleNombreMedico = (event) => {
-    dispatch(setNombreMedico(event.target.value));
+    if (
+      event.target.value.match(alphabetic) != null ||
+      event.target.value === ""
+    ) {
+      dispatch(setNombreMedico(event.target.value));
+    }
   };
-  const handleEspecialidad = (event) => {
-    dispatch(setEspecialidad(event.target.value));
+  const handleSacs = (event) => {
+    if (
+      event.target.value.match(validateNumber) != null ||
+      event.target.value === ""
+    ) {
+      dispatch(setSacs(event.target.value));
+    }
   };
 
   const sm = { width: "25%", maxWidth: "25%", padding: "5px" };

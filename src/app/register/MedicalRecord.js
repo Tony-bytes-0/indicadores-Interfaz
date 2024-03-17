@@ -1,30 +1,21 @@
-//React
-import { useState } from "react"
-//Modules
 import Separador from "@/components/Separador";
 
 //MUI
-import { Grid } from "@mui/material"
+import { Grid } from "@mui/material";
 import Obsevations from "./Observations";
 import PreMedicalRecord from "./PreMedicalRecord";
-import DiseaseSelect from "./DiseaseSelect";
 
+export default function MedicalRecord() {
+  //Main
 
-
-export default function MedicalRecord(){//Main
-
- 
-    return<>
-    <Grid container className='fadeIn p-6'>
-        
-        <Separador label={'Datos de la Historia Medica'} />{/* SEPARADOR */}
+  return (
+    <>
+      <Grid container className="fadeIn p-6">
+        <Separador label={"Datos de la Historia Medica"} />
+        {/* SEPARADOR */}
         <PreMedicalRecord />
-        {/* <DiseaseSelect /> */}
         <Obsevations />
-
-    </Grid>
-
-
-
+      </Grid>
     </>
+  );
 }

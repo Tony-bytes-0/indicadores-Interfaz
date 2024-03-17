@@ -40,7 +40,7 @@ export default function Variacion(props) {
         color.push("#FF5656");
         icon.push("down");
       } else {
-        color.push("#FFC300");
+        color.push("#B8B8B8");
         icon.push("same");
       }
     }

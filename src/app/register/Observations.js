@@ -1,14 +1,19 @@
 import { Grid, TextareaAutosize, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setObservations } from "@/redux/register/preMedicalRecord/obsevations";
-import Separador from "@/components/Separador";
-import { Label } from "@mui/icons-material";
 
 export default function Obsevations() {
+  const alphanumeric = /^[a-zA-Z0-9]+$/
   const dispatch = useDispatch();
-  const x = useSelector((state) => state.obsevations);
+  const x = useSelector((state) => state.observaciones);
+
   const handleX = (event) => {
-    dispatch(setObservations(event.target.value));
+    if (
+      event.target.value.match(alphanumeric) != null ||
+      event.target.value === ""
+    ) {
+      dispatch(setObservations(event.target.value));
+    }
   };
 
   return (

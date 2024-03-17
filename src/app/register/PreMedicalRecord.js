@@ -7,6 +7,7 @@ import {
   InputLabel,
   createTheme,
   ThemeProvider,
+  Button,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { setMedicalRecordDate } from "@/redux/register/preMedicalRecord/MedicalRecordDate";
@@ -16,6 +17,11 @@ import { setWeight } from "@/redux/register/preMedicalRecord/weight";
 import { setTemp } from "@/redux/register/preMedicalRecord/temp";
 import { setDiastolic } from "@/redux/register/preMedicalRecord/diastolic";
 import { setSistolic } from "@/redux/register/preMedicalRecord/sistolic";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
+import { useState } from "react";
+import { isDateNotInFuture } from "./validations";
+import Swal from "sweetalert2";
 const sm = { width: "33%", maxWidth: "33%", padding: "10px" };
 const full = { width: "40%", padding: "7px" };
 
@@ -29,23 +35,25 @@ export default function PreMedicalRecord() {
       },
     },
   });
-  const validateNumber = "[0-9]";
+
   const dispatch = useDispatch();
+  const validateNumber = /^\d{1,9}$/;
+  const size = useSelector((state) => state.altura);
+  const weight = useSelector((state) => state.peso);
+  const temp = useSelector((state) => state.temperatura);
+  const sistolic = useSelector((state) => state.sistolica);
+  const diastolic = useSelector((state) => state.diastolica);
+  const [debug, setDebug] = useState(false)
 
-  const size = useSelector((state) => state.size);
-  const weight = useSelector((state) => state.weight);
-  const temp = useSelector((state) => state.temp);
-  const sistolic = useSelector((state) => state.sistolic);
-  const diastolic = useSelector((state) => state.diastolic);
-
+  const handleDebug = () => {setDebug(!debug)}
   const handleSize = (event) => {
-    if (
-      event.target.value.match(validateNumber) != null ||
-      event.target.value === ""
-    ) {
-      dispatch(setSize(event.target.value));
+    const inputValue = event.target.value;
+    // Permitir borrar el último dígito o una cadena vacía
+    if (inputValue === "" || inputValue.match(validateNumber)) {
+      dispatch(setSize(inputValue));
     }
   };
+
   const handleWeight = (event) => {
     if (
       event.target.value.match(validateNumber) != null ||
@@ -76,10 +84,27 @@ export default function PreMedicalRecord() {
     }
   };
 
-  const medicalRecordDate = useSelector((state) => state.medicalRecordDate);
+  const medicalRecordDate = useSelector((state) => state.fechaVisita);
+
+
   const handleMedicalRecordDate = (event) => {
-    const isValid = dispatch(setMedicalRecordDate(event.target.value));
-  };
+    if(debug){
+      dispatch(setMedicalRecordDate(event.target.value));
+    }else{
+      const isValid = isDateNotInFuture(event.target.value);
+      if (isValid) {
+        dispatch(setMedicalRecordDate(event.target.value));
+      } else {
+        Swal.fire({
+          title: "Oops",
+          text: "No se pueden seleccionar fechas en el futuro!",
+          icon: "error",
+          confirmButtonText: "Entendido",
+        });
+        dispatch(setMedicalRecordDate('2000-01-01'))
+      }
+    }
+  }
 
   return (
     <>
@@ -90,9 +115,8 @@ export default function PreMedicalRecord() {
             label="Altura (Centimetros)"
             onChange={handleSize}
             value={size}
-          >
-            Altura
-          </TextField>
+          />
+
           <TextField
             sx={sm}
             label="Peso (Kilogramos)"
@@ -150,6 +174,19 @@ export default function PreMedicalRecord() {
             required
           ></TextField>
         </FormControl>
+        
+        
+        {debug ? (
+        <Box className="flex">
+          <CheckIcon fontSize="large" sx={{color: '#00FF78'}} />
+          <Button onClick={handleDebug}>debug</Button>
+        </Box>
+      ) : (
+        <Box className="flex">
+          <ClearIcon fontSize="large" sx={{color: '#FF2E00'}}  />
+          <Button onClick={handleDebug}>debug</Button>
+        </Box>
+      )}
       </Grid>
     </>
   );

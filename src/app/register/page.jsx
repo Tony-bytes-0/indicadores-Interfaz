@@ -10,7 +10,6 @@ import PostBtn from "./PostBtn"
 import SymptomList from "./sintomas/SymptomList"
 
 function Register (){
-    const registerState = useSelector(state => state.registerController)
     
     return <div className="my-10">
     <UserData />{/* Ingresar los Datos del usuario*/}
@@ -21,8 +20,6 @@ function Register (){
 </div>}
 
 export default function Page() {
-    const registerState = useSelector(state => state.registerController)
-    
   return <Register />
 }
 

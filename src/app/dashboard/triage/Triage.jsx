@@ -54,7 +54,7 @@ function Triage(props) {
   }, []);
   
   return (
-    <Grid container className="">
+    <Grid container >
       <Typography textAlign={"center"} fontSize={30} className="mt-10 mx-10">
         {"Total de casos atendidos ordenados por triage en el ambulatorio urbano 1 Bernardino Martínez año " +
           props.year}
@@ -70,7 +70,7 @@ function Triage(props) {
         dotColor = {
           props.determinateDotColor({
             values: generoData.percentages,
-            range: {bien: 60, mal: 20}
+            range: {bien: 55, mal: 80}
           })
         }
       />
@@ -83,7 +83,7 @@ function Triage(props) {
         dotColor = {
           props.determinateDotColor({
             values: generoData.percentages,
-            range: {bien: 60, mal: 20}
+            range: {bien: 50, mal: 80}
           })
         }
       />

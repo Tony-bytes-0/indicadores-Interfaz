@@ -38,7 +38,7 @@ export default function Morbilidad(props) {
       <div className="w-full flex items-center justify-center">
         <DonutGraph data={graphData} xs={5} />
       </div>
-      <Grid item={12} className="flex my-10 mx-5">
+      <Grid item xs={12} className="flex my-10 mx-5">
         {graphData.labels.map((e, index) => (
           <InfoCard
             title={e}
