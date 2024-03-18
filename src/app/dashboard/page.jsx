@@ -12,7 +12,6 @@ export default function Page() {
     return array.map((number) => ((number / base) * 100).toFixed(2));
   }
   function determinateDotColor(valuesAndRanges) {
-    console.log("dentro de la funcion", valuesAndRanges);
     const colorList = { bien: "#63FF60", regular: "#FFC300", mal: "#FF5656" };
     const x = [];
     valuesAndRanges.values.map((e) => {
@@ -22,7 +21,6 @@ export default function Page() {
         x.push(colorList.mal);
       } else x.push(colorList.regular);
     });
-    console.log(x);
     return x;
   }
   return (

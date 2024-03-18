@@ -37,7 +37,10 @@ export default function PreMedicalRecord() {
   });
 
   const dispatch = useDispatch();
-  const validateNumber = /^\d{1,9}$/;
+  //const validateNumber = /^\d{1,9}$/;
+  const validateTemp = /^\d{1,2}$/;
+  const validateSize = /^\d{1,3}$/;
+
   const size = useSelector((state) => state.altura);
   const weight = useSelector((state) => state.peso);
   const temp = useSelector((state) => state.temperatura);
@@ -49,14 +52,14 @@ export default function PreMedicalRecord() {
   const handleSize = (event) => {
     const inputValue = event.target.value;
     // Permitir borrar el último dígito o una cadena vacía
-    if (inputValue === "" || inputValue.match(validateNumber)) {
+    if (inputValue === "" || inputValue.match(validateSize)) {
       dispatch(setSize(inputValue));
     }
   };
 
   const handleWeight = (event) => {
     if (
-      event.target.value.match(validateNumber) != null ||
+      event.target.value.match(validateSize) != null ||
       event.target.value === ""
     ) {
       dispatch(setWeight(event.target.value));
@@ -64,7 +67,7 @@ export default function PreMedicalRecord() {
   };
   const handleTemp = (event) => {
     if (
-      event.target.value.match(validateNumber) != null ||
+      event.target.value.match(validateTemp) != null ||
       event.target.value === ""
     ) {
       dispatch(setTemp(event.target.value));
@@ -72,14 +75,14 @@ export default function PreMedicalRecord() {
   };
   const handleSistolic = (event) => {
     if (
-      event.target.value.match(validateNumber) != null ||
+      event.target.value.match(validateTemp) != null ||
       event.target.value === ""
     ) {
       dispatch(setSistolic(event.target.value));
     }
   };
   const handleDiastolic = (event) => {
-    if (event.target.value.match(validateNumber) != null) {
+    if (event.target.value.match(validateTemp) != null) {
       dispatch(setDiastolic(event.target.value));
     }
   };

@@ -14,7 +14,6 @@ function Register (){
     return <div className="my-10">
     <UserData />{/* Ingresar los Datos del usuario*/}
     <MedicalRecord />
-    <SymptomList />
     <Medic /> 
     <PostBtn />
 </div>}

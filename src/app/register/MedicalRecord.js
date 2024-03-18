@@ -4,6 +4,7 @@ import Separador from "@/components/Separador";
 import { Grid } from "@mui/material";
 import Obsevations from "./Observations";
 import PreMedicalRecord from "./PreMedicalRecord";
+import SymptompList from "./sintomas/SymptomList";
 
 export default function MedicalRecord() {
   //Main
@@ -14,8 +15,12 @@ export default function MedicalRecord() {
         <Separador label={"Datos de la Historia Medica"} />
         {/* SEPARADOR */}
         <PreMedicalRecord />
-        <Obsevations />
+
       </Grid>
+    <SymptompList />
+    <Obsevations />
+
+
     </>
   );
 }

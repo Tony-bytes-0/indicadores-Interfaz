@@ -6,13 +6,11 @@ import {
   Select,
   MenuItem,
   FormControl,
-  Button,
   TextareaAutosize,
   ButtonGroup,
   Box,
   ThemeProvider,
   createTheme,
-  Typography,
 } from "@mui/material";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -52,6 +50,8 @@ export default function UserData(props) {
   //MAIN
   const dispatch = useDispatch(); //DEV
   const validateNumber = /^\d{1,9}$/;
+  const validatePhone = /^\d{1,11}$/;
+
   const alphabetic = /^[a-zA-Z]+$/;
   //Estado de variables de datos
   const nombre = useSelector((state) => state.nombre);
@@ -103,12 +103,14 @@ export default function UserData(props) {
     }
   };
   const handleCellphone = (event) => {
-    if (event.target.value.match(validateNumber) != null) {
+    const inputValue = event.target.value;
+    if ( inputValue === "" || inputValue.match(validatePhone) != null) {
       dispatch(setTelefono(event.target.value));
     }
   }; //CELLPHONE
   const handleEmergency = (event) => {
-    if (event.target.value.match(validateNumber) != null) {
+    const inputValue = event.target.value;
+    if (inputValue === "" || inputValue.match(validatePhone) != null) {
       dispatch(setTelefonoEmergencia(event.target.value));
     }
   }; //EMERGENCY
@@ -205,7 +207,6 @@ export default function UserData(props) {
             label="Telefono"
             sx={sm}
             variant="filled"
-            type={"number"}
             value={telefono}
             onChange={handleCellphone}
           />
@@ -213,7 +214,6 @@ export default function UserData(props) {
             label="Telefono de Emergencia"
             sx={sm}
             variant="filled"
-            type={"number"}
             value={telefonoEmergencia}
             onChange={handleEmergency}
           />
@@ -250,47 +250,6 @@ export default function UserData(props) {
 
         <Separador label="Localidad del Paciente" />
 
-        {/*                 <Grid item xs = {4}><Box sx={full}>
-                    <FormControl sx={full}> <InputLabel>Estado</InputLabel>
-                        <Select variant="filled" label="estado" value={estado} onChange={handleEstado} defaultValue = "">
-                            {estadosList.map((e) => <MenuItem value={e.nombre_estado} key={e.id +' Municipio'}>{e.nombre_estado}</MenuItem> )}
-                        </Select>
-                    </FormControl>  
-                </Box></Grid>
-
-                <Grid item xs = {4}><Box sx={full}>
-                    <FormControl sx={full}> <InputLabel>Municipio</InputLabel>
-                        <Select variant="filled" label="municipio" value={municipio} onChange={handleMunicipio} defaultValue = "">
-                            {avalibleMunicipios().map((e) => <MenuItem value={e.nombre_municipio} key={e.id +' Municipio'}>{e.nombre_municipio}</MenuItem> )}
-                        </Select>
-                    </FormControl>  
-                </Box></Grid>
-
-                <Grid item xs={4}><Box sx={full}>
-                    <FormControl sx={full}> <InputLabel>Parroquia</InputLabel>
-                        <Select variant="filled" label="parroquia" value={parroquia} onChange={handleParroquia} defaultValue = "">
-                            {avalibleParroquias().map((e) => <MenuItem value={e.nombre_parroquia} key={e.id + 'parroquia'}>{e.nombre_parroquia}</MenuItem> )}
-                        </Select>
-                    </FormControl>  
-                    
-                </Box></Grid>
-
-                <Grid item xs = {6}><Box sx={full}>
-                    <FormControl sx = {full} > <InputLabel>Comunidad</InputLabel>
-                        <Select variant="filled" id="BloodType" label="Genero" value={comunidad} onChange={handleComunidad} defaultValue = "">
-                            {avalibleComunidades().map((e) => <MenuItem value={e.nombre_comunidad} key={e.id+' comunidad'}>{e.nombre_comunidad}</MenuItem> )}
-                        </Select>
-                    </FormControl> 
-                </Box></Grid>
-
-                <Grid item xs = {6}><Box sx={full}>
-                    <FormControl sx={full}> <InputLabel>Sector</InputLabel>
-                        <Select variant="filled" label="Genero" 
-                        value={sector} onChange={handleSector} defaultValue = "">
-                            {avalibleSectores().map((e) => <MenuItem value={e.nombre_sector} key={e.id + ' sector'}>{e.nombre_sector}</MenuItem> )}
-                        </Select>
-                    </FormControl>  
-                </Box></Grid> */}
       </Grid>
 
       <Grid item xs={12} className="text-center">

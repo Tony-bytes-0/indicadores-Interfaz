@@ -8,6 +8,7 @@ import { setTopDiseases } from "@/redux/graph/topDiseases";
 import CountLine from "./CountLine";
 import IterateMonths from "./IterateMonths";
 import { setTotalCount } from "@/redux/graph/totalCount";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 export default function Variacion(props) {
   const dispatch = useDispatch();
@@ -47,11 +48,6 @@ export default function Variacion(props) {
     return { color, icon };
   }
   function fetchHistoryGraph() {
-    axios
-      .get("http://localhost:4000/visitas/ordenar")
-      .then(function (response) {
-        dispatch(setTopDiseases(response.data));
-      });
 
     axios
       .get("http://localhost:4000/visitas/allMonths")
@@ -63,6 +59,7 @@ export default function Variacion(props) {
           }
         }
         dispatch(setTotalCount(Object.values(x)));
+        console.log(response.data)
       });
   }
 
