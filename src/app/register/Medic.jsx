@@ -102,7 +102,7 @@ export default function Medic() {
           </ThemeProvider>
           <TextField
             sx={sm}
-            label="nombre medico"
+            label="Nombre"
             variant="filled"
             onChange={handleNombreMedico}
             value={nombreMedico}
@@ -110,7 +110,7 @@ export default function Medic() {
 
           <TextField
             sx={sm}
-            label="especialidad"
+            label="Especialidad"
             variant="filled"
             onChange={handleEspecialidad}
             value={especialidad}
