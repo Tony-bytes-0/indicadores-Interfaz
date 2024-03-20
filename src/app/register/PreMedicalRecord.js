@@ -46,9 +46,11 @@ export default function PreMedicalRecord() {
   const temp = useSelector((state) => state.temperatura);
   const sistolic = useSelector((state) => state.sistolica);
   const diastolic = useSelector((state) => state.diastolica);
-  const [debug, setDebug] = useState(false)
+  const [debug, setDebug] = useState(false);
 
-  const handleDebug = () => {setDebug(!debug)}
+  const handleDebug = () => {
+    setDebug(!debug);
+  };
   const handleSize = (event) => {
     const inputValue = event.target.value;
     // Permitir borrar el último dígito o una cadena vacía
@@ -75,25 +77,27 @@ export default function PreMedicalRecord() {
   };
   const handleSistolic = (event) => {
     if (
-      event.target.value.match(validateTemp) != null ||
+      event.target.value.match(validateSize) != null ||
       event.target.value === ""
     ) {
       dispatch(setSistolic(event.target.value));
     }
   };
   const handleDiastolic = (event) => {
-    if (event.target.value.match(validateTemp) != null) {
+    if (
+      event.target.value.match(validateSize) != null ||
+      event.target.value === ""
+    ) {
       dispatch(setDiastolic(event.target.value));
     }
   };
 
   const medicalRecordDate = useSelector((state) => state.fechaVisita);
 
-
   const handleMedicalRecordDate = (event) => {
-    if(debug){
+    if (debug) {
       dispatch(setMedicalRecordDate(event.target.value));
-    }else{
+    } else {
       const isValid = isDateNotInFuture(event.target.value);
       if (isValid) {
         dispatch(setMedicalRecordDate(event.target.value));
@@ -104,10 +108,10 @@ export default function PreMedicalRecord() {
           icon: "error",
           confirmButtonText: "Entendido",
         });
-        dispatch(setMedicalRecordDate('2000-01-01'))
+        dispatch(setMedicalRecordDate("2000-01-01"));
       }
     }
-  }
+  };
 
   return (
     <>
@@ -177,19 +181,18 @@ export default function PreMedicalRecord() {
             required
           ></TextField>
         </FormControl>
-        
-        
+
         {debug ? (
-        <Box className="flex">
-          <CheckIcon fontSize="large" sx={{color: '#00FF78'}} />
-          <Button onClick={handleDebug}>debug</Button>
-        </Box>
-      ) : (
-        <Box className="flex">
-          <ClearIcon fontSize="large" sx={{color: '#FF2E00'}}  />
-          <Button onClick={handleDebug}>debug</Button>
-        </Box>
-      )}
+          <Box className="flex">
+            <CheckIcon fontSize="large" sx={{ color: "#00FF78" }} />
+            <Button onClick={handleDebug}>debug</Button>
+          </Box>
+        ) : (
+          <Box className="flex">
+            <ClearIcon fontSize="large" sx={{ color: "#FF2E00" }} />
+            <Button onClick={handleDebug}>debug</Button>
+          </Box>
+        )}
       </Grid>
     </>
   );

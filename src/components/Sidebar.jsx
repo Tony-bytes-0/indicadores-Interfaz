@@ -15,12 +15,27 @@ import { Box } from "@mui/system";
 import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SearchIcon from "@mui/icons-material/Search";
+import AssessmentIcon from "@mui/icons-material/Assessment";
 import Link from "next/link";
 
 export default function SideBar() {
-  //MAIN
+  const itemStyleClases =
+    "text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap overflow-visible break-words flex-wrap break-all text-black";
+  const links = [
+    {
+      title: "Dashboard",
+      link: "/dashboard",
+      icon: <DashboardIcon />,
+    },
+    {
+      title: "Historia medica",
+      link: "/register",
+      icon: <CreateNewFolderIcon />,
+    },
+    { title: "Consultas", link: "/query", icon: <SearchIcon /> },
+    { title: "Generar reportes", link: "/reports", icon: <AssessmentIcon /> },
+  ];
 
-  //const basicStyles = {"padding":"15px","marginTop":"20px","display":"flex"}
   return (
     <Paper
       sx={{
@@ -28,7 +43,7 @@ export default function SideBar() {
         maxWidth: "100%",
         height: "10000px",
         position: "fixed",
-        left:"0%"
+        left: "0%",
       }}
       className="bg-slate-300"
     >
@@ -37,51 +52,16 @@ export default function SideBar() {
         <Box>
           <Button></Button>
         </Box>
-
-        <MenuItem className="p-3  m-2">
-          <ListItemIcon>
-            {" "}
-            <DashboardIcon />{" "}
-          </ListItemIcon>
-          {/* <Link href='/dashboard' > Dashboard </Link> */}
-          <ListItemButton>
-            <Link href="dashboard">
-              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap overflow-visible break-words flex-wrap break-all text-black">
-                Dashboard
-              </Typography>
-            </Link>
-          </ListItemButton>
-        </MenuItem>
-
-        <MenuItem className="p-3  m-2">
-          <ListItemIcon>
-            {" "}
-            <CreateNewFolderIcon />{" "}
-          </ListItemIcon>
-          {/* <Link href='/register'> <b>historia medica </b></Link> */}
-          <ListItemButton>
-            <Link href="/register">
-              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap overflow-visible break-words flex-wrap break-all text-black">
-                Historia Medica
-              </Typography>
-            </Link>
-          </ListItemButton>
-        </MenuItem>
-
-        <MenuItem className="p-3  m-2">
-          <ListItemIcon>
-            {" "}
-            <SearchIcon />{" "}
-          </ListItemIcon>
-          {/* <Link href='/register'> <b>historia medica </b></Link> */}
-          <ListItemButton>
-            <Link href="/query">
-              <Typography className="text-sm sm:text-xs md:text-lg lg:text-xl xl:text-2xl whitespace-pre-wrap overflow-visible break-words flex-wrap break-all text-black">
-                Consulta
-              </Typography>
-            </Link>
-          </ListItemButton>
-        </MenuItem>
+        {links.map((e) => (
+          <MenuItem key={e.title}>
+            <ListItemIcon>{e.icon}</ListItemIcon>
+            <ListItemButton>
+              <Link href={e.link}>
+                <Typography className={itemStyleClases}>{e.title}</Typography>
+              </Link>
+            </ListItemButton>
+          </MenuItem>
+        ))}
       </MenuList>
     </Paper>
   );
