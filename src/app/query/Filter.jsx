@@ -54,7 +54,7 @@ function Filter(props) {
         <Button // --------------------- Button
           variant="contained lowercase"
           color="success"
-          className="bg-blue-500 mx-5"
+          className="bg-blue-500 mx-5 text-white"
           onClick={resetLoadingAndFetch}
         >
           Mostrar  todos

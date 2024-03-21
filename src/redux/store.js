@@ -49,6 +49,7 @@ import topDiseases from './graph/topDiseases';
 import indicatorSelectedMonth from './graph/indicatiorSelectedMonth'
 import totalCount from './graph/totalCount'
 import updatePerson from './Register/userData/person/updatePerson'
+import localidad from './Register/userData/person/localidad'
 
 
 
@@ -61,7 +62,6 @@ export default configureStore({
         sacs:sacs, nombreMedico: nombreMedico, especialidad: especialidad, //medico
         //objeto para update
         updatePerson: updatePerson,
-
 
         //historia medica
         doctor: doctor, altura: altura, peso: peso, temperatura: temperatura,
@@ -77,7 +77,7 @@ export default configureStore({
         //indicators
         triageState: triageState, diagnosticoState: diagnosticoState, tensionState: tensionState, atencionEspecialState: atencionEspecialState,
         //new
-        topDiseases: topDiseases, indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount,
+        topDiseases: topDiseases, indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount, localidad: localidad
         
     
     }

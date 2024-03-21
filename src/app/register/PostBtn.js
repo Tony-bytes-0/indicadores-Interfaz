@@ -22,6 +22,8 @@ import { clearUpdatePerson } from "@/redux/Register/userData/person/updatePerson
 import { setIndications } from "@/redux/register/preMedicalRecord/indications";
 import store from "@/redux/store";
 import Swal from "sweetalert2";
+import { setLocalidad } from "@/redux/Register/userData/person/localidad";
+import { setEnfermedad } from "@/redux/register/preMedicalRecord/enfermedad";
 
 export default function PostBtn() {
   //const navigate = useNavigate()
@@ -42,9 +44,9 @@ export default function PostBtn() {
         tipoSangre: store.getState().tipoSangre,
         direccion: store.getState().direccion,
         alergias: "prueba",
+        localidad: store.getState().localidad.id
         //"sector": store.getState().sectorList.find(x => x.nombre_sector === store.getState().sector).id, //esto me trae el id del sector
       },
-
       historiaMedica: {
         altura: store.getState().altura,
         peso: store.getState().peso,
@@ -54,9 +56,7 @@ export default function PostBtn() {
         observaciones: store.getState().observaciones,
         fechaVisita: store.getState().fechaVisita,
       },
-
       enfermedades: store.getState().enfermedades,
-
       medic: {
         sacs: store.getState().sacs,
         nombreMedico: store.getState().nombreMedico,
@@ -83,6 +83,8 @@ export default function PostBtn() {
     dispatch(setTipoSangre(""));
     dispatch(setIndications(""));
     dispatch(clearUpdatePerson());
+    dispatch(setLocalidad(""));
+    dispatch(setEnfermedad(""));
   }
   function sendData(personaHistoriaDto) {
     //esto crea la historia medica
@@ -119,13 +121,13 @@ export default function PostBtn() {
           sendData(personaHistoriaDto);
         })
         .catch((e) => {
-          console.log(e)
+          console.log(e);
           Swal.fire({
-            title: '¡Uy! ha ocurrido un error desconocido',
-            text: 'Verificar los datos de la persona y que esten llenos los campos asignados con asteriscos de color rojo',
-            icon: 'error',
-            confirmButtonText: 'Entendido'
-        });
+            title: "¡Uy! ha ocurrido un error desconocido",
+            text: "Verificar los datos de la persona y que esten llenos los campos asignados con asteriscos de color rojo",
+            icon: "error",
+            confirmButtonText: "Entendido",
+          });
         });
     } else {
       sendData(personaHistoriaDto);

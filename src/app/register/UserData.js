@@ -87,6 +87,7 @@ export default function UserData(props) {
       dispatch(setFechaNacimiento(event.target.value));
     } else {
       alert("no se pueden seleccionar fechas en el futuro!");
+      dispatch(setFechaNacimiento('2000-01-01'));
     }
   }; //BIRTHDATE
   const handleBloodType = (event) => {
