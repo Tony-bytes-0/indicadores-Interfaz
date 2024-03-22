@@ -52,7 +52,7 @@ function SymptompList() {
         className="mx-5 w-3/6"
         options={list}
         isOptionEqualToValue={(option, value) => option.id != undefined}
-        getOptionLabel={(opcion) => opcion.nombreEnfermedad}
+        getOptionLabel={(opcion) => opcion ? opcion.nombreEnfermedad : ''}
         renderInput={(params) => (
           <TextField
             {...params}

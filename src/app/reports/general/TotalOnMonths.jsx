@@ -12,26 +12,33 @@ import {
 
 function TotalOnMonths(props) {
   return (
-    <Grid item xs= {5}>
+    <Grid item xs={12}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow className="border border-b-8">
-              <TableCell >Mes</TableCell>
-              <TableCell className="text-center" >Sintoma más común</TableCell>
-              <TableCell className="text-center">
-                Comunidad más afectada
+              <TableCell>
+                <b>Mes</b>
               </TableCell>
               <TableCell className="text-center">
-                Edades más afectadas
+                <b>Sintoma más común</b>
+              </TableCell>
+              <TableCell className="text-center">
+                <b>Comunidad más afectada</b>
+              </TableCell>
+              <TableCell className="text-center">
+                <b>Edades más afectadas</b>
               </TableCell>
 
-              <TableCell className="text-center">Total atendidos</TableCell>
+              <TableCell className="text-center">
+                <b>Total atendidos</b>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {props.colectionList.map((e, index) => (
-              <TableRow className={index % 2 == 0 ? "bg-slate-200" : ""}
+              <TableRow
+                className={index % 2 == 0 ? "bg-slate-200" : ""}
                 key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >

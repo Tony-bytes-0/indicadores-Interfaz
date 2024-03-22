@@ -18,11 +18,11 @@ import { setFechaNacimiento } from "@/redux/register/userData/person/fechaNacimi
 import { setTelefono } from "@/redux/register/userData/person/telefono";
 import { setTelefonoEmergencia } from "@/redux/register/userData/person/telefonoEmergencia";
 import { setDireccion } from "@/redux/register/userData/person/direccion";
-import { clearUpdatePerson } from "@/redux/Register/userData/person/updatePerson";
+import { clearUpdatePerson } from "@/redux/register/userData/person/updatePerson";
 import { setIndications } from "@/redux/register/preMedicalRecord/indications";
 import store from "@/redux/store";
 import Swal from "sweetalert2";
-import { setLocalidad } from "@/redux/Register/userData/person/localidad";
+import { setLocalidad } from "@/redux/register/userData/person/localidad";
 import { setEnfermedad } from "@/redux/register/preMedicalRecord/enfermedad";
 
 export default function PostBtn() {

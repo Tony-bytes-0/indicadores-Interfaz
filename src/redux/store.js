@@ -48,8 +48,8 @@ import tensionState from './indicators/tensionState'; import atencionEspecialSta
 import topDiseases from './graph/topDiseases';
 import indicatorSelectedMonth from './graph/indicatiorSelectedMonth'
 import totalCount from './graph/totalCount'
-import updatePerson from './Register/userData/person/updatePerson'
-import localidad from './Register/userData/person/localidad'
+import updatePerson from './register/userData/person/updatePerson'
+import localidad from './register/userData/person/localidad'
 
 
 

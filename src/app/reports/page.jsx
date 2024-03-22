@@ -1,9 +1,10 @@
 "use client";
 import { Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import TotalOnMonths from "./general/TotalOnMonths";
 import General from "./general/General";
+import TotalOnMonths from "./general/TotalOnMonths";
 import KeyValueTableRow from "./general/KeyValueTableRow";
+import TotalOnSites from "./general/TotalOnSites"
 import axios from "axios";
 import Head from "./Head";
 
@@ -26,6 +27,11 @@ function Page() {
       cantidad_visitas: 20,
     },
   ]);
+  const [sitesCount, setSitescount] = useState([
+    {
+      nombreLocalidad: 'titulo estatico', count: 1
+    }
+  ])
   const [report, setReport] = useState([
     {
       title: "Total atendidos del año en curso",
@@ -64,27 +70,6 @@ function Page() {
       age: "menores de edad",
       count: 28,
     },
-    {
-      month: "marzo",
-      symptom: "paludismo",
-      site: "Cantarrana",
-      age: "mayores de edad",
-      count: 98,
-    },
-    {
-      month: "abril",
-      symptom: "gripe",
-      site: "Cantarrana",
-      age: "menores de edad",
-      count: 50,
-    },
-    {
-      month: "mayo",
-      symptom: "tos seca",
-      site: "Cantarrana",
-      age: "tercera edad",
-      count: 50,
-    },
   ];
   useEffect(() => {
     axios.get("http://localhost:4000/visitas/ordenar").then((response) => {
@@ -93,8 +78,10 @@ function Page() {
     axios.get("http://localhost:4000/visitas/visitCount").then((response) => {
       setFirstVisit(response.data.filter((e) => e.cantidad_visitas == 1));
       setRegularVisit(response.data.filter((e) => e.cantidad_visitas > 1));
-      console.log("data fetch! ", response.data);
     });
+    axios.get("http://localhost:4000/persona/sitesCount").then((response) => {
+      setSitescount(response.data.slice(0, 10));
+    })
   }, []);
 
   return (
@@ -102,24 +89,19 @@ function Page() {
       <Head title={"Principales 10 causas por morbilidad"} />
       <General list={generalTotal} />
 
+      <Head title = {"Principales 10 localidades afectadas"} />
+      <TotalOnSites list = {sitesCount} />
+
       <Head title={"Cantidad de pacientes por frecuencia"} />
       <KeyValueTableRow
-        list={[
-          {
-            title: "Pacientes asistiendo por primera vez",
-            count: firstVisit.length,
-          },
-        ]}
+        title={"Pacientes asistiendo por primera vez"}
+        count={firstVisit.length}
       />
       <KeyValueTableRow
-        list={[
-          {
-            title: "Pacientes asistiendo de manera regular",
-            count: regularVisit.length,
-          },
-        ]}
+        title={"Pacientes asistiendo de manera regular"}
+        count={regularVisit.length}
       />
-      <Head title ={"Principales causas de morbilidad por mes"} />
+      <Head title={"Principales causas de morbilidad por mes"} />
       <TotalOnMonths colectionList={example} />
     </Grid>
   );

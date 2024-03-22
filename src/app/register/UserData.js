@@ -24,10 +24,11 @@ import { setFechaNacimiento } from "@/redux/register/userData/person/fechaNacimi
 import { setTelefono } from "@/redux/register/userData/person/telefono";
 import { setTelefonoEmergencia } from "@/redux/register/userData/person/telefonoEmergencia";
 import { setDireccion } from "@/redux/register/userData/person/direccion";
+import { setLocalidad } from "@/redux/register/userData/person/localidad";
 import {
   clearUpdatePerson,
   setUpdatePerson,
-} from "@/redux/Register/userData/person/updatePerson";
+} from "@/redux/register/userData/person/updatePerson";
 
 //Axios
 import axios from "axios";
@@ -87,7 +88,7 @@ export default function UserData(props) {
       dispatch(setFechaNacimiento(event.target.value));
     } else {
       alert("no se pueden seleccionar fechas en el futuro!");
-      dispatch(setFechaNacimiento('2000-01-01'));
+      dispatch(setFechaNacimiento("2000-01-01"));
     }
   }; //BIRTHDATE
   const handleBloodType = (event) => {
@@ -105,7 +106,7 @@ export default function UserData(props) {
   };
   const handleCellphone = (event) => {
     const inputValue = event.target.value;
-    if ( inputValue === "" || inputValue.match(validatePhone) != null) {
+    if (inputValue === "" || inputValue.match(validatePhone) != null) {
       dispatch(setTelefono(event.target.value));
     }
   }; //CELLPHONE
@@ -133,6 +134,7 @@ export default function UserData(props) {
     dispatch(setTipoSangre(x.tipoSangre));
     dispatch(setDireccion(x.direccion));
     dispatch(setUpdatePerson(x));
+    dispatch(setLocalidad(x.localidad));
   }
 
   function getPersonByDni() {
@@ -250,7 +252,6 @@ export default function UserData(props) {
         </Grid>
 
         <Separador label="Localidad del Paciente" />
-
       </Grid>
 
       <Grid item xs={12} className="text-center">
