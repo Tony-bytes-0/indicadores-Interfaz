@@ -18,12 +18,16 @@ function General(props) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell className="bg-slate-200">
-                <Typography variant="overline" fontSize={18}>
-                  {props.title}
+              <TableCell className="bg-slate-200" align="left">
+                <Typography fontSize={14} sx={{fontWeight: "bold"}} >
+                  Sintoma o pedecimiento
                 </Typography>
               </TableCell>
-              <TableCell className="bg-slate-200"></TableCell>
+              <TableCell className="bg-slate-200" align='center'>
+              <Typography fontSize={14} sx={{fontWeight: "bold"}} >
+          Cantidad de afectados
+                </Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
 
@@ -37,12 +41,13 @@ function General(props) {
                   component="th"
                   scope="row"
                   sx={{ fontWeight: "bold" }}
+                  align="left"
                 >
                   <Typography fontSize={18}>
                   {e.nombreEnfermedad}
                     </Typography>
                 </TableCell>
-                <TableCell>{e.count}</TableCell>
+                <TableCell align='center'>{e.count}</TableCell>
               </TableRow>
             ))}
           </TableBody>
