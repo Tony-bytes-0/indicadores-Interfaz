@@ -2,7 +2,7 @@
 //modulos
 import UserData from "./UserData";
 import MedicalRecord from "./MedicalRecord";
-import Medic from "./Medic";
+import Medic from "./medic/Medic";
 import PostBtn from "./PostBtn";
 import LocalidadList from "./localidad/LocalidadList";
 import { useEffect, useState } from "react";

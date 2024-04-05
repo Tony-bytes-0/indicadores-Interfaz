@@ -33,6 +33,13 @@ export default function PostBtn() {
 
   function dataObject() {
     return {
+      altura: store.getState().altura,
+      peso: store.getState().peso,
+      temperatura: store.getState().temperatura,
+      tensionSistolica: store.getState().sistolica,
+      tensionDiastolica: store.getState().diastolica,
+      observaciones: store.getState().observaciones,
+      fechaVisita: store.getState().fechaVisita,
       user: {
         identificacion: store.getState().identificacion,
         nombre: store.getState().nombre,
@@ -47,21 +54,8 @@ export default function PostBtn() {
         localidad: store.getState().localidad.id
         //"sector": store.getState().sectorList.find(x => x.nombre_sector === store.getState().sector).id, //esto me trae el id del sector
       },
-      historiaMedica: {
-        altura: store.getState().altura,
-        peso: store.getState().peso,
-        temperatura: store.getState().temperatura,
-        tensionSistolica: store.getState().sistolica,
-        tensionDiastolica: store.getState().diastolica,
-        observaciones: store.getState().observaciones,
-        fechaVisita: store.getState().fechaVisita,
-      },
       enfermedades: store.getState().enfermedades,
-      medic: {
-        sacs: store.getState().sacs,
-        nombreMedico: store.getState().nombreMedico,
-        especialidad: store.getState().especialidad,
-      },
+      medic: store.getState().medico
     };
   }
   function normalize() {
@@ -149,6 +143,7 @@ export default function PostBtn() {
         {" "}
         Registar Historia Medica{" "}
       </Button>
+      <Button onClick={() => {console.log(store.getState())}} > Ver state</Button>
     </div>
   );
 }

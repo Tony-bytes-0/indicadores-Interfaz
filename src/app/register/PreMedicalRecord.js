@@ -9,6 +9,8 @@ import {
   ThemeProvider,
   Button,
 } from "@mui/material";
+import Chip from "@mui/material/Chip";
+import InputAdornment from "@mui/material/InputAdornment";
 import { useSelector, useDispatch } from "react-redux";
 import { setMedicalRecordDate } from "@/redux/register/preMedicalRecord/MedicalRecordDate";
 //Reducers
@@ -22,8 +24,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useState } from "react";
 import { isDateNotInFuture } from "./validations";
 import Swal from "sweetalert2";
-const sm = { width: "33%", maxWidth: "33%", padding: "10px" };
-const full = { width: "40%", padding: "7px" };
+const sm = { padding: "10px" };
 
 export default function PreMedicalRecord() {
   const redAsteriskLocal = createTheme({
@@ -47,7 +48,6 @@ export default function PreMedicalRecord() {
   const sistolic = useSelector((state) => state.sistolica);
   const diastolic = useSelector((state) => state.diastolica);
   const [debug, setDebug] = useState(false);
-
   const handleDebug = () => {
     setDebug(!debug);
   };
@@ -112,60 +112,44 @@ export default function PreMedicalRecord() {
       }
     }
   };
-
+  const iterableFields = [
+    { label: "Altura (Centimetros)", onChange: handleSize, value: size },
+    { label: "Peso (Kilogramos)", onChange: handleWeight, value: weight },
+    {
+      label: "Temperatura (Grados Celcius)",
+      onChange: handleTemp,
+      value: temp,
+    },
+    { label: "Presion arterial" },
+    { label: "Sistolica", onChange: handleSistolic, value: sistolic },
+    { label: "Diastolica", onChange: handleDiastolic, value: diastolic },
+  ];
   return (
-    <>
-      <Grid item xs={9}>
-        <Box className="centrate" sx={{ marginTop: "10px" }}>
-          <TextField
-            sx={sm}
-            label="Altura (Centimetros)"
-            onChange={handleSize}
-            value={size}
-          />
-
-          <TextField
-            sx={sm}
-            label="Peso (Kilogramos)"
-            onChange={handleWeight}
-            value={weight}
-          >
-            Peso
-          </TextField>
-          <TextField
-            sx={sm}
-            label="Temperatura (Grados Celcius)"
-            onChange={handleTemp}
-            value={temp}
-          >
-            Temperatura
-          </TextField>
-        </Box>
-      </Grid>
-      <Grid item xs={3}>
-        <Box
-          sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
-          className="my-3"
+    <Grid container marginTop={3}>
+      {iterableFields.map((e) => (
+        <Grid
+          item
+          xs={e.label !== "Presion arterial" ? 2 : 1}
+          key={e.label}
+          justifyContent={"center"}
+          alignContent={"center"}
+          marginLeft={1}
         >
-          <TextField
-            sx={full}
-            label="Tension Sistolica"
-            value={sistolic}
-            onChange={handleSistolic}
-          >
-            Presion Arterial
-          </TextField>
-          <Typography sx={{ fontSize: "35px" }}> / </Typography>
-          <TextField
-            sx={full}
-            label="Tension diastolica"
-            value={diastolic}
-            onChange={handleDiastolic}
-          >
-            Presion Arterial
-          </TextField>
-        </Box>
-      </Grid>
+          {e.label !== "Presion arterial" ? (
+            <TextField
+              key={e.label}
+              label={e.label}
+              onChange={e.onChange}
+              value={e.value}
+            />
+          ) : (
+            <Box textAlign={"center"}>
+              <Typography variant="subtitle1">Presion</Typography>
+              <Typography variant="subtitle1">arterial</Typography>
+            </Box>
+          )}
+        </Grid>
+      ))}
       <Grid item xs={12}>
         <FormControl fullWidth sx={{ padding: "3%" }}>
           <ThemeProvider theme={redAsteriskLocal}>
@@ -194,6 +178,6 @@ export default function PreMedicalRecord() {
           </Box>
         )}
       </Grid>
-    </>
+    </Grid>
   );
 }

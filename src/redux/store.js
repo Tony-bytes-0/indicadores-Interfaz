@@ -18,14 +18,7 @@ import sacs from './register/userData/medico/sacs'
 import nombreMedico from './register/userData/medico/nombreMedico'
 import especialidad from './register/userData/medico/especialidad'
 
-//Direcciones
-import estadoList from './register/registerController/estadoList';
-import municipioList from './register/registerController/municipioList';
-import sectorList from './register/registerController/sectorList';
-import parroquiaList from './register/registerController/parroquiaList';
-
 //Historia medica
-import doctor from './register/preMedicalRecord/doctor';
 import altura from './register/preMedicalRecord/size';
 import temperatura from './register/preMedicalRecord/temp'
 import peso from './register/preMedicalRecord/weight'
@@ -34,22 +27,15 @@ import diastolica from './register/preMedicalRecord/diastolic'
 import observaciones from './register/preMedicalRecord/obsevations'
 import fechaVisita from './register/preMedicalRecord/MedicalRecordDate'
 import enfermedades from '@/redux/register/preMedicalRecord/enfermedad'
-import enfList from '@/redux/register/preMedicalRecord/enfList'
 
-import provisionalData from './provisionalData/provisionalData'
-import atencionEspecial from './provisionalData/atencionEspecial'
-import diagnostico from './provisionalData/diagnostico'
-import tension from './provisionalData/tension'
-//indicadores
-import lastMonth from './indicators/lastMonth';
-import triageState from './indicators/triageState'; import diagnosticoState from './indicators/diagnosticoState';
-import tensionState from './indicators/tensionState'; import atencionEspecialState from './indicators/atencionEspecialState';
 //new
-import topDiseases from './graph/topDiseases';
 import indicatorSelectedMonth from './graph/indicatiorSelectedMonth'
 import totalCount from './graph/totalCount'
 import updatePerson from './register/userData/person/updatePerson'
 import localidad from './register/userData/person/localidad'
+import satisfafccion from './register/preMedicalRecord/satisfaction'
+import nivelAcademico from './register/userData/medico/nivelAcademico'
+import medico from './register/userData/medico/medico'
 
 
 
@@ -59,25 +45,19 @@ export default configureStore({
         nombre: nombre, apellido:apellido, identificacion:identificacion, genero:genero,
         telefono: telefono, telefonoEmergencia: telefonoEmergencia, fechaNacimiento: fechaNacimiento,
         tipoSangre: tipoSangre, direccion: direccion, fechaVisita: fechaVisita,
-        sacs:sacs, nombreMedico: nombreMedico, especialidad: especialidad, //medico
-        //objeto para update
+        sacs:sacs, nombreMedico: nombreMedico, especialidad: especialidad, 
         updatePerson: updatePerson,
 
-        //historia medica
-        doctor: doctor, altura: altura, peso: peso, temperatura: temperatura,
+        altura: altura, peso: peso, temperatura: temperatura,
         sistolica: sistolica, diastolica: diastolica, observaciones,
-        enfermedades: enfermedades, enfList: enfList,
+        enfermedades: enfermedades, 
         
         activeGraphs: activeGraphs, 
-        provisionalData: provisionalData, atencionEspecial:atencionEspecial, diagnostico:diagnostico, tension:tension,
 
-        //static data
-        lastMonth: lastMonth, estadoList, municipioList, sectorList, parroquiaList,
-
-        //indicators
-        triageState: triageState, diagnosticoState: diagnosticoState, tensionState: tensionState, atencionEspecialState: atencionEspecialState,
         //new
-        topDiseases: topDiseases, indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount, localidad: localidad
+        indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount, localidad: localidad,
+        satisfafccion: satisfafccion, nivelAcademico: nivelAcademico,
+        medico: medico
         
     
     }
