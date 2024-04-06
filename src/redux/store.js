@@ -33,7 +33,7 @@ import indicatorSelectedMonth from './graph/indicatiorSelectedMonth'
 import totalCount from './graph/totalCount'
 import updatePerson from './register/userData/person/updatePerson'
 import localidad from './register/userData/person/localidad'
-import satisfafccion from './register/preMedicalRecord/satisfaction'
+import satisfaccion from './register/preMedicalRecord/satisfaccion'
 import nivelAcademico from './register/userData/medico/nivelAcademico'
 import medico from './register/userData/medico/medico'
 
@@ -56,7 +56,7 @@ export default configureStore({
 
         //new
         indicatorSelectedMonth: indicatorSelectedMonth, totalCount: totalCount, localidad: localidad,
-        satisfafccion: satisfafccion, nivelAcademico: nivelAcademico,
+        satisfaccion: satisfaccion, nivelAcademico: nivelAcademico,
         medico: medico
         
     

@@ -5,6 +5,7 @@ import MedicalRecord from "./MedicalRecord";
 import Medic from "./medic/Medic";
 import PostBtn from "./PostBtn";
 import LocalidadList from "./localidad/LocalidadList";
+import Satisfaction from "./Satisfaction"
 import { useEffect, useState } from "react";
 import axios from "axios";
 function RegisterMain() {
@@ -22,9 +23,9 @@ function RegisterMain() {
   return (
     <div className="my-10">
       <UserData />
-      {/* Ingresar los Datos del usuario*/}
       <LocalidadList list={list} fetchList={fetchList} />
       <MedicalRecord />
+      <Satisfaction />
       <Medic />
       <PostBtn />
     </div>

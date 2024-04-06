@@ -13,14 +13,10 @@ export default function MedicalRecord() {
     <>
       <Grid container className="fadeIn p-6">
         <Separador label={"Datos de la Historia Medica"} />
-        {/* SEPARADOR */}
         <PreMedicalRecord />
-
       </Grid>
-    <SymptompList />
-    <Obsevations />
-
-
+      <SymptompList />
+      <Obsevations />
     </>
   );
 }

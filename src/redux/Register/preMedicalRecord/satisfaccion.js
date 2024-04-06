@@ -2,17 +2,17 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = ''
 
-export const satisfaction = createSlice({
+export const satisfaccion = createSlice({
   name: 'satisfaction',
   initialState:initialState,
   reducers: {
     
-    setSatisfaction: (state, action) => {
+    setSatisfaccion: (state, action) => {
       return action.payload
     }
       
     }
 })
 
-export const { setsatisfaction } = satisfaction.actions
-export default satisfaction.reducer
+export const { setSatisfaccion } = satisfaccion.actions
+export default satisfaccion.reducer
