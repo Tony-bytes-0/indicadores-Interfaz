@@ -24,6 +24,7 @@ import store from "@/redux/store";
 import Swal from "sweetalert2";
 import { setLocalidad } from "@/redux/register/userData/person/localidad";
 import { setEnfermedad } from "@/redux/register/preMedicalRecord/enfermedad";
+import { setSatisfaccion } from "@/redux/register/preMedicalRecord/satisfaccion";
 
 export default function PostBtn() {
   //const navigate = useNavigate()
@@ -82,6 +83,7 @@ export default function PostBtn() {
     dispatch(clearUpdatePerson());
     dispatch(setLocalidad(""));
     dispatch(setEnfermedad(""));
+    dispatch(setSatisfaccion(""));
   }
   function sendData(personaHistoriaDto) {
     //esto crea la historia medica

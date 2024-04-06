@@ -30,6 +30,7 @@ const MedicSelector = () => {
           id="demo-simple-select"
           value={medico}
           label="Age"
+          variant="filled"
           onChange={handleChange}
           getOptionLabel = {(option) => option.name}
           defaultValue=""
