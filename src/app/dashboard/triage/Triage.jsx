@@ -57,7 +57,7 @@ function Triage(props) {
   return (
     <Grid container >
       <Typography textAlign={"center"} fontSize={30} className="mt-10 mx-10">
-        {"Total de casos atendidos ordenados por triage en el ambulatorio urbano 1 Bernardino Martínez año " +
+        {"Total de casos atendidos ordenados por triage en el ambulatorio urbano I 'Dr. Bernardino Martínez' año " +
           props.year}
       </Typography>
       <Separador />

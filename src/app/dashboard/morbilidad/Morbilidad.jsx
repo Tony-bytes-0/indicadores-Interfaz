@@ -32,8 +32,8 @@ export default function Morbilidad(props) {
   return (
     <Grid container className="my-10">
       <Typography textAlign={"center"} fontSize={30} className="mx-10">
-        Índice de enfermedades mas frecuentes en el ambulatorio urbano 1
-        Bernardino Martínez año {props.year}
+        Índice de enfermedades mas frecuentes en el ambulatorio
+        urbano I &quot;Dr. Bernardino Martínez&quot; año {props.year}
       </Typography>
       <Separador />
       <div className="w-full flex items-center justify-center">

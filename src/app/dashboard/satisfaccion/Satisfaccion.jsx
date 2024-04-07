@@ -73,9 +73,11 @@ function Satisfaccion(props) {
   }, []);
   return (
     <Grid container>
-      <Typography variant="body1" color="initial" fontSize={30}>
-        Índice de satisfacción del paciente en el ambulatorio año {props.year}
+      <Grid item xs ={12}>
+      <Typography variant="body1" color="initial" fontSize={30} textAlign={'center'}>
+        Índice de satisfacción del paciente en el ambulatorio urbano I &quot;Dr. Bernardino Martínez&quot; año {props.year}
       </Typography>
+      </Grid>
       <Separador />
       <DonutGraph
         data={constructData()}

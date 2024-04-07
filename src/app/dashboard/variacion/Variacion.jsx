@@ -70,7 +70,7 @@ export default function Variacion(props) {
     <Grid container className="my-10">
       <Grid item xs={12}>
         <Typography textAlign={"center"} fontSize={30}>
-          Índice de atención al ciudadano en el ambulatorio urbano 1 Bernardino Martínez año {props.year}
+          Índice de atención al ciudadano en el ambulatorio urbano I &quot;Dr. Bernardino Martínez&quot; año {props.year}
         </Typography>
       </Grid>
 
