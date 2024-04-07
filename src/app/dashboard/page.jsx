@@ -6,6 +6,7 @@ import Morbilidad from "./morbilidad/Morbilidad";
 import Triage from "./triage/Triage";
 import Panel from "./Panel";
 import Satisfaccion from "./satisfaccion/Satisfaccion"
+import Capacitacion from "./capacitacion/Capacitacion"
 
 export default function Page() {
   const [actualDate, setActualDate] = useState(new Date());
@@ -13,7 +14,7 @@ export default function Page() {
     variacion: false,
     triage: false,
     morbilidad: false,
-    satisfaccion: true,
+    satisfaccion: false,
     capacitacion: false,
   });
   const handlePanel = (actual) => {
@@ -31,6 +32,8 @@ export default function Page() {
       {panel.morbilidad ? <Morbilidad year={actualDate.getFullYear()} /> : <></>}
 
       {panel.satisfaccion ? <Satisfaccion year={actualDate.getFullYear()} /> : <></>}
+
+      {panel.capacitacion ? <Capacitacion year={actualDate.getFullYear()} /> : <></>}
     </Grid>
   );
 }
