@@ -3,6 +3,7 @@ import DonutAndCards from "./DonutAndCards";
 import { Grid, Typography } from "@mui/material";
 import Separador from "@/components/Separador";
 import axios from "axios";
+import {determinateDotColor, calculatePercentages} from "@/app/dashboard/common"
 
 function Triage(props) {
   const [generoData, setGeneroData] = useState({
@@ -30,7 +31,7 @@ function Triage(props) {
             labels: response.data.map((e) => e.genero),
             dataArray: response.data.map((e) => e.count),
           },
-          percentages: props.calculatePercentages(
+          percentages: calculatePercentages(
             response.data.map((e) => parseInt(e.count))
           ),
         });
@@ -43,7 +44,7 @@ function Triage(props) {
             labels: response.data.map((e) => e.age_group),
             dataArray: response.data.map((e) => e.count),
           },
-          percentages: props.calculatePercentages(
+          percentages: calculatePercentages(
             response.data.map((e) => parseInt(e.count))
           ),
         });
@@ -68,7 +69,7 @@ function Triage(props) {
         message={"Totales"}
         dot
         dotColor = {
-          props.determinateDotColor({
+          determinateDotColor({
             values: generoData.percentages,
             range: {bien: 55, mal: 80}
           })
@@ -81,7 +82,7 @@ function Triage(props) {
         message={"Totales"}
         dot
         dotColor = {
-          props.determinateDotColor({
+          determinateDotColor({
             values: generoData.percentages,
             range: {bien: 50, mal: 80}
           })

@@ -1,4 +1,5 @@
 import { Grid, Typography } from "@mui/material";
+import {calculatePercentages} from "@/app/dashboard/common"
 import React, { useEffect, useState } from "react";
 import DonutGraph from "@/app/dashboard/morbilidad/DonutGraph";
 import axios from "axios";
@@ -20,7 +21,7 @@ export default function Morbilidad(props) {
       });
       //console.log(calculatePercentages(response.data.map((e) => parseInt(e.count))))
       setPercentages(
-        props.calculatePercentages(response.data.map((e) => parseInt(e.count)))
+        calculatePercentages(response.data.map((e) => parseInt(e.count)))
       );
     });
   };

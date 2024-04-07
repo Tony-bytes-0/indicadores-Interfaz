@@ -4,12 +4,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Separador from "@/components/Separador";
-import { setTopDiseases } from "@/redux/graph/topDiseases";
 import CountLine from "./CountLine";
 import IterateMonths from "./IterateMonths";
 import { setTotalCount } from "@/redux/graph/totalCount";
-import { ConstructionOutlined } from "@mui/icons-material";
-
+import {monthLabels} from "@/app/dashboard/common"
 export default function Variacion(props) {
   const dispatch = useDispatch();
   const totalCount = useSelector((state) => state.totalCount);
@@ -67,20 +65,7 @@ export default function Variacion(props) {
     fetchHistoryGraph();
   }, []);
   //para el grafico
-  const monthLabels = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
+
   return (
     <Grid container className="my-10">
       <Grid item xs={12}>
