@@ -32,29 +32,6 @@ function Page() {
       nombreLocalidad: 'titulo estatico', count: 1
     }
   ])
-  const [report, setReport] = useState([
-    {
-      title: "Total atendidos del año en curso",
-      data: "29",
-    },
-    {
-      title: "Cantidad de pacientes asistiendo por primera vez",
-      data: "200",
-    },
-    {
-      title: "Pacientes con asistencias mas frecuentes",
-      data: "1283",
-    },
-    {
-      title: "Sintoma / Enfermedad mas reportada Nº1 ",
-      data: "666",
-    },
-    {
-      title: "",
-      data: "",
-    },
-  ]);
-
   const example = [
     {
       month: "enero",
@@ -101,8 +78,9 @@ function Page() {
         title={"Pacientes asistiendo de manera regular"}
         count={regularVisit.length}
       />
-      <Head title={"Principales causas de morbilidad por mes"} />
-      <TotalOnMonths colectionList={example} />
+{/*       <Head title={"Principales causas de morbilidad por mes"} />
+//necesito meter varios sql aqui, sintoma mas comun, comunidad mas afectada, edades mas afectadas, y un total al final
+      <TotalOnMonths colectionList={example} /> */}
     </Grid>
   );
 }

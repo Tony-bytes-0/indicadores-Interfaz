@@ -3,19 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { setObservations } from "@/redux/register/preMedicalRecord/obsevations";
 
 export default function Obsevations() {
-  const alphanumeric = /^[a-zA-Z0-9 ]+$/
+  //const alphanumeric = /^[a-zA-Z0-9 ]+$/
   
   const dispatch = useDispatch();
   const x = useSelector((state) => state.observaciones);
 
-  const handleX = (event) => {
+/*   const handleX = (event) => {
     if (
       event.target.value.match(alphanumeric) != null ||
       event.target.value === ""
     ) {
       dispatch(setObservations(event.target.value));
     }
-  };
+  }; */
+  const handleX = (event) => {
+    dispatch(setObservations(event.target.value));
+  }
 
   return (
     <>
