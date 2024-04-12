@@ -14,17 +14,23 @@ function GeneralAutofillList(props) {
   const [list, setList] = useState([]);
   const [ready, setReady] = useState(false);
   const [addField, setAdd] = useState(false);
-  
-  const fetchList = useCallback (() => {
+
+  const fetchList = useCallback(() => {
     axios.get("http://localhost:4000/" + props.route).then(function (response) {
       setList(response.data);
     });
   }, [props.route]);
-  const handleSelected = useCallback((event, newValue)=> {
-    console.log(newValue)
+  const handleSelected = useCallback((event, newValue) => {
+    console.log(newValue);
     props.handler(newValue);
-    setReady(true);
-  }, [])
+    if(newValue !== null){
+      setReady(true);
+    }
+    else{
+      setReady(false)
+    }
+   
+  }, []);
   const handleBlur = () => {
     if (selected === null) {
       setReady(false);
@@ -36,42 +42,52 @@ function GeneralAutofillList(props) {
 
   useEffect(() => {
     fetchList();
-  }, [fetchList ]);
+  }, [fetchList]);
 
-  const boxStyles = {marginTop: 1, display: 'flex'}
+  const boxStyles = { marginTop: 1, display: "flex" };
   return (
-    <Grid item xs={props.selectorGridXsSize} >
+    <Grid item xs={props.selectorGridXsSize}>
       <Box sx={boxStyles}>
-      {ready ? (
-        <Box className="flex" >
-          <CheckIcon fontSize="large" sx={{ color: "#00FF78" }} />
-        </Box>
-      ) : (
-        <Box className="flex">
-          <ClearIcon fontSize="large" sx={{ color: "#FF2E00" }} />
-        </Box>
-      )}
-      <Autocomplete
-      fullWidth
-        className="mx-5 w-full"
-        options={list}
-        isOptionEqualToValue={(option, value) => option.id === value.id}
-        getOptionLabel={(opcion) => (opcion ? opcion[props.listNameProperty] : "")}
-        renderInput={(params) => (
-          <TextField {...params} label={props.listLabel} variant="outlined" />
+        {ready ? (
+          <Box className="flex">
+            <CheckIcon fontSize="large" sx={{ color: "#00FF78" }} />
+          </Box>
+        ) : (
+          <Box className="flex">
+            <ClearIcon fontSize="large" sx={{ color: "#FF2E00" }} />
+          </Box>
         )}
-        onChange={handleSelected}
-        value={selected}
-        onBlur={handleBlur}
-      />
-      
-      {addField ? (
-        <Add fetchList={fetchList} handleAdd={handleAdd} addLabel={props.addLabel} route = {props.route} listNameProperty={props.listNameProperty} />
-      ) : (
-        <Button className="lowercase" onClick={handleAdd}>
-          {props.buttonAddText}
-        </Button>
-      )}
+        <Autocomplete
+          fullWidth
+          className="mx-5 w-full"
+          options={list}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
+          getOptionLabel={(opcion) =>
+            opcion ? opcion[props.listNameProperty] : ""
+          }
+          renderInput={(params) => (
+            <TextField {...params} label={props.listLabel} variant="outlined" />
+          )}
+          onChange={handleSelected}
+          value={selected}
+          onBlur={handleBlur}
+        />
+
+        {addField ? (
+          <Add
+            fetchList={fetchList}
+            handleAdd={handleAdd}
+            addLabel={props.addLabel}
+            route={props.route}
+            listNameProperty={props.listNameProperty}
+          />
+        ) : props.addField ? (
+          <Button className="lowercase" onClick={handleAdd}>
+            {props.buttonAddText}
+          </Button>
+        ) : (
+          <></>
+        )}
       </Box>
     </Grid>
   );

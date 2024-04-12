@@ -173,6 +173,7 @@ export default function AddMedic(props) {
         listNameProperty="nivelAcademico"
         buttonAddText={"+"}
         addLabel={"nueva mencion / grado academico"}
+        addField={true}
       />
       <Grid item xs={12}>
         <ButtonGroup variant="contained" aria-label="Basic button group">
