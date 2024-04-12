@@ -7,7 +7,6 @@ function Genero(props) {
       <InputLabel>Genero</InputLabel>
         <Select
           label="Género"
-          select
           value={props.value}
           onChange={props.handler}
           fullWidth

@@ -1,68 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Grid,
-  Typography,
-  Button,
-  Select,
-  MenuItem,
-  Divider,
-  Box,
-} from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import GeneralAutofillList from "@/components/generalAutofillList/GeneralAutoFillList";
 import Genero from "@/app/reports/filter/Genero";
 import DateRange from "@/app/reports/filter/DateRange";
 import Head from "@/components/Head";
-import Table from "@/app/reports/table/Table";
-import axios from "axios";
-function Filter() {
-  const url = "http://localhost:4000/visitas/reports";
-  const [enfermedad, setEnfermedad] = useState("");
-  const [localidad, setLocalidad] = useState("");
-  const [fechaInicio, setInicio] = useState("");
-  const [fechaFin, setFinal] = useState("");
-  const [genero, setGenero] = useState("Ambos");
-  const [edadMin, setMin] = useState("");
-  const [edadMax, setMax] = useState("");
-  const [tableData, setTableData] = useState([]);
-
-  const handleEnfermedad = (event) => {
-    setEnfermedad(event);
-  };
-  const handleLocalidad = (event) => {
-    setLocalidad(event);
-  };
-  const handleGenero = (event) => {
-    setGenero(event.target.value);
-  };
-  const handleFechaInicio = (event) => {
-    setInicio(event.target.value);
-  };
-  const handleFechaFinal = (event) => {
-    setFinal(event.target.value);
-  };
-  const handleEdadMin = (event) => {
-    setMin(event.target.value);
-  };
-  const handleEdadMax = (event) => {
-    setMax(event.target.value);
-  };
-  const params = {
-    localidad: localidad !== null ? localidad.id : "",
-    enfermedad: enfermedad !== null ? enfermedad.id : "",
-    fechaInicio: fechaInicio,
-    fechaFin: fechaFin,
-    edadMin: edadMin,
-    edadMax: edadMax,
-    genero: genero !== "Ambos" ? genero : "",
-  };
-
-  const fetchReport = () => {
-    axios.get(url, { params }).then((response) => {
-      console.log(response.data);
-      setTableData(response.data);
-    });
-  };
+function Filter(props) {
   return (
     <Grid container>
       <Head title={"Generar reporte"} />
@@ -75,9 +18,9 @@ function Filter() {
       <Grid item xs={6}>
         <GeneralAutofillList
           selectorGridXsSize={12}
-          variable={enfermedad}
+          variable={props.enfermedad}
           route={"enfermedades"}
-          handler={handleEnfermedad}
+          handler={props.handleEnfermedad}
           listLabel={"Enfermedad"}
           listNameProperty="nombreEnfermedad"
           addField={false}
@@ -86,9 +29,9 @@ function Filter() {
       <Grid item xs={6}>
         <GeneralAutofillList
           selectorGridXsSize={12}
-          variable={localidad}
+          variable={props.localidad}
           route={"localidad"}
-          handler={handleLocalidad}
+          handler={props.handleLocalidad}
           listLabel={"Localidad"}
           listNameProperty="nombreLocalidad"
           addField={false}
@@ -96,41 +39,51 @@ function Filter() {
       </Grid>
       <Grid item xs={12} marginTop={5} />{" "}
       {/* esto es para hacer un salto de linea en el grid */}
-      <Typography
-        component={Box}
-        marginTop={2}
-        marginRight={3}
-        justifyContent={"center"}
-      >
-        <b>Mostrar atendidos: </b>
-      </Typography>
+      <Grid item xs={2}>
+        <Typography
+          component={Box}
+          marginTop={2}
+          justifyContent={"left"}
+          textAlign={"left"}
+        >
+          <b>Mostrar atendidos: </b>
+        </Typography>
+      </Grid>
       <DateRange
-        value={fechaInicio}
-        handler={handleFechaInicio}
+        value={props.fechaInicio}
+        handler={props.handleFechaInicio}
         label={"Desde"}
-        xs={2}
+        xs={5}
       />
       <DateRange
-        value={fechaFin}
-        handler={handleFechaFinal}
+        value={props.fechaFin}
+        handler={props.handleFechaFinal}
         label={"Hasta"}
-        xs={2}
+        xs={5}
       />
-      <Typography
-        component={Box}
-        marginTop={2}
-        marginRight={2}
-        marginLeft={2}
-        justifyContent={"center"}
-      >
-        <b>Segun su fecha de nacimiento: </b>
-      </Typography>
-      <DateRange value={edadMin} handler={handleEdadMin} label={"Desde"} xs={2} />
+      <Grid item xs={12} marginTop={5} />{" "}
+      {/* esto es para hacer un salto de linea en el grid */}
+      <Grid item xs={2}>
+        <Typography
+          component={Box}
+          marginTop={2}
+          justifyContent={"left"}
+          textAlign={"left"}
+        >
+          <b>Segun su fecha de nacimiento: </b>
+        </Typography>
+      </Grid>
       <DateRange
-        value={edadMax}
-        handler={handleEdadMax}
+        value={props.edadMin}
+        handler={props.handleEdadMin}
+        label={"Desde"}
+        xs={5}
+      />
+      <DateRange
+        value={props.edadMax}
+        handler={props.handleEdadMax}
         label={"Hasta"}
-        xs={2}
+        xs={5}
       />
       <Grid item xs={12} marginTop={5} />{" "}
       {/* esto es para hacer un salto de linea en el grid */}
@@ -142,9 +95,7 @@ function Filter() {
       >
         <b>Mostrar segun su genero: </b>
       </Typography>
-      <Genero value={genero} handler={handleGenero} />
-        <Button onClick={fetchReport} variant="contained" padding={ 2 } marginLeft={5} className="bg-blue-500" > Generar reporte </Button>
-      <Table data={tableData} />
+      <Genero value={props.genero} handler={props.handleGenero} />
     </Grid>
   );
 }

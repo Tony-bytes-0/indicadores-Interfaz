@@ -1,12 +1,11 @@
 "use client"
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
-import Filter from "./filter/Filter"
+import Reports from "./Reports"
 
 function page() {
-  return <Grid container marginTop={5} paddingRight={7}>
-    <Filter />
-  </Grid>;
+  return (
+    <Reports />
+  )
 }
 
 export default page;

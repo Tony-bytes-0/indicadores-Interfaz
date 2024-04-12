@@ -42,7 +42,7 @@ function GeneralAutofillList(props) {
 
   useEffect(() => {
     fetchList();
-  }, [fetchList]);
+  }, [fetchList, props.value]);
 
   const boxStyles = { marginTop: 1, display: "flex" };
   return (

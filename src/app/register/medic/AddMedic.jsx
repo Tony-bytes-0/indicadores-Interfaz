@@ -17,6 +17,7 @@ import {
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const redAsteriskLocal = createTheme({
   components: {
@@ -106,11 +107,22 @@ export default function AddMedic(props) {
       .then((response) => {
         const msj = `${nombreMedico} hasido registrado con exito, con el codigo SACS: ${sacs}`;
         alert(msj);
+        Swal.fire({
+          title: "¡Completado!",
+          text: "Medico introducido introducido con exito",
+          icon: "success",
+          confirmButtonText: "Entendido",
+        });
         props.handleSelect();
         normalizeFields();
       })
       .catch((e) => {
-        alert(e);
+        Swal.fire({
+          title: "Uy!, Ha ocurrido un error desconocido",
+          text: e,
+          icon: "error",
+          confirmButtonText: "Oops",
+        });
       });
   };
   const comunStyles = { marginLeft: 0.2, padding: 1 };
@@ -123,16 +135,6 @@ export default function AddMedic(props) {
     },
   ];
   return (
-    /*     
-      
-      <Grid item xs={10}>
-        <MedicSelector />
-      </Grid>
-      <Grid item xs={2}>
-        <Button variant="contained" className="bg-blue-600 m-1 p-4 lowercase">
-          añadir medico
-        </Button>
-      </Grid> */
     <Grid container className="p-6">
       <Separador label={"Datos del Medico"} />
       <Grid item xs={2}>
