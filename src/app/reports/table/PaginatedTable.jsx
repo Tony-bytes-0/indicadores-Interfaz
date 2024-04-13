@@ -26,25 +26,28 @@ const PaginatedTable = (props) => {
       <Table>
         <TableHead>
           <TableRow style={{ borderBottom: '4px solid #000' }}>
-            <TableCell><b>Nombre</b></TableCell>
-            <TableCell><b>Identificación</b></TableCell>
-            <TableCell><b>Género</b></TableCell>
-            <TableCell><b>Edad</b></TableCell>
-            <TableCell><b>Numeros de telefono</b></TableCell>
+            <TableCell align="center"><b>Nombre</b></TableCell>
+            <TableCell align="center"><b>Identificación</b></TableCell>
+            <TableCell align="center"><b>Género</b></TableCell>
+            <TableCell align="center"><b>Edad</b></TableCell>
+            <TableCell align="center"><b>Numeros de telefono</b></TableCell>
+            <TableCell align="center"><b>Nº de visitas</b></TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
           {tableData.map((row) => (
             <TableRow key={row.persona_id}>
-              <TableCell>
+              <TableCell align="center">
                 {row.persona_nombre} {row.persona_apellido}
               </TableCell>
-              <TableCell>{row.persona_identificacion}</TableCell>
-              <TableCell>{row.persona_genero}</TableCell>
-              <TableCell>{calculateAge(row.persona_fechaNacimiento)}</TableCell>
-              <TableCell>
+              <TableCell align="center">{row.persona_identificacion}</TableCell>
+              <TableCell align="center">{row.persona_genero}</TableCell>
+              <TableCell align="center">{calculateAge(row.persona_fechaNacimiento)}</TableCell>
+              <TableCell align="center">
                 {row.persona_telefono} / {row.persona_telefonoEmergencia}
               </TableCell>
+              <TableCell align="center">{row.visitas_count}</TableCell>
             </TableRow>
           ))}
         </TableBody>

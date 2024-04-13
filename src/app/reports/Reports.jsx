@@ -112,7 +112,7 @@ function Reports() {
         fetchReport={fetchReport}
         normalize={normalize}
       />
-      <Grid id="pdf" item xs={12} fullWidth >
+      <Grid id="pdf" item xs={12} >
         {show ? <Membrete />: <></>}
         <PaginatedTable data={tableData} handler={handleTableData} />
       </Grid>
