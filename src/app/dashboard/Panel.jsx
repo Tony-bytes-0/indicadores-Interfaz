@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 
 function Panel(props) {

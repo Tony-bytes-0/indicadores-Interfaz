@@ -130,7 +130,7 @@ export default function BasicTable(props) {
               <TableCell id="nombre">
                 {row.persona_nombre + " " + row.persona_apellido}{" "}
               </TableCell>
-              <TableCell>{row.enfermedad_nombreEnfermedad}</TableCell>
+              <TableCell>{row.enfermedades_nombreEnfermedad}</TableCell>
               <TableCell align="left">{row.peso}</TableCell>
               <TableCell align="left">{row.altura}</TableCell>
               <TableCell align="left">{row.temperatura}</TableCell>
