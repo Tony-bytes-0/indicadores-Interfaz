@@ -32,7 +32,7 @@ export default function Variacion(props) {
     const color = [];
     const icon = [];
     for (let i = 0; i < 12; i++) {
-      if (months[i] > 20) {
+      if (months[i] > 10) {
         color.push("#63FF60");
         icon.push("up");
       } else if (months[i] <= -10 ) {
