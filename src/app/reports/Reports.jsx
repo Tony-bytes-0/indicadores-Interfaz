@@ -6,7 +6,7 @@ import PaginatedTable from "./table/PaginatedTable";
 import ButtonActions from "./filter/ButtonActions";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Membrete from "@/app/reports/membrete/Membrete"
+import Membrete from "@/components/membrete/Membrete";
 
 function Reports() {
   const url = "http://localhost:4000/visitas/reports";
@@ -106,14 +106,13 @@ function Reports() {
         edadMax={edadMax}
         tableData={tableData}
       />
-
       <ButtonActions
         tableData={tableData}
         fetchReport={fetchReport}
         normalize={normalize}
       />
       <Grid id="pdf" item xs={12} >
-        {show ? <Membrete />: <></>}
+        {show ? <Membrete label={'Reporte general de pacientes'} />: <></>}
         <PaginatedTable data={tableData} handler={handleTableData} />
       </Grid>
     </Grid>

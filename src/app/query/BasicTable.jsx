@@ -12,7 +12,7 @@ import {
 import React, { useState, lazy, Suspense } from "react";
 
 export default function BasicTable(props) {
-  const [isModalOpen, setModal] = useState(false);
+/*   const [isModalOpen, setModal] = useState(false);
   const [personalData, setPersonalData] = useState({
     Nombre: "",
     Identificación: "",
@@ -66,12 +66,14 @@ export default function BasicTable(props) {
       Fecha_de_visita: result.fechaVisita,
       Medico_responsable: result.medico.nombreMedico,
     });
-  }
+  } */
   function formatDate(fechaString) {
+    console.log('before: ', fechaString)
     const fecha = new Date(fechaString);
-    const dia = fecha.getDate().toString().padStart(2, '0');
-    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript empiezan en 0
+    const dia = fecha.getDate().toString()
+    const mes = fecha.getMonth()  // Los meses en JavaScript empiezan en 0
     const ano = fecha.getFullYear();
+    console.log(`${dia}-${mes}-${ano}`)
     return `${dia}-${mes}-${ano}`;
    }
   const toggleModal = (event) => {
@@ -90,38 +92,58 @@ export default function BasicTable(props) {
         <TableHead>
           <TableRow>
             {/* aqui defino la cantidad de filas! */}
-            <TableCell>
+            <TableCell align="left">
               <b>Nombre </b>
             </TableCell>
-            <TableCell>
-              <b>Cedula</b>
+
+            <TableCell align="left">
+              <b>Síntoma principal</b>
             </TableCell>
-            <TableCell>
-              <b>Síntomas</b>
+            <TableCell align="left">
+              <b>Peso</b>
             </TableCell>
-            <TableCell>
-              <b>Fecha de consulta</b>
+            <TableCell align="left">
+              <b>Altura</b>
+            </TableCell>
+            <TableCell align="left">
+              <b>Temperatura</b>
+            </TableCell>
+            <TableCell align="left">
+              <b>Presión arterial</b>
+            </TableCell>
+            <TableCell align="left">
+              <b>Satisfacción del paciente con la atención</b>
+            </TableCell>
+            <TableCell align="left">
+              <b>Médico responsable por la consulta</b>
+            </TableCell>
+            <TableCell align="left">
+              <b>Fecha de visita</b>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.userList.map((row) => (
+          {props.userList.map((row, index) => (
             <TableRow
-              id={row.id}
-              key={row.id}
+              key={row.index}
               className="hover:shadow-lg hover:bg-slate-200 "
-              onClick={toggleModal}
             >
               <TableCell id="nombre">
-                {row.persona.nombre + " " + row.persona.apellido}{" "}
+                {row.persona_nombre + " " + row.persona_apellido}{" "}
               </TableCell>
-              <TableCell>{row.persona.identificacion}</TableCell>
-              <TableCell>{row.enfermedades.nombreEnfermedad}</TableCell>
-              <TableCell>{formatDate(row.fechaVisita)}</TableCell>
+              <TableCell>{row.enfermedad_nombreEnfermedad}</TableCell>
+              <TableCell align="left">{row.peso}</TableCell>
+              <TableCell align="left">{row.altura}</TableCell>
+              <TableCell align="left">{row.temperatura}</TableCell>
+              <TableCell align="left">{row.visitas_tensionSistolica} / {row.visitas_tensionDiastolica}</TableCell>
+              <TableCell align="left">{row.visitas_satisfaccionPaciente}</TableCell>
+              <TableCell align="left">{row.medico_nombreMedico} código: {row.medico_sacs}</TableCell>
+              <TableCell align="left">{formatDate(row.fechavisita)}</TableCell>
+              {/* <TableCell>{formatDate(row.fechaVisita)}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
-        {isModalOpen ? (
+{/*         {isModalOpen ? (
           <Box className="bg-slate-200 fixed inset-0 flex items-center justify-center z-50 rounded p-5 m-20 overflow-auto">
             <Button
               variant="contained"
@@ -145,7 +167,7 @@ export default function BasicTable(props) {
           </Box>
         ) : (
           <></>
-        )}
+        )} */}
       </Table>
     </TableContainer>
   );

@@ -6,7 +6,7 @@ import venezuelaDeTodos from "public/staticAssets/VenezuelaDeTodos.png";
 import Image from "next/image";
 import Separador from "@/components/Separador";
 
-function Membrete() {
+function Membrete(props) {
   const images = [
     {
       src: logo,
@@ -78,7 +78,7 @@ function Membrete() {
           marginTop={5}
           marginBottom={5}
         >
-          Reporte general de pacientes
+          {props.label}
         </Typography>
         <Separador />
       </Grid>

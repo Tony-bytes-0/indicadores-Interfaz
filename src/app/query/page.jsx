@@ -4,43 +4,48 @@ import React, { useEffect, useState } from "react";
 import BasicTable from "./BasicTable";
 import Filter from "./Filter";
 import axios from "axios";
+import Membrete from "@/components/membrete/Membrete";
 
 export default function Page() {
-  const [loading, setLoading] = useState(true);
   const [userList, setUserList] = useState([]);
   const [filter, setFilter] = useState("");
-  const setFilterAsFunction = (newState) => {
-    //to the Filter component, para actualizar desde el hijo
-    setFilter(newState);
-    setUserList(
-      userList.filter(
-        (entry) => entry.persona.identificacion === newState.param
-      )
-    );
+  const [show, setShow] = useState(false);
+  const handleFilter = (event) => {
+    setFilter(event.target.value);
   };
-  const fetchUserList = () => {
-    console.log('fetch!', loading)
-    if (loading) {
-      axios.get("http://localhost:4000/visitas").then((response) => {
+  const fetchData = () => {
+    axios
+      .get("http://localhost:4000/visitas/personalReport", { params })
+      .then((response) => {
+        console.log(response.data);
         setUserList(response.data);
-        setLoading(false);
+        setShow(true);
       });
-    }
   };
-  const handleLoading = () => {
-    setLoading(true)
-  }
-  useEffect(() => {
-    fetchUserList();
-  });
+  const reset = () => {
+    setUserList([]);
+    setShow(false);
+  };
+  const params = {
+    identificacion: filter,
+  };
+
   return (
     <Grid container>
-      <Filter setFilter={setFilterAsFunction} fetchUserList={fetchUserList} handleLoading= {handleLoading} />
-      {loading ? (
-        <CircularProgress className="h-screen top-2/4 left-2/4 fixed" />
-      ) : (
+      <Filter
+        filter={filter}
+        handleFilter={handleFilter}
+        fetchData={fetchData}
+        show={show}
+        reset={reset}
+      />
+      <Grid id={"pdf"}>
+        {show ? <Membrete label={`Historia medica del paciente`} /> : <></>}
         <BasicTable userList={userList} />
-      )}
+      </Grid>
     </Grid>
   );
+}
+{
+  /* <CircularProgress className="h-screen top-2/4 left-2/4 fixed" /> */
 }
