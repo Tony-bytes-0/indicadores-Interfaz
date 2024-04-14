@@ -67,7 +67,7 @@ function Triage(props) {
         graphData={generoData.graphData}
         percentages={generoData.percentages}
         message={"Totales"}
-        dot
+        //dot
         dotColor = {
           determinateDotColor({
             values: generoData.percentages,
@@ -80,7 +80,7 @@ function Triage(props) {
         graphData={edadesData.graphData}
         percentages={edadesData.percentages}
         message={"Totales"}
-        dot
+        //dot
         dotColor = {
           determinateDotColor({
             values: generoData.percentages,

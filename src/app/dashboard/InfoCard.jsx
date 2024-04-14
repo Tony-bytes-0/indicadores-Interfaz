@@ -16,12 +16,12 @@ export default function InfoCard(props) {
           <Typography variant="h6" component="div" className="left">
             {props.message}<br/>
             {props.message2}{props.message2 ? <br/> : <></>}
-            {props.number}
+            <b>{props.number}</b> = {props.percentage} %
           </Typography>
           <Typography variant="body2">
             <br />
             {props.dot ? <CircleIcon sx={{ color: props.dotColor }}/> : <></> }
-            {props.percentage} %
+
 
           </Typography>
         </CardContent>

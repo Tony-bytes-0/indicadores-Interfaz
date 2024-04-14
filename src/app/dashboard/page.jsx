@@ -24,7 +24,7 @@ export default function Page() {
 
   return (
     <Grid container className="my-10">
-      <Panel handlePanel={handlePanel} />
+      <Panel handlePanel={handlePanel} panel={panel} />
       {panel.variacion ? <Variacion year={actualDate.getFullYear()} /> : <></>}
 
       {panel.triage ? <Triage year={actualDate.getFullYear()} /> : <></>}
