@@ -1,10 +1,11 @@
 "use client";
-import { CircularProgress, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Grid } from "@mui/material";
+import React, { useState } from "react";
 import BasicTable from "./BasicTable";
 import Filter from "./Filter";
 import axios from "axios";
 import Membrete from "@/components/membrete/Membrete";
+import Swal from "sweetalert2";
 
 export default function Page() {
   const [userList, setUserList] = useState([]);
@@ -18,8 +19,18 @@ export default function Page() {
       .get("http://localhost:4000/visitas/personalReport", { params })
       .then((response) => {
         console.log(response.data);
-        setUserList(response.data);
-        setShow(true);
+        if(response.data.length < 1){
+          Swal.fire({
+            title: 'No encontrado',
+            text: 'Es posible que no existan registros con la cedula suministrada, verifique el numero introducido e intente nuevamente',
+            icon:'info'
+          })
+        }
+        else{
+          setUserList(response.data);
+          setShow(true);
+        }
+
       });
   };
   const reset = () => {

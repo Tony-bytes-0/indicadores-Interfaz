@@ -68,12 +68,11 @@ export default function BasicTable(props) {
     });
   } */
   function formatDate(fechaString) {
-    console.log('before: ', fechaString)
     const fecha = new Date(fechaString);
     const dia = fecha.getDate().toString()
     const mes = fecha.getMonth()  // Los meses en JavaScript empiezan en 0
     const ano = fecha.getFullYear();
-    console.log(`${dia}-${mes}-${ano}`)
+    //console.log(`${dia}-${mes}-${ano}`)
     return `${dia}-${mes}-${ano}`;
    }
   const toggleModal = (event) => {
