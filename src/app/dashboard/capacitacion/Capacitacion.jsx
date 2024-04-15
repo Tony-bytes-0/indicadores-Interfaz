@@ -21,7 +21,7 @@ function Capacitacion(props) {
       });
   }, []);
   return (
-    <Grid container>
+    <Grid container alignItems={'center'} justifyContent={'center'}>
       <Grid item xs={12}>
         <Typography
           variant="body1"
