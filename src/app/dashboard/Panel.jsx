@@ -12,7 +12,7 @@ function Panel(props) {
       <Button onClick={() => {props.handlePanel('capacitacion')}}>Mostrar personal</Button> */}
       <FormGroup>
         <FormControlLabel control={<Switch checked={props.panel.variacion} onChange={() => {props.handlePanel('variacion')}} />} label='Variación en las visitas' />
-        <FormControlLabel control={<Switch checked={props.panel.triage} onChange={() => {props.handlePanel('triage')}} />} label='Triage' />
+        <FormControlLabel control={<Switch checked={props.panel.triage} onChange={() => {props.handlePanel('triage')}} />} label='Triaje' />
         <FormControlLabel control={<Switch checked={props.panel.morbilidad} onChange={() => {props.handlePanel('morbilidad')}} />} label='Morbilidad por mes' />
         <FormControlLabel control={<Switch checked={props.panel.satisfaccion} onChange={() => {props.handlePanel('satisfaccion')}} />} label='Satisfacción del paciente' />
         <FormControlLabel control={<Switch checked={props.panel.capacitacion} onChange={() => {props.handlePanel('capacitacion')}} />} label='Capacitación del personal' />

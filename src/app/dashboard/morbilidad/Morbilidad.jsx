@@ -57,7 +57,7 @@ export default function Morbilidad(props) {
       <Separador />
       <SelectMonth handleMonth={handleMonth} month={month} fetchData={fetchData} />
       <div className="w-full flex items-center justify-center">
-        <DonutGraph data={graphData} xs={5} />
+        <DonutGraph data={graphData} xs={5} title={'Índice de morbilidad del mes seleccionado'} />
       </div>
       <Grid item xs={12} className="flex my-10 mx-5">
         {graphData.labels.map((e, index) => (

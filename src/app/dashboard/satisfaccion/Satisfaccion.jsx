@@ -78,6 +78,7 @@ function Satisfaccion(props) {
         Índice de satisfacción del paciente en el ambulatorio urbano I &quot;Dr. Bernardino Martínez&quot; año {props.year}
       </Typography>
       </Grid>
+      {console.log(props)}
       <Separador />
       <DonutGraph
         data={constructData()}

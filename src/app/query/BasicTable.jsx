@@ -69,8 +69,8 @@ export default function BasicTable(props) {
   } */
   function formatDate(fechaString) {
     const fecha = new Date(fechaString);
-    const dia = fecha.getDate().toString()
-    const mes = fecha.getMonth()  // Los meses en JavaScript empiezan en 0
+    const dia = fecha.getDate().toString().padStart(2, '0'); // Asegura que el día tenga dos dígitos
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
     const ano = fecha.getFullYear();
     //console.log(`${dia}-${mes}-${ano}`)
     return `${dia}-${mes}-${ano}`;
