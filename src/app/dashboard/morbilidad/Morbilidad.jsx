@@ -12,8 +12,8 @@ export default function Morbilidad(props) {
   const [percentages, setPercentages] = useState([10, 12]);
   const [month, setMonth] = useState("0");
   const [graphData, setGraphData] = useState({
-    labels: ["uno", "dos"],
-    dataArray: [10, 20, 30, 40],
+    labels: ["esperando datos"],
+    dataArray: [1],
   });
   const handleMonth = (event) => {
     setMonth(event.target.value);
