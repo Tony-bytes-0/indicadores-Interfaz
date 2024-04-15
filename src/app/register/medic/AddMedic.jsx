@@ -106,7 +106,7 @@ export default function AddMedic(props) {
       })
       .then((response) => {
         const msj = `${nombreMedico} hasido registrado con exito, con el codigo SACS: ${sacs}`;
-        alert(msj);
+        //alert(msj);
         Swal.fire({
           title: "¡Completado!",
           text: "Medico introducido introducido con exito",

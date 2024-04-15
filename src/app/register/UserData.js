@@ -37,6 +37,7 @@ import axios from "axios";
 import { bloodList } from "@/app/register/validations"; //objeto con personas estatico
 import { isDateNotInFuture } from "@/app/register/validations";
 import Separador from "@/components/Separador";
+import Swal from "sweetalert2";
 
 const redAsteriskLocal = createTheme({
   components: {
@@ -88,6 +89,11 @@ export default function UserData(props) {
       dispatch(setFechaNacimiento(event.target.value));
     } else {
       alert("no se pueden seleccionar fechas en el futuro!");
+      Swal.fire({
+        title:'oops',
+        text:"no se pueden seleccionar fechas en el futuro!",
+        icon:"info",
+      })
       dispatch(setFechaNacimiento("2000-01-01"));
     }
   }; //BIRTHDATE
