@@ -11,6 +11,7 @@ export default function Page() {
   const [userList, setUserList] = useState([]);
   const [filter, setFilter] = useState("");
   const [show, setShow] = useState(false);
+  const [personName, setPersonName] = useState("");
   const handleFilter = (event) => {
     setFilter(event.target.value);
   };
@@ -18,19 +19,20 @@ export default function Page() {
     axios
       .get("http://localhost:4000/visitas/personalReport", { params })
       .then((response) => {
-        console.log(response.data);
-        if(response.data.length < 1){
+        //console.log(response.data[0].persona_nombre);
+        if (response.data.length == 0) {
           Swal.fire({
-            title: 'No encontrado',
-            text: 'Es posible que no existan registros con la cedula suministrada, verifique el numero introducido e intente nuevamente',
-            icon:'info'
-          })
-        }
-        else{
+            title: "No encontrado",
+            text: "Es posible que no existan registros con la cedula suministrada, verifique el numero introducido e intente nuevamente",
+            icon: "info",
+          });
+        } else {
           setUserList(response.data);
+          setPersonName(
+            ` Historia medica del paciente: ${response.data[0].persona_nombre} ${response.data[0].persona_apellido} - cédula de identidad: ${filter}`
+          );
           setShow(true);
         }
-
       });
   };
   const reset = () => {
@@ -42,7 +44,7 @@ export default function Page() {
   };
 
   return (
-    <Grid container>
+    <Grid container paddingRight={5}>
       <Filter
         filter={filter}
         handleFilter={handleFilter}
@@ -51,7 +53,7 @@ export default function Page() {
         reset={reset}
       />
       <Grid id={"pdf"}>
-        {show ? <Membrete label={`Historia medica del paciente`} /> : <></>}
+        {show ? <Membrete label={personName} /> : <></>}
         <BasicTable userList={userList} />
       </Grid>
     </Grid>

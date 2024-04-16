@@ -53,21 +53,21 @@ function Reports() {
 
   const fetchReport = () => {
     axios.get(url, { params }).then((response) => {
-      console.log(response.data);
-      if (tableData.length > 0) {
-        handleTableData([]);
-        setShow(false)
-      } else {
+      if (response.data.length > 0) {//si hay datos
         console.log("llenando la lista", response.data);
         handleTableData(response.data);
-        setShow(true)
-        if (response.data.length == []) {
-          emptyMsj();
-        }
+        setShow(true);
+      } else {
+        emptyMsj();
       }
     });
   };
   const normalize = () => {
+    console.log("normalizando campos de busqueda!");
+    handleTableData([]);
+    setShow(false);
+    setEnfermedad("");
+    setLocalidad("");
     setInicio("");
     setFinal("");
     setGenero("Ambos");
@@ -89,30 +89,46 @@ function Reports() {
   };
   return (
     <Grid container marginTop={5} paddingRight={7}>
-      <Filter
-        handleEnfermedad={handleEnfermedad}
-        handleLocalidad={handleLocalidad}
-        handleGenero={handleGenero}
-        handleFechaInicio={handleFechaInicio}
-        handleFechaFinal={handleFechaFinal}
-        handleEdadMin={handleEdadMin}
-        handleEdadMax={handleEdadMax}
-        enfermedad={enfermedad}
-        localidad={localidad}
-        fechaInicio={fechaInicio}
-        fechaFin={fechaFin}
-        genero={genero}
-        edadMin={edadMin}
-        edadMax={edadMax}
-        tableData={tableData}
-      />
+      {show ? (
+        <></>
+      ) : (
+        <Filter
+          handleEnfermedad={handleEnfermedad}
+          handleLocalidad={handleLocalidad}
+          handleGenero={handleGenero}
+          handleFechaInicio={handleFechaInicio}
+          handleFechaFinal={handleFechaFinal}
+          handleEdadMin={handleEdadMin}
+          handleEdadMax={handleEdadMax}
+          enfermedad={enfermedad}
+          localidad={localidad}
+          fechaInicio={fechaInicio}
+          fechaFin={fechaFin}
+          genero={genero}
+          edadMin={edadMin}
+          edadMax={edadMax}
+          tableData={tableData}
+        />
+      )}
       <ButtonActions
         tableData={tableData}
         fetchReport={fetchReport}
         normalize={normalize}
       />
-      <Grid id="pdf" item xs={12} >
-        {show ? <Membrete label={'Reporte general de pacientes'} />: <></>}
+      <Grid id="pdf" item xs={12}>
+        {show ? (
+          <Membrete
+            label={"Reporte general de pacientes"}
+            enfermedad={enfermedad.nombreEnfermedad}
+            localidad={localidad.nombreLocalidad}
+            fechaInicio={fechaInicio !== "" && fechaFin !== "" ? fechaInicio : ""}
+            fechaFin={fechaInicio !== "" && fechaFin !== "" ? fechaFin : ""}
+            edadMin={edadMin !== "" && edadMax !== "" ? edadMin : ""}
+            edadMax={edadMin !== "" && edadMax !== "" ? edadMax : ""}
+          />
+        ) : (
+          <></>
+        )}
         <PaginatedTable data={tableData} handler={handleTableData} />
       </Grid>
     </Grid>

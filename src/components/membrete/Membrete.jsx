@@ -34,9 +34,18 @@ function Membrete(props) {
     // Asegurarse de que el mes y el día sean de dos dígitos
     const mesFormateado = mes < 10 ? `0${mes}` : mes;
     const diaFormateado = dia < 10 ? `0${dia}` : dia;
-
-    return `${año}-${mesFormateado}-${diaFormateado}`;
+    return `${diaFormateado}-${mesFormateado}-${año}`;
   };
+  const dinamicMsj = [
+    " que padecen de: ",
+    " residentes de la localidad: ",
+    " atendidos entre las fechas: ",
+    "y: ",
+    " con fecha de nacimiento desde: ",
+    "hasta: ",
+    " mostrando pacientes del género: ",
+  ];
+  console.log('props de membrete: ', props)
   return (
     <Grid container xs={12}>
       {images.map((e) => (
@@ -60,7 +69,7 @@ function Membrete(props) {
         alt="Fudnasalud logo"
       />
       {/*primer nivel ____________________________________________________*/}
-      <Grid item xs = {12} margin={5}></Grid>
+      <Grid item xs={12} margin={5}></Grid>
       <Grid item xs={6}>
         <Typography variant="caption" textAlign={"left"} fontSize={16}>
           <b>Fecha: {getDate()}</b>
@@ -79,7 +88,19 @@ function Membrete(props) {
           marginBottom={5}
         >
           {props.label}
+          
         </Typography>
+        {[props.enfermedad, props.localidad, props.fechaInicio, props.fechaFin, props.edadMin, props.edadMax, props.genero].map((e, index) => (
+          <Typography
+            key={index}
+            variant="h6"
+            textAlign={"center"}
+            marginTop={1}
+            marginBottom={1}
+          >
+            {e !== null && e !== undefined && e !== "" ? ` ${dinamicMsj[index]} ${e}` : ""}
+          </Typography>
+        ))}
         <Separador />
       </Grid>
     </Grid>

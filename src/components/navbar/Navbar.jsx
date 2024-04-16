@@ -1,7 +1,6 @@
 "use client"
-import { AppBar, Box, Stack, Typography } from '@mui/material';
+import { AppBar, Stack } from '@mui/material';
 import logo from '/public/staticAssets/logoMinisterioParaLaSalud.png';
-//import cantarrana from '/public/staticAssets/logoAmbulatorio.png'
 import Image from 'next/image';
 import * as React from 'react';
 

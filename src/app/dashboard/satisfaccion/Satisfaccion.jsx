@@ -3,20 +3,19 @@ import {
   determinateDotColor,
   calculatePercentages,
   fillMonths,
-  graphColors
+  graphColors,
 } from "@/app/dashboard/common";
 import DonutGraph from "@/app/dashboard/morbilidad/DonutGraph";
 import { Grid, Typography } from "@mui/material";
 import Separador from "@/components/Separador";
 import GroupBar from "@/app/dashboard/graphs/GroupBar";
+import GroupedBarChart from "@/app/dashboard/graphs/GroupedBarChart";
 import axios from "axios";
 
 function Satisfaccion(props) {
   const [graphData, setGraphData] = useState({
     labels: ["Buena", "Regular", "Deficiente"],
-    dataArray: [
-      10, 20, 15,
-    ],
+    dataArray: [10, 20, 15],
     buena: 0,
     regular: 0,
     deficiente: 0,
@@ -34,11 +33,11 @@ function Satisfaccion(props) {
     };
   };
   const constructBackgroundColors = () => {
-    return  Object.entries(graphColors).map((e) => e[1].backgroundColor)
-  }
+    return Object.entries(graphColors).map((e) => e[1].backgroundColor);
+  };
   const constructBorderColors = () => {
-    return  Object.entries(graphColors).map((e) => e[1].borderColor)
-  }
+    return Object.entries(graphColors).map((e) => e[1].borderColor);
+  };
   useEffect(() => {
     axios
       .get("http://localhost:4000/visitas/satisfaccion?param=Buena")
@@ -73,10 +72,16 @@ function Satisfaccion(props) {
   }, []);
   return (
     <Grid container>
-      <Grid item xs ={12}>
-      <Typography variant="body1" color="initial" fontSize={30} textAlign={'center'}>
-        Índice de satisfacción del paciente en el ambulatorio urbano I &quot;Dr. Bernardino Martínez&quot; año {props.year}
-      </Typography>
+      <Grid item xs={12}>
+        <Typography
+          variant="body1"
+          color="initial"
+          fontSize={30}
+          textAlign={"center"}
+        >
+          Índice de satisfacción del paciente en el ambulatorio urbano I
+          &quot;Dr. Bernardino Martínez&quot; año {props.year}
+        </Typography>
       </Grid>
       {console.log(props)}
       <Separador />
@@ -86,9 +91,25 @@ function Satisfaccion(props) {
         titleSize={20}
         xs={3}
         backgroundColor={constructBackgroundColors()}
-        borderColor = {constructBorderColors()}
+        borderColor={constructBorderColors()}
       />
-      <GroupBar
+      <GroupedBarChart
+      title={"Total por meses"}
+        firstLabel={"Buena"}
+        firstArray={buena}
+        firstBorderColor={graphColors.buena.borderColor}
+        firstBackgroundColor={graphColors.buena.backgroundColor}
+        secoundLabel={"Regular"}
+        secoundArray={regular}
+        secoundBorderColor={graphColors.regular.borderColor}
+        secoundBackgroundColor={graphColors.regular.backgroundColor}
+        thirdLabel={"Deficiente"}
+        thirdBorderColor={graphColors.deficiente.borderColor}
+        thirdBackgroundColor={graphColors.deficiente.backgroundColor}
+        thirdArray={deficiente}
+        xs={7}
+      />
+{/*       <GroupBar
         title={"Total por meses"}
         xs={7}
         firstLabel={"Buena"}
@@ -97,13 +118,13 @@ function Satisfaccion(props) {
         firstBackgroundColor={graphColors.buena.backgroundColor}
         secoundLabel={"Regular"}
         secoundArray={regular}
-        secoundBorderColor = {graphColors.regular.borderColor}
-        secoundBackgroundColor = {graphColors.regular.backgroundColor}
+        secoundBorderColor={graphColors.regular.borderColor}
+        secoundBackgroundColor={graphColors.regular.backgroundColor}
         thirdLabel={"Deficiente"}
-        thirdBorderColor = {graphColors.deficiente.borderColor}
-        thirdBackgroundColor = {graphColors.deficiente.backgroundColor}
+        thirdBorderColor={graphColors.deficiente.borderColor}
+        thirdBackgroundColor={graphColors.deficiente.backgroundColor}
         thirdArray={deficiente}
-      />
+      /> */}
     </Grid>
   );
 }
