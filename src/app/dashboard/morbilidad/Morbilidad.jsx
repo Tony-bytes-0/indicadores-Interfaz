@@ -7,10 +7,11 @@ import Separador from "@/components/Separador";
 import InfoCard from "@/app/dashboard/InfoCard";
 import SelectMonth from "@/app/dashboard/morbilidad/SelectMonth";
 import Swal from "sweetalert2";
+import { morbilidadBackgroundColors, morbilidadBorderColors } from "../common";
 
 export default function Morbilidad(props) {
   const [percentages, setPercentages] = useState([10, 12]);
-  const [month, setMonth] = useState("0");
+  const [month, setMonth] = useState("1");
   const [graphData, setGraphData] = useState({
     labels: ["esperando datos"],
     dataArray: [1],
@@ -18,34 +19,31 @@ export default function Morbilidad(props) {
   const handleMonth = (event) => {
     setMonth(event.target.value);
   };
-  const params = {
-    dateMonth: month
-  }
   const fetchData = () => {
-    axios.get(`http://localhost:4000/visitas/ordenar?mes=${month}`).then((response) => {
-      console.log(response.data)
-      if(response.data.length < 1){
-        Swal.fire({
-          title: 'No encontrado',
-          text: 'Es posible que no existan registros en la fecha suministrada, verifique su elección e intente nuevamente',
-          icon:'info'
-        })
-      }
-      else{
-        setGraphData({
-          labels: response.data.map((e) => e.enfermedades_nombreEnfermedad),
-          dataArray: response.data.map((e) => e.count),
-        });
-      }
+    axios
+      .get(`http://localhost:4000/visitas/ordenar?mes=${month}`)
+      .then((response) => {
+        console.log(response.data, " el mes es: ", month);
+        if (response.data.length < 1) {
+          Swal.fire({
+            title: "No encontrado",
+            text: "Es posible que no existan registros en la fecha suministrada, verifique su elección e intente nuevamente",
+            icon: "info",
+          });
+        } else {
+          setGraphData({
+            labels: response.data.map((e) => e.enfermedades_nombreEnfermedad),
+            dataArray: response.data.map((e) => e.count),
+          });
+        }
 
-
-      setPercentages(
-        calculatePercentages(response.data.map((e) => parseInt(e.count)))
-      );
-    });
+        setPercentages(
+          calculatePercentages(response.data.map((e) => parseInt(e.count)))
+        );
+      });
   };
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     fethcGraph();
   }, []); */
   return (
@@ -55,9 +53,19 @@ export default function Morbilidad(props) {
         &quot;Dr. Bernardino Martínez&quot; año {props.year}
       </Typography>
       <Separador />
-      <SelectMonth handleMonth={handleMonth} month={month} fetchData={fetchData} />
+      <SelectMonth
+        handleMonth={handleMonth}
+        month={month}
+        fetchData={fetchData}
+      />
       <div className="w-full flex items-center justify-center">
-        <DonutGraph data={graphData} xs={5} title={'Índice de morbilidad del mes seleccionado'} />
+        <DonutGraph
+          data={graphData}
+          xs={5}
+          title={"Índice de morbilidad del mes seleccionado"}
+          backgroundColor={morbilidadBackgroundColors}
+          borderColor={morbilidadBorderColors}
+        />
       </div>
       <Grid item xs={12} className="flex my-10 mx-5">
         {graphData.labels.map((e, index) => (

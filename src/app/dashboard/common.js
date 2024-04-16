@@ -44,6 +44,26 @@ export const graphColors = {
     backgroundColor: "rgba(255, 99, 132, 0.5)",
   },
 };
+export const morbilidadBackgroundColors = [
+  "rgb(74, 147, 253)",
+  "rgb(102, 255, 104)",
+  "rgb(227, 255, 102 )",
+  "rgb(255, 190, 102 )",
+  "rgb(102, 248, 255 )",
+  "rgb(104, 102, 255)",
+  "rgb(190, 102, 255 )",
+  "rgb(190, 0, 83)",
+]
+export const morbilidadBorderColors = [
+  "rgb(74, 147, 253)",
+  "rgb(102, 255, 104)",
+  "rgb(227, 255, 102 )",
+  "rgb(255, 190, 102 )",
+  "rgb(102, 248, 255 )",
+  "rgb(104, 102, 255)",
+  "rgb(190, 102, 255 )",
+  "rgb(190, 0, 83)",
+]
 
 function fillMonths(data) {
   const todosLosMeses = Array.from({ length: 12 }, (_, i) => (i + 1).toString());

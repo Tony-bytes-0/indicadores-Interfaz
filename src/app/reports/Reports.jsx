@@ -118,7 +118,7 @@ function Reports() {
       <Grid id="pdf" item xs={12}>
         {show ? (
           <Membrete
-            label={"Reporte general de pacientes"}
+            label={"reporte general de pacientes"}
             enfermedad={enfermedad.nombreEnfermedad}
             localidad={localidad.nombreLocalidad}
             fechaInicio={fechaInicio !== "" && fechaFin !== "" ? fechaInicio : ""}

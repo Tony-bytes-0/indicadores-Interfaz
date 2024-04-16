@@ -29,7 +29,7 @@ export default function Page() {
         } else {
           setUserList(response.data);
           setPersonName(
-            ` Historia medica del paciente: ${response.data[0].persona_nombre} ${response.data[0].persona_apellido} - cédula de identidad: ${filter}`
+            ` historia medica del paciente: ${response.data[0].persona_nombre} ${response.data[0].persona_apellido} - cédula de identidad: ${filter}`
           );
           setShow(true);
         }

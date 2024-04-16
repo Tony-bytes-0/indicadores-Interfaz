@@ -10,7 +10,7 @@ function SelectMonth(props) {
         <InputLabel>Seleccionar Mes</InputLabel>
         <Select value={props.month} onChange={props.handleMonth}>
           {monthLabels.map((e, index) => (
-            <MenuItem key={index} value={monthLabels.indexOf(e)}>{e}</MenuItem>
+            <MenuItem key={index} value={monthLabels.indexOf(e) + 1}>{e}</MenuItem>
           ))}
         </Select>
         <Button variant="contained" className="bg-blue-500" onClick={props.fetchData}>Filtrar</Button>
